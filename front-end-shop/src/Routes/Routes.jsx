@@ -8,6 +8,7 @@ import AddProduct from "../Pages/AddProduct";
 import UpdateProduct from "../Pages/UpdateProduct";
 import Root from "../Root/Root";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import BrandProducts from "../Pages/BrandProducts";
 
 const Routes = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/updateProduct",
                 element: <PrivateRoutes><UpdateProduct></UpdateProduct></PrivateRoutes>,
+            },
+            {
+                path: "/brand/:brandName",
+                element: <PrivateRoutes><BrandProducts></BrandProducts></PrivateRoutes>,
             },
         ]
     }
