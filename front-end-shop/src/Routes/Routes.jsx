@@ -37,7 +37,7 @@ const Routes = createBrowserRouter([
                 element: <PrivateRoutes><UpdateProduct></UpdateProduct></PrivateRoutes>,
             },
             {
-                path: "/brand/:brandName",
+                path: "/products/brand/:brandName",
                 element: <PrivateRoutes><BrandProducts></BrandProducts></PrivateRoutes>,
             },
         ]
