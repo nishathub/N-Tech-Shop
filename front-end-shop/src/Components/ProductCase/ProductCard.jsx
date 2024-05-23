@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
 
 
 const ProductCard = ({ product }) => {
 
-    const { name, brand, details, price, image, rating, type } = product;
+    const { name, brand, details, price, image, rating, type, _id } = product;
+    
 
     return (
         <div>
-            <div className="flex gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w-lg max-h-56">
+            <div className="flex gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w- max-h-56">
                 <img className="w-32" src={image} alt="product-image" />
                 <div className="w-full p-4 flex justify-between items-center">
                     <div>
@@ -19,7 +21,7 @@ const ProductCard = ({ product }) => {
 
                     </div>
                     <div className="flex flex-col gap-4">
-                        <button className="btn btn-primary">Details</button>
+                        <Link to={`/products/brand/${brand}/${_id}`}><button className="btn btn-primary">Details</button></Link>
                         <button className="btn btn-accent">Update</button>
                     </div>
                 </div>

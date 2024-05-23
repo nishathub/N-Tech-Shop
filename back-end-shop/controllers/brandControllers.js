@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const { getDB } = require("../config/db");
 
 const productCollection = () => getDB().collection('Products'); // modified to a function and will be called later.
@@ -23,6 +24,17 @@ const getOneBrandProducts = async (req, res) => {
     }
 }
 
+const getOneProduct = async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        const query = { _id : new ObjectId(productId)}
+        const oneProduct = await productCollection().findOne(query);
+        res.send(oneProduct)
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
 const createProduct = async (req, res) => {
     try {
         const newProduct = req.body;
@@ -33,4 +45,4 @@ const createProduct = async (req, res) => {
     }
 }
 
-module.exports = { getAllProducts, createProduct, getOneBrandProducts };
+module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct };
