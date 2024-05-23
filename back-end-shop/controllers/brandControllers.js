@@ -2,10 +2,19 @@ const { ObjectId } = require("mongodb");
 const { getDB } = require("../config/db");
 
 const productCollection = () => getDB().collection('Products'); // modified to a function and will be called later.
+const cartCollection = () => getDB().collection('Cart'); // modified to a function and will be called later.
 
 const getAllProducts = async (req, res) => {
     try {
         const products = await productCollection().find().toArray();
+        res.send(products);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+const getCartProducts = async (req, res) => {
+    try {
+        const products = await cartCollection().find().toArray();
         res.send(products);
     } catch (error) {
         res.status(500).send(error);
@@ -45,4 +54,14 @@ const createProduct = async (req, res) => {
     }
 }
 
-module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct };
+const createCartItem = async (req, res) => {
+    try {
+        const newCartItem = req.body;
+        const result = await cartCollection().insertOne(newCartItem);
+        res.send(result);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct, createCartItem, getCartProducts };

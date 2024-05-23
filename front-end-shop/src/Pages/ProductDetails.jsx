@@ -4,8 +4,28 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 const ProductDetails = () => {
     const { brandName, productId } = useParams();
     const oneProduct = useLoaderData();
-    console.log(oneProduct);
     const { name, brand, color, price, image, rating, type, country, year, warranty, box, _id } = oneProduct;
+    const handleAddToCart = () => {
+        
+        fetch('http://localhost:5000/cartItems', {
+            method: 'POST',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify({productId : _id, name: name})
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+                // modal 
+            }
+        })
+        .catch(error =>{
+            console.error(error)
+        })
+
+    }
     return (
         <div className="py-8">
             <div className="flex flex-col gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w-4xl mx-auto">
@@ -30,7 +50,7 @@ const ProductDetails = () => {
                 </div>
                 <div><img className="w-full" src={image} alt="product-image" /></div>
                 <div className="w-full">
-                    <Link to={`/products/brand/${brand}/${_id}`}><button className="btn btn-accent w-full text-lg">Add to Cart</button></Link>
+                    <button onClick={handleAddToCart} className="btn btn-accent w-full text-lg">Add to Cart</button>
                 </div>
             </div>
         </div>
