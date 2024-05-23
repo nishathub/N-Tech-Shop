@@ -3,7 +3,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', getAllProducts);
-router.post('/', createProduct);
+router.get('/products', getAllProducts);
+router.post('/products', createProduct);
 
 module.exports = router;

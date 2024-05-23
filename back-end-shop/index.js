@@ -16,7 +16,7 @@ async function startServer() {
     await connectDB(); // Wait for the DB connection to be established with database
 
     // Middleware to use brand routes
-    app.use('/brand', brandRoutes);
+    app.use('/', brandRoutes);
     
     // Routes
     app.get('/', (req, res) => {
