@@ -9,13 +9,17 @@ const AddProduct = () => {
 
         const name = form.name.value;
         const brand = form.selectBrand.value;
-        const details = form.details.value;
+        const color = form.color.value;
         const price = form.price.value;
         const image = form.image.value;
         const rating = form.rating.value;
+        const country = form.country.value;
+        const year = form.year.value;
+        const warranty = form.warranty.value;
+        const box = form.box.value;
         const type = form.selectType.value;
 
-        const newProduct = {name, brand, details, price, image, rating, type};
+        const newProduct = {name, brand, color, price, image, rating, type, country, year, warranty, box};
         // console.log(newProduct);
 
         fetch('http://localhost:5000/products', {
@@ -35,7 +39,7 @@ const AddProduct = () => {
                 icon: "success",
                 timer: 800
             })
-            form.reset();
+            // form.reset();
             }
         })
         
@@ -46,7 +50,7 @@ const AddProduct = () => {
             <form onSubmit={handleAddProduct} className="space-y-2">
                 <div className="md:flex gap-4">
                     <input type="text" name="name" placeholder="Name" className="input input-bordered w-full" />
-                    <select name="selectBrand" defaultValue="Select Brand" className="select select-bordered w-full ">
+                    <select name="selectBrand" defaultValue="Select Brand" className="select select-bordered w-7/12 ">
                         <option disabled >Select Brand</option>
                         <option value="Apple">Apple</option>
                         <option value="Samsung">Samsung</option>
@@ -58,7 +62,15 @@ const AddProduct = () => {
                 </div>
                 <div className="md:flex gap-4">
                     <input type="text" name="price" placeholder="$ Price" className="input input-bordered w-full" />
-                    <input type="text" name="details" placeholder="Details" className="input input-bordered w-full" />
+                    <input type="text" name="color" placeholder="Color" className="input input-bordered w-full" />
+                </div>
+                <div className="md:flex gap-4">
+                    <input type="text" name="country" placeholder="Country" className="input input-bordered w-full" />
+                    <input type="text" name="year" placeholder="Release Year" className="input input-bordered w-full" />
+                </div>
+                <div className="md:flex gap-4">
+                    <input type="text" name="warranty" placeholder="Warranty-period" className="input input-bordered w-full" />
+                    <input type="text" name="box" placeholder="Provided in the box" className="input input-bordered w-full" />
                 </div>
                 <div className="">
                     <input type="text" name="image" placeholder="Image-URL" className="input input-bordered w-full" />
