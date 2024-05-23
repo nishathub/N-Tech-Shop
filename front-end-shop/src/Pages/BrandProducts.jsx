@@ -17,7 +17,7 @@ const BrandProducts = () => {
                     :
                     <div>
                         <div>
-                           <h2 className="text-3xl text-center uppercase font-semibold text-accent tracking-wider">{brandName}</h2> 
+                           <h2 className="sm:text-3xl text-xl text-center uppercase font-semibold text-accent tracking-wider">{brandName}</h2> 
                         </div>
                         <div className="my-8">
                             <CarouselTransition products ={oneBrandProducts}></CarouselTransition>
