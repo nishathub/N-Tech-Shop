@@ -1,10 +1,11 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const UpdateProduct = () => {
     const oldProduct = useLoaderData();
-    console.log(oldProduct);
-    const { name, brand, color, price, image, rating, type, country, year, warranty, box } = oldProduct;
+    const { name, brand, color, price, image, type, country, year, warranty, box, _id } = oldProduct;
+    const navigate = useNavigate();
 
 
     const handleUpdateProduct = (e) => {
@@ -24,9 +25,31 @@ const UpdateProduct = () => {
         const box = form.box.value;
         const type = form.selectType.value;
 
-        const newProduct = { name, brand, color, price, image, rating, type, country, year, warranty, box };
+        const updatedProduct = { name, brand, color, price, image, rating, type, country, year, warranty, box };
         // console.log(newProduct);
-        fetch()
+        fetch(`http://localhost:5000/products/${_id}`, {
+            method: 'PUT', 
+            headers: {
+                'content-type' : 'application/json'
+            }, 
+            body: JSON.stringify(updatedProduct)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.modifiedCount > 0){
+                Swal.fire({
+                    title: "Your Product Updated",
+                    // text: "You clicked the button!",
+                    icon: "success",
+                    timer: 1000
+                })
+                setTimeout(() => {
+                    navigate(`/products/brand/${brand}`)
+                }, 2000);
+            }
+        })
+        .catch(error => console.error(error))
     }
     return (
         <div className="mt-12 bg-gray-700 p-8 rounded-md">

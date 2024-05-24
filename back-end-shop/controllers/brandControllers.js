@@ -28,12 +28,38 @@ const getOneBrandProducts = async (req, res) => {
 const getOneProduct = async (req, res) => {
     try {
         const productId = req.params.productId;
-        const query = { _id : new ObjectId(productId)}
+        const query = { _id: new ObjectId(productId) }
         const oneProduct = await productCollection().findOne(query);
         res.send(oneProduct)
     } catch (error) {
         res.status(500).send(error);
     }
+}
+
+const updateProduct = async (req, res) => {
+    const productId = req.params.productId;
+    const query = { _id: new ObjectId(productId) }
+    const options = { upsert: true };
+    const newProduct = req.body;
+    const { name, brand, color, price, image, rating, type, country, year, warranty, box } = newProduct;
+    const updatedProduct = {
+        $set: {
+            name: name,
+            brand: brand,
+            color: color,
+            price: price,
+            image: image,
+            rating: rating,
+            type: type,
+            country: country,
+            year: year,
+            warranty: warranty,
+            box: box
+        }
+    }
+
+    const result = await productCollection().updateOne(query, updatedProduct, options);
+    res.send(result);
 }
 
 const createProduct = async (req, res) => {
@@ -65,10 +91,10 @@ const getCartItems = async (req, res) => {
     }
 }
 
-const getOneCartItem = async(req, res) => {
+const getOneCartItem = async (req, res) => {
     try {
         const itemId = req.params.productId;
-        const query = {productId : itemId};
+        const query = { productId: itemId };
         const result = await cartCollection().findOne(query);
         res.send(result);
     } catch (error) {
@@ -76,10 +102,10 @@ const getOneCartItem = async(req, res) => {
     }
 }
 
-const removeCartItem = async(req, res) => {
+const removeCartItem = async (req, res) => {
     try {
         const itemId = req.params.productId;
-        const query = {productId : itemId};
+        const query = { productId: itemId };
         const result = cartCollection().deleteOne(query);
         res.send(result);
     } catch (error) {
@@ -87,4 +113,4 @@ const removeCartItem = async(req, res) => {
     }
 }
 
-module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct, createCartItem, getCartItems, getOneCartItem, removeCartItem };
+module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct, createCartItem, getCartItems, getOneCartItem, removeCartItem, updateProduct };
