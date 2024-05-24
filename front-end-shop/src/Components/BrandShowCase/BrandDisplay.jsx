@@ -11,9 +11,9 @@ const BrandDisplay = () => {
             .then(data => setBrand(data))
     }, [])
     return (
-        <div className=" py-4">
-            <h2 className="text-center text-xl my-4">Available Brands</h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 items-center place-items-center gap-8 p-4">
+        <div className=" py-8">
+            <h2 className="text-center text-xl my-4 tracking-wider text-accent font-semibold">Available Brands</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 items-center place-items-center gap-8">
                 {brand.map(brand => <BrandCard key={brand.name} brand={brand}></BrandCard>)}
             </div>
         </div>

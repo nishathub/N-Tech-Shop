@@ -7,12 +7,12 @@ import { CarouselTransition } from "../Components/ProductCase/CarouselTransition
 const BrandProducts = () => {
     const { brandName } = useParams();
     const oneBrandProducts = useLoaderData();
-
+    const bgStyle = {height: '100vh'};
     return (
-        <div className="py-8">
+        <div style={!oneBrandProducts.length ? bgStyle : {}} className="py-8">
             { // if No products available, show message
                 oneBrandProducts.length < 1 ?
-                    <h2 className="text-center text-2xl text-red-400 font-bold my-4">{brandName} Products Not Available <br /> Please Checkout Later</h2>
+                    <h2 className="text-center text-2xl text-red-400 font-bold mt-12">{brandName} products are currently out of stock <br /> Please Checkout Later</h2>
                     :
                     <div>
                         <div>

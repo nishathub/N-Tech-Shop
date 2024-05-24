@@ -52,7 +52,7 @@ const UpdateProduct = () => {
         .catch(error => console.error(error))
     }
     return (
-        <div className="mt-12 bg-gray-700 p-8 rounded-md">
+        <div className="mt-12 bg-blue-gray-900 p-8 rounded-md">
             <h2 className="text-xl text-center font-semibold mb-4">Update Your Product Here</h2>
             <form onSubmit={handleUpdateProduct} className="space-y-2">
                 <div className="md:flex gap-4">

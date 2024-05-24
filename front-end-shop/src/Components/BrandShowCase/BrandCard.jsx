@@ -12,7 +12,7 @@ const BrandCard = ({brand}) => {
 
     }
     return (
-        <div className="rounded-md border border-gray-700 hover:shadow-blue-700 shadow-md duration-300 max-w-sm">
+        <div className="p-4 rounded-md bg-blue-gray-900 hover:shadow-blue-700 shadow-md duration-300 max-w-sm">
             <img src={brand.brand_photo_link} alt="" />
             <button onClick={() => handleBrandClick(brand.name)} className="btn w-full">{brand.name}</button>
         </div>
