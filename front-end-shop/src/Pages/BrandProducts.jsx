@@ -7,7 +7,6 @@ import { CarouselTransition } from "../Components/ProductCase/CarouselTransition
 const BrandProducts = () => {
     const { brandName } = useParams();
     const oneBrandProducts = useLoaderData();
-    console.log(oneBrandProducts);
 
     return (
         <div className="py-8">

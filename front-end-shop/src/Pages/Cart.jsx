@@ -1,23 +1,28 @@
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useContext  } from "react";
 import CartItemCard from "../Components/CartItem/CartItemCard";
 import Swal from "sweetalert2";
+import { BrandShopContext } from "../AuthProvider/AuthProvider";
 
 const Cart = () => {
-    const cartItems = useLoaderData();
-    const [showCartItems, setShowCartItems] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/products')
-            .then(res => res.json())
-            .then(data => {
+    const {showCartItems, setShowCartItems} = useContext(BrandShopContext);
+    // WE HAVE TRANSFERRED THESE CODES TO AUTHPROVIDER, TO USE INFO ON OTHER COMPONENTS
 
-                const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
-                const displayItems = data.filter(product => cartItemsIds.includes(product._id)); // match id and get items
-                setShowCartItems(displayItems);
-            })
-            .catch(error => console.error('Error fetching products:', error));
-    }, [cartItems]);
+
+    // const cartItems = useLoaderData();
+    // const [showCartItems, setShowCartItems] = useState([]);
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/products')
+    //         .then(res => res.json())
+    //         .then(data => {
+
+    //             const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
+    //             const displayItems = data.filter(product => cartItemsIds.includes(product._id)); // match id and get items
+    //             setShowCartItems(displayItems);
+    //         })
+    //         .catch(error => console.error('Error fetching products:', error));
+    // }, [cartItems]);
 
     const handleDeleteCartItem = (id) => {
         Swal.fire({

@@ -1,10 +1,12 @@
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { BrandShopContext } from "../AuthProvider/AuthProvider";
 
 
 const ProductDetails = () => {
-    const { brandName, productId } = useParams();
     const oneProduct = useLoaderData();
+    const {setAddCartClick} = useContext(BrandShopContext);
     const { name, brand, color, price, image, rating, type, country, year, warranty, box, _id } = oneProduct;
     const handleAddToCart = () => {
         
@@ -24,6 +26,7 @@ const ProductDetails = () => {
                     icon: "success",
                     timer: 1200
                   }); 
+                  setAddCartClick(true);
             }
         })
         .catch(error =>{
