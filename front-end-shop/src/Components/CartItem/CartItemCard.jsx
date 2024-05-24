@@ -1,11 +1,7 @@
-import { Link } from "react-router-dom";
 
+const CartItemCard = ({item, handleDeleteCartItem}) => {
 
-const ProductCard = ({ product }) => {
-
-    const { name, brand, details, price, image, rating, type, _id } = product;
-    
-
+    const { name, brand, color, price, image, rating, type, _id } = item;
     return (
         <div>
             <div className="flex gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w- max-h-56">
@@ -15,14 +11,11 @@ const ProductCard = ({ product }) => {
                         <h2 className="text-lg font-bold mb-4">{name}</h2>
                         <p>Device : {type}</p>
                         <p>Brand : {brand}</p>
-                        <p>Rating : {rating}/5</p>
                         <p>Price : ${price}</p>
-                        <p>Color : {details}</p>
-
                     </div>
                     <div className="flex flex-col gap-4">
-                        <Link to={`/products/brand/${brand}/${_id}`}><button className="btn btn-primary">Details</button></Link>
-                        <Link to={`/products/brand/${brand}/update/${_id}`}><button className="btn btn-accent">Update</button></Link>
+                        <button className="btn btn-success text-2xl">+</button>
+                        <button onClick={() => handleDeleteCartItem(_id)} className="btn btn-error text-2xl">-</button>
                     </div>
                 </div>
             </div>
@@ -30,4 +23,4 @@ const ProductCard = ({ product }) => {
     );
 };
 
-export default ProductCard;
+export default CartItemCard;

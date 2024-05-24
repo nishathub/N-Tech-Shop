@@ -1,22 +1,66 @@
+import { useLoaderData, useParams } from "react-router-dom";
 
 
 const UpdateProduct = () => {
+    const oldProduct = useLoaderData();
+    console.log(oldProduct);
+    const { name, brand, color, price, image, rating, type, country, year, warranty, box } = oldProduct;
+
+
+    const handleUpdateProduct = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+
+        const name = form.name.value;
+        const brand = form.selectBrand.value;
+        const color = form.color.value;
+        const price = form.price.value;
+        const image = form.image.value;
+        const rating = form.rating.value;
+        const country = form.country.value;
+        const year = form.year.value;
+        const warranty = form.warranty.value;
+        const box = form.box.value;
+        const type = form.selectType.value;
+
+        const newProduct = { name, brand, color, price, image, rating, type, country, year, warranty, box };
+        // console.log(newProduct);
+        fetch()
+    }
     return (
-        <div className="mt-12">
-            <form className="space-y-2">
+        <div className="mt-12 bg-gray-700 p-8 rounded-md">
+            <h2 className="text-xl text-center font-semibold mb-4">Update Your Product Here</h2>
+            <form onSubmit={handleUpdateProduct} className="space-y-2">
                 <div className="md:flex gap-4">
-                    <input type="text" name="name" placeholder="Name" className="input input-bordered w-full" />
-                    <input type="text" name="brand" placeholder="Brand Name" className="input input-bordered w-full" />
+                    <input type="text" name="name" defaultValue={name} placeholder="Name" className="input input-bordered w-full" />
+                    <select name="selectBrand" defaultValue={brand} className="select select-bordered w-7/12 ">
+                        <option disabled >Select Brand</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Sony">Sony</option>
+                        <option value="Google">Google</option>
+                        <option value="Intel">Intel</option>
+                        <option value="Xiaomi">Xiaomi</option>
+                    </select>
                 </div>
                 <div className="md:flex gap-4">
-                    <input type="text" name="price" placeholder="$ Price" className="input input-bordered w-full" />
-                    <input type="text" name="details" placeholder="Details" className="input input-bordered w-full" />
+                    <input type="text" name="price" defaultValue={price} placeholder="$ Price" className="input input-bordered w-full" />
+                    <input type="text" name="color" defaultValue={color} placeholder="Color" className="input input-bordered w-full" />
                 </div>
                 <div className="md:flex gap-4">
-                    <input type="text" name="image" placeholder="Image-URL" className="input input-bordered w-full" />
+                    <input type="text" name="country" defaultValue={country} placeholder="Country" className="input input-bordered w-full" />
+                    <input type="text" name="year" defaultValue={year} placeholder="Release Year" className="input input-bordered w-full" />
                 </div>
                 <div className="md:flex gap-4">
-                    <select name="select" defaultValue="Select Product Type" className="select select-bordered w-full ">
+                    <input type="text" name="warranty" defaultValue={warranty} placeholder="Warranty-period" className="input input-bordered w-full" />
+                    <input type="text" name="box" defaultValue={box} placeholder="Provided in the box" className="input input-bordered w-full" />
+                </div>
+                <div className="">
+                    <input type="text" name="image" defaultValue={image} placeholder="Image-URL" className="input input-bordered w-full" />
+                </div>
+                <div className="md:flex gap-4">
+                    <select name="selectType" defaultValue={type} className="select select-bordered w-full ">
                         <option disabled >Select Product Type</option>
                         <option value="Phone">Phone</option>
                         <option value="Laptop">Laptop</option>
@@ -38,7 +82,7 @@ const UpdateProduct = () => {
                 </div>
 
                 <div className="md:flex gap-4">
-                    <input type="submit" value="Add-Product" className="btn btn-ghost input input-bordered w-full" />
+                    <input type="submit" value="Update-Product" className="btn btn-primary w-full" />
                 </div>
             </form>
         </div>

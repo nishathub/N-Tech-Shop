@@ -12,14 +12,6 @@ const getAllProducts = async (req, res) => {
         res.status(500).send(error);
     }
 }
-const getCartProducts = async (req, res) => {
-    try {
-        const products = await cartCollection().find().toArray();
-        res.send(products);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-}
 
 // Get One brand Products
 const getOneBrandProducts = async (req, res) => {
@@ -64,4 +56,35 @@ const createCartItem = async (req, res) => {
     }
 }
 
-module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct, createCartItem, getCartProducts };
+const getCartItems = async (req, res) => {
+    try {
+        const products = await cartCollection().find().toArray();
+        res.send(products);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+const getOneCartItem = async(req, res) => {
+    try {
+        const itemId = req.params.productId;
+        const query = {productId : itemId};
+        const result = await cartCollection().findOne(query);
+        res.send(result);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+const removeCartItem = async(req, res) => {
+    try {
+        const itemId = req.params.productId;
+        const query = {productId : itemId};
+        const result = cartCollection().deleteOne(query);
+        res.send(result);
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct, createCartItem, getCartItems, getOneCartItem, removeCartItem };
