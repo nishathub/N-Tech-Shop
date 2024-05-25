@@ -7,7 +7,7 @@ export function CarouselCustomNavigation({ allProducts }) {
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveIndex((prevIndex) => (prevIndex + 1) % allProducts.length);
-        }, 2000); // 2000ms = 2s
+        }, 3000); // 2000ms = 2s
 
         return () => clearInterval(interval); // Clean up the interval on component unmount
     }, [allProducts.length]);

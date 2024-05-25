@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import BrandDisplay from "../../Components/BrandShowCase/BrandDisplay";
 import { CarouselCustomNavigation } from "../../Components/HomeBanner/CarouselCustomNavigation";
 import { Gallery } from "../../Components/Gallery/Gallery";
+import NewsLetter from "../../Components/NewsLetter/NewsLetter";
 
 
 
@@ -20,6 +21,9 @@ const Home = () => {
             </div>
             <div>
                 <Gallery galleryProducts={galleryProducts}></Gallery>
+            </div>
+            <div>
+                <NewsLetter></NewsLetter>
             </div>
         </div>
     );
