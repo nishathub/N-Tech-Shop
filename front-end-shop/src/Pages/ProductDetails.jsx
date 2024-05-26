@@ -45,13 +45,13 @@ const ProductDetails = () => {
                         <div>
                             <p>Device : {type}</p>
                             <p>Brand : {brand}</p>
-                            <p>Rating : {rating}/5</p>
+                            <p>Rating : {rating ? rating : "rating-point"} / 5 </p>
                             <p>Price : ${price}</p>
                         </div>
                         <div>
                             <p>Color : {color}</p>
                             <p>Country of Origin: {country}</p>
-                            <p>Warranty period: {warranty}</p>
+                            <p>Warranty period: {warranty} years</p>
                             <p>Inside Box : {box}</p>
                         </div>
                     </div>

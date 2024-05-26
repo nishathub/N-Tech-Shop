@@ -6,16 +6,9 @@ import Swal from 'sweetalert2'
 
 const Navbar = () => {
 
-    const { loading, user, logOutUser, showCartItems, cartItemTotalPrice } = useContext(BrandShopContext);
+    const { loading, user, logOutUser, showCartItems } = useContext(BrandShopContext);
     const navigate = useNavigate();
 
-    // All about calculating total price
-    const cartPriceList = showCartItems.map(item => item.price);
-    let totalCartAmount = 0;
-    cartPriceList.forEach(element => {
-       const total = parseInt(element);
-       totalCartAmount += total;
-    });
 
     const handleLogOut = () => {
         logOutUser()
@@ -78,7 +71,6 @@ const Navbar = () => {
                                             <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
                                                 <div className="card-body">
                                                     <span className="font-bold text-lg">{showCartItems.length} Items</span>
-                                                    <span className=" text-lg text-accent">${cartItemTotalPrice}</span>
                                                     <div className="card-actions">
                                                         <Link to={'/cart'}><button className="btn btn-primary btn-block">View cart</button></Link>
                                                     </div>

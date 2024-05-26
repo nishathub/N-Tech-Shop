@@ -47,7 +47,12 @@ const Cart = () => {
                     .then(data => {
                         if (data) {
                             console.log(data);
-                            Swal.fire("Deleted!", "Your item has been deleted.", "success");
+                            Swal.fire({
+                                title: "Are you sure?",
+                                text: "You won't be able to revert this!",
+                                icon: "success",
+                                timer: 1000
+                            });
                             const updatedCartItems = showCartItems.filter(item => item._id !== id);
                             setShowCartItems(updatedCartItems);
                         } else {
@@ -104,41 +109,53 @@ const Cart = () => {
 
     return (
         <div>
-            <div className="my-8 flex flex-col gap-4">
+            {showCartItems.length < 1 ?
+                <div className="h-96">
 
-                {showCartItems.map(item => (
-                    // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
-                    <CartItem2
-                        key={item._id}
-                        item={item}
-                        handleDeleteCartItem={handleDeleteCartItem}
-                        updateCartItemQuantities={updateCartItemQuantities}
-                    />
-                ))}
-            </div>
-            <div>
-                <div className=" md:text-lg gap-4 items-center rounded-md bg-teal-900 p-4 shadow-xl max-h-56 px-8">
-                    <div className="flex justify-between">
-                        <p>Subtotal</p>
-                        <p>$ {subTotal}</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <p>Tax (5% above $5000)</p>
-                        <p>$ {tax}</p>
-                    </div>
-                    <div className="flex justify-between">
-                        <p>Delivery Charge</p>
-                        <p>$ {deliveryCharge}</p>
-                    </div>
-                    <div className="w-full border my-4 border-accent">
+                    <h2 className="my-12 text-center md:text-4xl text-red-200 ">
+                        Your Cart is Empty
+                    </h2>
+                </div>
+                :
+                <div>
+                    <div className="my-8 flex flex-col gap-4">
 
+                        {showCartItems.map(item => (
+                            // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
+                            <CartItem2
+                                key={item._id}
+                                item={item}
+                                handleDeleteCartItem={handleDeleteCartItem}
+                                updateCartItemQuantities={updateCartItemQuantities}
+                            />
+                        ))}
                     </div>
-                    <div className="flex justify-between">
-                        <p className="text-green-100">Grand Total</p>
-                        <p className="text-green-100">$ {totalAmount}</p>
+                    <div>
+                        <div className=" md:text-lg gap-4 items-center rounded-md bg-teal-900 p-4 shadow-xl max-h-56 px-8">
+                            <div className="flex justify-between">
+                                <p>Subtotal</p>
+                                <p>$ {subTotal}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Tax (5% above $5000)</p>
+                                <p>$ {tax}</p>
+                            </div>
+                            <div className="flex justify-between">
+                                <p>Delivery Charge</p>
+                                <p>$ {deliveryCharge}</p>
+                            </div>
+                            <div className="w-full border my-4 border-accent">
+
+                            </div>
+                            <div className="flex justify-between">
+                                <p className="text-green-100">Grand Total</p>
+                                <p className="text-green-100">$ {totalAmount}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+
         </div>
     );
 };
