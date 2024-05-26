@@ -22,7 +22,7 @@ const AddProduct = () => {
         const newProduct = {name, brand, color, price, image, rating, type, country, year, warranty, box};
         // console.log(newProduct);
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://back-end-shop-g72giex6b-nishats-projects-890e0902.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type' : 'application/json'

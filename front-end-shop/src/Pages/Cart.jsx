@@ -18,7 +18,7 @@ const Cart = () => {
     // const [showCartItems, setShowCartItems] = useState([]);
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/products')
+    //     fetch('https://back-end-shop-g72giex6b-nishats-projects-890e0902.vercel.app/products')
     //         .then(res => res.json())
     //         .then(data => {
 
@@ -40,7 +40,7 @@ const Cart = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/cartItems/${id}`, {
+                fetch(`https://back-end-shop-g72giex6b-nishats-projects-890e0902.vercel.app/cartItems/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
