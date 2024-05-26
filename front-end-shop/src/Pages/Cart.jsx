@@ -117,7 +117,7 @@ const Cart = () => {
                 ))}
             </div>
             <div>
-                <div className=" text-lg gap-4 items-center rounded-md bg-teal-900 p-4 shadow-xl max-h-56 px-20">
+                <div className=" md:text-lg gap-4 items-center rounded-md bg-teal-900 p-4 shadow-xl max-h-56 px-8">
                     <div className="flex justify-between">
                         <p>Subtotal</p>
                         <p>$ {subTotal}</p>
