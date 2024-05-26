@@ -1,11 +1,16 @@
-import { useContext  } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartItemCard from "../Components/CartItem/CartItemCard";
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
+import CartItem2 from "../Components/CartItem/CartItem2";
 
 const Cart = () => {
 
-    const {showCartItems, setShowCartItems} = useContext(BrandShopContext);
+    const { showCartItems, setShowCartItems } = useContext(BrandShopContext);
+    const [cartItemQuantities, setCartItemQuantities] = useState({});
+    const [subTotal, setSubTotal] = useState(0);
+    const [tax, setTax] = useState(0);
+
     // WE HAVE TRANSFERRED THESE CODES TO AUTHPROVIDER, TO USE INFO ON OTHER COMPONENTS
 
 
@@ -40,7 +45,7 @@ const Cart = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if(data) {
+                        if (data) {
                             console.log(data);
                             Swal.fire("Deleted!", "Your item has been deleted.", "success");
                             const updatedCartItems = showCartItems.filter(item => item._id !== id);
@@ -57,11 +62,83 @@ const Cart = () => {
         });
     };
 
+    const updateCartItemQuantities = (id, quantity) => {
+
+        setCartItemQuantities(previousQuantities => {
+
+            const newQuantities = { ...previousQuantities };  // create new by copying old state
+            newQuantities[id] = quantity; // update new quantity to the targeted id
+            return newQuantities; // this function return an object {id: quantity}
+        })
+    }
+
+    console.log(cartItemQuantities);
+
+    const calculateSubTotal = () => {
+        let subTotal = 0;
+        for (let i = 0; i < showCartItems.length; i++) {
+            const item = showCartItems[i]; // get the current product
+            const quantity = cartItemQuantities[item._id] || 1; // get quantity by searching by id
+            const price = item.price;
+            const amount = quantity * price;
+            subTotal += amount;
+        }
+        return subTotal;
+    }
+
+    useEffect(() => {
+        const subTotal = calculateSubTotal();
+        setSubTotal(subTotal);
+        if (subTotal < 5000) {
+            setTax(0);
+        } else {
+            setTax(subTotal * 0.05)
+        }
+
+    }, [cartItemQuantities, showCartItems]) // whenever these changes, update the subtotal
+
+
+
+    const deliveryCharge = 70;
+    const totalAmount = subTotal + tax + deliveryCharge;
+
     return (
-        <div className="my-8 flex flex-col gap-4">
-            {showCartItems.map(item => (
-                <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
-            ))}
+        <div>
+            <div className="my-8 flex flex-col gap-4">
+
+                {showCartItems.map(item => (
+                    // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
+                    <CartItem2
+                        key={item._id}
+                        item={item}
+                        handleDeleteCartItem={handleDeleteCartItem}
+                        updateCartItemQuantities={updateCartItemQuantities}
+                    />
+                ))}
+            </div>
+            <div>
+                <div className=" text-lg gap-4 items-center rounded-md bg-teal-900 p-4 shadow-xl max-h-56 px-20">
+                    <div className="flex justify-between">
+                        <p>Subtotal</p>
+                        <p>$ {subTotal}</p>
+                    </div>
+                    <div className="flex justify-between">
+                        <p>Tax (5% above $5000)</p>
+                        <p>$ {tax}</p>
+                    </div>
+                    <div className="flex justify-between">
+                        <p>Delivery Charge</p>
+                        <p>$ {deliveryCharge}</p>
+                    </div>
+                    <div className="w-full border my-4 border-accent">
+
+                    </div>
+                    <div className="flex justify-between">
+                        <p className="text-green-100">Grand Total</p>
+                        <p className="text-green-100">$ {totalAmount}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
