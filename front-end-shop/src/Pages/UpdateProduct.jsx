@@ -27,7 +27,7 @@ const UpdateProduct = () => {
 
         const updatedProduct = { name, brand, color, price, image, rating, type, country, year, warranty, box };
         // console.log(newProduct);
-        fetch(`https://back-end-shop-g72giex6b-nishats-projects-890e0902.vercel.app/products/${_id}`, {
+        fetch(`https://back-end-shop-ea7a7996e-nishats-projects-890e0902.vercel.app/products/${_id}`, {
             method: 'PUT', 
             headers: {
                 'content-type' : 'application/json'

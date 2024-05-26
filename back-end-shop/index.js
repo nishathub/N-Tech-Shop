@@ -1,24 +1,30 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const { connectDB } = require('./config/db'); // the import of one element out of many from another file should be inside a {curly brace}
+const { connectDB } = require('./config/db');
 const brandRoutes = require('./routes/brandRoutes');
 
-const app = express(); // initialize express
+const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
+// Use CORS middleware
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://brandshopntech.web.app'], // Allowed origins
+  methods: 'OPTIONS,POST,GET,PATCH',
+  allowedHeaders: 'Content-Type',
+}));
+
 app.use(express.json());
+
+// Handle preflight requests
+app.options('*', cors());
 
 async function startServer() {
   try {
-    await connectDB(); // Wait for the DB connection to be established with database
+    await connectDB();
 
-    // Middleware to use brand routes
     app.use('/', brandRoutes);
-    
-    // Routes
+
     app.get('/', (req, res) => {
       res.send('Brand server is running');
     });
