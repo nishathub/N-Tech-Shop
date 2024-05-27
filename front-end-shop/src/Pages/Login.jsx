@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 
 const Login = () => {
-    const {signInUser,errorMessage, setErrorMessage, googleSignIn} = useContext(BrandShopContext);
+    const {signInUser,errorMessage, setErrorMessage, googleSignIn, user} = useContext(BrandShopContext);
     const navigate = useNavigate();
     const location = useLocation();
     const attemptURL = location.state;
@@ -61,22 +61,24 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-gray-700 p-12 max-w-2xl mx-auto mt-12 rounded-md">
+        <div className="bg-blue-gray-900 p-4 sm:p-12 max-w-2xl mx-auto mt-12 rounded-md">
 
             <h2 className="text-xl text-center font-semibold mb-4">Login Here</h2>
 
             <form onSubmit={handleLogin} className="space-y-2">
                 <input type="email" name="email" placeholder="Email" className="input input-bordered w-full" />
                 <input type="password" name="password" placeholder="Password" className="input input-bordered w-full" />
-                <input type="submit" value="Login" className="btn btn-primary w-full" />
+                <input type="submit" disabled = {!!user} value="Login" className="btn btn-primary w-full" />
             </form>
             <div className="mt-4">
                 <h2>Don't have an account? <Link to={'/register'} className="text-white">Register</Link></h2>
             </div>
-            <div>
-                <p className="text-center">Or</p>
-                <button onClick={handleGoogleLogIn} className="btn btn-success w-full mt-4">Sign-In with google</button>
+            <div className="mt-4 flex items-center gap-4">
+                <p className="border-t w-full"></p>
+                <p className="">Or</p>
+                <p className="border-t w-full"></p>
             </div>
+                <button onClick={handleGoogleLogIn} className="btn btn-success w-full mt-4">Sign-In with google</button>
             <div>
                 <h2 className="text-red-300 text-lg mt-6">{errorMessage}</h2>
             </div>
