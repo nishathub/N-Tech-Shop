@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 // Use CORS middleware
 app.use(cors());
+// more secure
 // app.use(cors({
 //   origin: ['http://localhost:5173', 'https://your-frontend-app.firebaseapp.com'], // Add your frontend domains here
 //   methods: ['OPTIONS', 'POST', 'GET', 'PATCH', 'PUT', 'DELETE'], // Ensure all necessary methods are allowed

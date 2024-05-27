@@ -8,6 +8,7 @@ const Navbar = () => {
 
     const { loading, user, logOutUser, showCartItems } = useContext(BrandShopContext);
     const navigate = useNavigate();
+    const altUserPhoto = 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg';
 
 
     const handleLogOut = () => {
@@ -42,7 +43,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex items-center">
                         <img className="w-12 rounded-full" src="https://scalebranding.com/wp-content/uploads/2022/02/N-TECHNO.jpg" alt="company-logo" />
-                        <h2 className=" px-4 font-semibold text-xl text-accent">N-Tech</h2>
+                        <h2 className="hidden sm:inline-block px-4 font-semibold text-xl text-accent">N-Tech</h2>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -60,7 +61,7 @@ const Navbar = () => {
                                     <Link to={'/login'}><button className="btn btn-primary">Login</button></Link>
                                     :
                                     <div className="flex items-center gap-2">
-                                        <h2 className="text-lg">{user.displayName}</h2>
+                                        <h2 className="md:text-lg">{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0,10) + ".."}</h2>
                                         <div className="dropdown dropdown-end">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                                 <div className="indicator">
@@ -68,9 +69,9 @@ const Navbar = () => {
                                                     <span className="badge badge-sm indicator-item text-accent">{showCartItems.length}</span>
                                                 </div>
                                             </div>
-                                            <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                                            <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content md:w-52 bg-base-100 shadow">
                                                 <div className="card-body">
-                                                    <span className="font-bold text-lg">{showCartItems.length} Items</span>
+                                                    <span className="font-bold md:text-lg">{showCartItems.length} Items</span>
                                                     <div className="card-actions">
                                                         <Link to={'/cart'}><button className="btn btn-primary btn-block">View cart</button></Link>
                                                     </div>
@@ -80,12 +81,12 @@ const Navbar = () => {
                                         <div className="dropdown dropdown-end">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                                 <div className="w-10 rounded-full">
-                                                    <img alt="User-Photo" src={user?.photoURL} />
+                                                    <img alt="User-Photo" src={user?.photoURL ? user.photoURL : altUserPhoto} />
                                                 </div>
                                             </div>
-                                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 space-y-1">
-                                                <li className="text-lg text-center text-accent">{user.email}</li>
-                                                <li className="text-lg text-error" onClick={handleLogOut}><a className="btn btn-error">Logout</a></li>
+                                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box md:w-52 space-y-1">
+                                                <li className="md:text-lg text-center text-accent">{user.email}</li>
+                                                <li className="md:text-lg text-error" onClick={handleLogOut}><a className="btn btn-error">Logout</a></li>
                                             </ul>
                                         </div>
                                     </div>
