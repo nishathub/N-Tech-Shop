@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const Register = () => {
 
     const {user, createNewUser, updateUser, errorMessage, setErrorMessage} = useContext(BrandShopContext);
+
 
     const handleRegister = e => {
         e.preventDefault();

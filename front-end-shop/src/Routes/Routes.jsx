@@ -21,7 +21,7 @@ const Routes = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch(`https://back-end-shop-ea7a7996e-nishats-projects-890e0902.vercel.app/products`)
+                loader: () => fetch(`https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products`)
             },
             {
                 path: "/login",
@@ -38,22 +38,22 @@ const Routes = createBrowserRouter([
             {
                 path: "/products/brand/:brand/update/:id",
                 element: <PrivateRoutes><UpdateProduct></UpdateProduct></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://back-end-shop-ea7a7996e-nishats-projects-890e0902.vercel.app/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products/${params.id}`)
             },
             {
                 path: "/products/brand/:brandName",
                 element: <PrivateRoutes><BrandProducts></BrandProducts></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://back-end-shop-ea7a7996e-nishats-projects-890e0902.vercel.app/products/brand/${params.brandName}`)
+                loader: ({ params }) => fetch(`https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products/brand/${params.brandName}`)
             },
             {
                 path: "/products/brand/:brandName/:productId",
                 element: <PrivateRoutes><ProductDetails></ProductDetails></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://back-end-shop-ea7a7996e-nishats-projects-890e0902.vercel.app/products/${params.productId}`)
+                loader: ({ params }) => fetch(`https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products/${params.productId}`)
             },
             {
                 path: "/cart",
                 element: <PrivateRoutes><Cart></Cart></PrivateRoutes>,
-                loader: () => fetch(`https://back-end-shop-ea7a7996e-nishats-projects-890e0902.vercel.app/cartItems`)
+                loader: () => fetch(`https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/cartItems`)
             },
         ]
     }

@@ -8,16 +8,18 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Use CORS middleware
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://brandshopntech.web.app'], // Allowed origins
-  methods: 'OPTIONS,POST,GET,PATCH',
-  allowedHeaders: 'Content-Type',
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: ['http://localhost:5173', 'https://your-frontend-app.firebaseapp.com'], // Add your frontend domains here
+//   methods: ['OPTIONS', 'POST', 'GET', 'PATCH', 'PUT', 'DELETE'], // Ensure all necessary methods are allowed
+//   allowedHeaders: ['Content-Type'],
+// }));
 
 app.use(express.json());
 
 // Handle preflight requests
-app.options('*', cors());
+// app.options('*', cors());
+
 
 async function startServer() {
   try {
