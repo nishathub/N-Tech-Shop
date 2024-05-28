@@ -85,7 +85,7 @@ const AddProduct = () => {
                         <option value="Speaker">Speaker</option>
                         <option value="Monitor">Monitor</option>
                     </select>
-                    <div className="flex items-center gap-4 w-full">
+                    <div className="flex items-center gap-4 w-full mt-4 md:mt-0">
                         <h2>Rate Your Product</h2>
                         <div className="rating">
                             <input type="radio" name="rating" value="1" className="mask mask-star" />
@@ -98,7 +98,7 @@ const AddProduct = () => {
                 </div>
 
                 <div className="md:flex gap-4">
-                    <input type="submit" value="Add-Product" className="btn btn-primary w-full" />
+                    <input type="submit" value="Add-Product" className="mt-4 md:mt-0 btn btn-primary w-full" />
                 </div>
             </form>
         </div>
