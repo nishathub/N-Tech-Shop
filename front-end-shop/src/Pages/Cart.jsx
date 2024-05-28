@@ -110,7 +110,7 @@ const Cart = () => {
     return (
         <div>
             {showCartItems.length < 1 ?
-                <div className="h-96">
+                <div className="md:h-96">
 
                     <h2 className="my-12 text-center md:text-4xl text-red-200 ">
                         Your Cart is Empty
@@ -151,6 +151,16 @@ const Cart = () => {
                                 <p className="text-green-100">Grand Total</p>
                                 <p className="text-green-100">$ {totalAmount}</p>
                             </div>
+                        </div>
+                    </div>
+                    <div className="mt-4 p-8"> 
+                        <div className="">
+                            <ul className="space-y-2">
+                                <li>&#10003; Cash on Delivery Available</li>
+                                <li>&#10003; 7 Days replacement Policy</li>
+                                <li>&#10003; 100% Money Back Guarantee</li>
+                                <li>&#10003; 100% Original Product</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

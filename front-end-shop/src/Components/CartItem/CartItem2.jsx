@@ -44,20 +44,20 @@ const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => 
                 <div className="w-full p-1 md:p-4 flex justify-between items-center">
 
                     <div className="flex gap-4">
-                        <img className="w-32 hidden md:inline-flex" src={image} alt="product-image" />
+                        <img className="w-8 md:w-32" src={image} alt="product-image" />
                         <div>
-                            <h2 className="md:text-lg md:font-bold md:mb-4">{name}</h2>
+                            <h2 className="text-sm md:text-lg w-40 md:w-fit md:font-bold md:mb-4">{name}</h2>
                             <div className="hidden md:block">
                                 <p>Device : {type}</p>
                                 <p>Brand : {brand}</p>
                             </div>
                         </div>
                     </div>
-                    <div className="flex gap-2 md:gap-8 items-center">
-                        <div className="flex gap-4 md:gap-0">
-                            <button onClick={handleQuantityDecrease} className="md:btn btn-error text-pink-200 md:text-2xl">-</button>
-                            <input onChange={handleInputChange} className="md:w-16 w-8 text-center" type="text" disabled name="quantity" min={1} value={itemQuantity} />
-                            <button onClick={handleQuantityIncrease} className="md:btn btn-success text-green-200 md:text-2xl">+</button>
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-8 items-center">
+                        <div className="flex gap-2 md:gap-0">
+                            <button onClick={handleQuantityDecrease} className="md:btn btn-error text-pink-200 bg-base-300 w-6 md:w-12 md:text-2xl">-</button>
+                            <input onChange={handleInputChange} className="md:w-16 w-6 text-center" type="text" disabled name="quantity" min={1} value={itemQuantity} />
+                            <button onClick={handleQuantityIncrease} className="md:btn btn-success text-green-200 bg-base-300 w-6 md:w-12 md:text-2xl">+</button>
                         </div>
                         <div className="bg-base-300 p-2 rounded-md w-24 text-center">
                             <p className="md:text-xl">$ <span>{oneProductAmount}</span></p>
