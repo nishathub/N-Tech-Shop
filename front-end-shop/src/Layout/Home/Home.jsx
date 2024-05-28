@@ -12,7 +12,7 @@ const Home = () => {
     const galleryProducts = allProducts.slice(0, 9);
 
     return (
-        <div className="space-y-8 py-4">
+        <div className="md:space-y-8 py-4">
             <div>
                 <CarouselCustomNavigation allProducts={firstFiveProducts}></CarouselCustomNavigation>
             </div>

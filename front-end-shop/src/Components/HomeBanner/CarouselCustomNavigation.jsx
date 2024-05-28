@@ -14,7 +14,7 @@ export function CarouselCustomNavigation({ allProducts }) {
 
     return (
         <Carousel
-            className="rounded-xl h-96"
+            className="rounded-xl h-40 md:h-96"
             navigation={({ setActiveIndex: setActiveIndexInternal, activeIndex: activeIndexInternal, length }) => {
                 // Sync internal state with our custom state
                 if (activeIndexInternal !== activeIndex) {

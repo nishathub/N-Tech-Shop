@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export function Gallery({ galleryProducts }) {
@@ -43,17 +44,20 @@ export function Gallery({ galleryProducts }) {
     ];
 
     return (
-        <div>
-            <h2 className="text-center text-2xl my-4 tracking-wider text-accent font-semibold">Top Selling Products</h2>
+        <div className="w-11/12 sm:w-full mx-auto">
+            <h2 className="text-center text-lg md:text-2xl my-4 tracking-wider text-accent font-semibold">Top Selling Products</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {galleryProducts.map((product, index) => (
-                    <div key={index}>
+                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index} className="relative">
+                        <p className="absolute left-0 text-yellow-800 bg-black/75 p-1 rounded-lg">{product.rating} &#9733;</p>
+                        <p className="absolute left-0 top-8 text-accent bg-black/75 p-1 rounded-lg">$ {product.price}</p>
+                        <p className="absolute right-0 bottom-0 bg-black/75 p-1 rounded-lg">{product.name}</p>
                         <img
                             className="h-40 w-full max-w-full rounded-lg object-cover object-center"
                             src={product.image}
                             alt="gallery-photo"
                         />
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
