@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
 
-    const { name, brand, details, price, image, rating, type, _id } = product;
+    const { name, brand, details, price, image, rating, type, _id, color } = product;
     
 
     return (
@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
                         <p>Brand : {brand}</p>
                         <p>Rating : {rating}/5</p>
                         <p>Price : ${price}</p>
-                        <p>Color : {details}</p>
+                        <p>Color : {color}</p>
 
                     </div>
                     <div className="flex flex-col gap-4 pl-4 md:pl-0">
