@@ -2,7 +2,7 @@ import { Carousel } from "@material-tailwind/react";
  
 export function CarouselTransition({products}) {
   return (
-    <Carousel transition={{ duration: 2 }} className="rounded-xl h-96">
+    <Carousel transition={{ duration: 2 }} className="rounded-xl h-40 md:h-96">
       <img
         src={products[0]?.image}
         alt="image 1"
