@@ -22,10 +22,16 @@ const ProductDetails = () => {
             console.log(data);
             if(data.insertedId){
                 Swal.fire({
-                    title: "Item Added to the Cart!",
+                    title: "Item Added to the Cart",
                     icon: "success",
-                    timer: 1200
-                  }); 
+                    timer: 2000,
+                    customClass: {
+                        container: 'swal-custom-container',
+                        title: 'swal-custom-title',
+                        icon: 'swal-custom-icon',
+                        content: 'swal-custom-content',
+                    }
+                }); 
                   setAddCartClick(true);
             }
         })

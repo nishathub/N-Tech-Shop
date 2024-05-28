@@ -1,5 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import '../SweetAlertStyle.css';
 
 
 const UpdateProduct = () => {
@@ -39,11 +40,16 @@ const UpdateProduct = () => {
             console.log(data);
             if(data.modifiedCount > 0){
                 Swal.fire({
-                    title: "Your Product Updated",
-                    // text: "You clicked the button!",
+                    title: "Your product updated",
                     icon: "success",
-                    timer: 1000
-                })
+                    timer: 2000,
+                    customClass: {
+                        container: 'swal-custom-container',
+                        title: 'swal-custom-title',
+                        icon: 'swal-custom-icon',
+                        content: 'swal-custom-content',
+                    }
+                });
                 setTimeout(() => {
                     navigate(`/products/brand/${brand}`)
                 }, 2000);

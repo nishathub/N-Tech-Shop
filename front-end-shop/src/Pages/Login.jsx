@@ -28,7 +28,7 @@ const Login = () => {
                 }
             });
               setTimeout(() => {
-                navigate(!attemptURL === null ? attemptURL : '/')
+                navigate(attemptURL ? attemptURL : '/')
               }, 1000);
         })
         .catch((error) => {
@@ -58,7 +58,7 @@ const Login = () => {
                 }
             });
               setTimeout(() => {
-                navigate(!attemptURL === null ? attemptURL : '/')
+                navigate(attemptURL ? attemptURL : '/')
               }, 1000);
         })
         .catch((error) => {
