@@ -4,8 +4,6 @@ import { CarouselCustomNavigation } from "../../Components/HomeBanner/CarouselCu
 import { Gallery } from "../../Components/Gallery/Gallery";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
 
-
-
 const Home = () => {
     const allProducts = useLoaderData();
     const firstFiveProducts = allProducts.slice(0, 5);

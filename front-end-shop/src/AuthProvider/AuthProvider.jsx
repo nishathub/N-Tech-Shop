@@ -12,8 +12,9 @@ const AuthProvider = ({ children }) => {
 
     // Cart code start here
     const [loadCart, setLoadCart] = useState(true);
-    const [cartItems, setCartItems] = useState();
+    const [cartItems, setCartItems] = useState([]);
     const [showCartItems, setShowCartItems] = useState([]);
+    const [cartDisplayLoading, setCartDisplayLoading] = useState(true);
     const [cartItemsTotalPrice, setCartItemTotalPrice] = useState(0);
     const [addCartClick, setAddCartClick] = useState(false); // as the whole code is transferred here from cart page, after adding cart items, the cart page is updated only after refreshing the page. So, I am using a state that, it will become true as soon as we click on add cart button. That state is a dependency to fetch data from cart database each time on useEffect below. this way, the code is working! Alhamdulillah, this idea was mine.
 
@@ -30,28 +31,34 @@ const AuthProvider = ({ children }) => {
     }, [addCartClick]);
 
     useEffect(() => {
-        const cartPriceList = showCartItems.map(item => item.price);
-        let totalCartAmount = 0;
-        cartPriceList.forEach(element => {
-            const total = parseInt(element);
-            totalCartAmount += total;
-        });
-        setCartItemTotalPrice(totalCartAmount);
-    }, [showCartItems])
-
-    useEffect(() => {
-        fetch('https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products')
-            .then(res => res.json())
-            .then(data => {
-                if (!loadCart) {
+        if (!loadCart) {
+            fetch('https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products')
+                .then(res => res.json())
+                .then(data => {
                     const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
                     const displayItems = data.filter(product => cartItemsIds.includes(product._id)); // match id and get items
                     setShowCartItems(displayItems);
-                }
-
-            })
-            .catch(error => console.error('Error fetching products:', error));
+                    setCartDisplayLoading(false);
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error)
+                    setCartDisplayLoading(false);
+                });
+        }
     }, [cartItems, loadCart]);
+
+    // Calculate Total price
+    useEffect(() => {
+        if (!cartDisplayLoading) {
+            const cartPriceList = showCartItems.map(item => item.price);
+            let totalCartAmount = 0;
+            cartPriceList.forEach(element => {
+                const total = parseInt(element);
+                totalCartAmount += total;
+            });
+            setCartItemTotalPrice(totalCartAmount);
+        }
+    }, [showCartItems])
 
     // Cart code ends here
 
@@ -82,7 +89,7 @@ const AuthProvider = ({ children }) => {
         return () => unSubscribe();
     }, [])
 
-    const authData = { user, loading, showCartItems, cartItemsTotalPrice, setShowCartItems, setAddCartClick, setLoading, createNewUser, signInUser, updateUser, errorMessage, setErrorMessage, logOutUser, googleSignIn };
+    const authData = { user, loading, loadCart, showCartItems, cartItemsTotalPrice, cartDisplayLoading, setCartDisplayLoading, setShowCartItems, setAddCartClick, setLoading, createNewUser, signInUser, updateUser, errorMessage, setErrorMessage, logOutUser, googleSignIn };
     return (
         <BrandShopContext.Provider value={authData}>
             {children}

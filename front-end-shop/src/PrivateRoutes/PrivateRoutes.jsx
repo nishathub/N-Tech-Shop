@@ -2,27 +2,34 @@ import { useContext } from "react";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import '../SweetAlertStyle.css';
 
+const PrivateRoutes = ({ children }) => {
 
-const PrivateRoutes = ({children}) => {
-
-    const {loading, user} = useContext(BrandShopContext);
+    const { loading, user } = useContext(BrandShopContext);
     const location = useLocation();
     const attemptURL = location.pathname;
     
 
-    if(loading){
+
+    if (loading) {
         return <h2>Loading</h2>
-    } else if(!user){
+    } else if (!user) {
         Swal.fire({
             title: "Log In to Visit this page",
             // text: "You clicked the button!",
-            icon: "warning",
-            timer: 1000
-
+            icon: "error",
+            timer: 7000,
+            customClass: {
+                container: 'swal-custom-container',
+                title: 'swal-custom-title',
+                icon: 'swal-custom-icon',
+                text: 'swal-custom-text',
+            }
           });
-       return  <Navigate state={attemptURL} to={'/login'}></Navigate>
-         
+       
+        return <Navigate state={attemptURL} to={'/login'}></Navigate>
+
     }
 
     return (

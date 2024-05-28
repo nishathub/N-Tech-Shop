@@ -1,0 +1,23 @@
+/* Custom styles for SweetAlert */
+.swal-custom-container *{
+    /* width: 90% !important; */
+    /* max-width: 400px; */
+    /* max-height: 200px; */
+    background-color: rgba(0, 0, 0, 0.741);
+}
+
+.swal-custom-title {
+    font-size: 1em;
+    color: white;
+}
+
+.swal-custom-icon {
+    font-size: 1em;
+}
+.swal-custom-text {
+    font-size: 1em;
+    color: white;
+}
+
+
+

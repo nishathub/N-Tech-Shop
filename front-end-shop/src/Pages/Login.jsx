@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import '../SweetAlertStyle.css'
 
 
 const Login = () => {
@@ -16,14 +17,18 @@ const Login = () => {
         .then((result) => {
             console.log(result.user);
             Swal.fire({
-                title: "Logged In",
-                // text: "You clicked the button!",
+                title: "Logged in by google",
                 icon: "success",
-                timer: 500
-
-              });
+                timer: 2000,
+                customClass: {
+                    container: 'swal-custom-container',
+                    title: 'swal-custom-title',
+                    icon: 'swal-custom-icon',
+                    content: 'swal-custom-content',
+                }
+            });
               setTimeout(() => {
-                navigate(attemptURL)
+                navigate(!attemptURL === null ? attemptURL : '/')
               }, 1000);
         })
         .catch((error) => {
@@ -42,14 +47,18 @@ const Login = () => {
         signInUser(email, password)
         .then(() => {
             Swal.fire({
-                title: "Logged In",
-                // text: "You clicked the button!",
+                title: "Logged in by mail",
                 icon: "success",
-                timer: 500
-
-              });
+                timer: 2000,
+                customClass: {
+                    container: 'swal-custom-container',
+                    title: 'swal-custom-title',
+                    icon: 'swal-custom-icon',
+                    content: 'swal-custom-content',
+                }
+            });
               setTimeout(() => {
-                navigate(attemptURL)
+                navigate(!attemptURL === null ? attemptURL : '/')
               }, 1000);
         })
         .catch((error) => {

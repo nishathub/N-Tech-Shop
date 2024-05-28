@@ -1,4 +1,6 @@
+
 import Swal from "sweetalert2";
+import '../SweetAlertStyle.css';
 
 
 const AddProduct = () => {
@@ -19,30 +21,35 @@ const AddProduct = () => {
         const box = form.box.value;
         const type = form.selectType.value;
 
-        const newProduct = {name, brand, color, price, image, rating, type, country, year, warranty, box};
+        const newProduct = { name, brand, color, price, image, rating, type, country, year, warranty, box };
         // console.log(newProduct);
 
         fetch('https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(newProduct)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId){
-            Swal.fire({
-                title: "Your Product Added",
-                // text: "You clicked the button!",
-                icon: "success",
-                timer: 800
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Your product added",
+                        icon: "success",
+                        timer: 2000,
+                        customClass: {
+                            container: 'swal-custom-container',
+                            title: 'swal-custom-title',
+                            icon: 'swal-custom-icon',
+                            content: 'swal-custom-content',
+                        }
+                    });
+                    // form.reset();
+                }
             })
-            // form.reset();
-            }
-        })
-        
+
     }
     return (
         <div className="mt-12 bg-blue-gray-900 p-8 rounded-md">
