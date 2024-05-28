@@ -43,16 +43,16 @@ const ProductDetails = () => {
                 <div className="my-4">
                     <div className="capitalize grid sm:grid-cols-2 sm:gap-8 text-lg">
                         <div>
-                            <p>Device : {type}</p>
-                            <p>Brand : {brand}</p>
-                            <p>Rating : {rating ? rating : "rating-point"} / 5 </p>
-                            <p>Price : ${price}</p>
+                            <p><span className="text-accent">Device</span> : {type}</p>
+                            <p><span className="text-accent">Brand</span>  : {brand}</p>
+                            <p><span className="text-accent">Rating</span> : {rating ? rating : "rating-point"} / 5 </p>
+                            <p><span className="text-accent">Price</span> : ${price}</p>
                         </div>
                         <div>
-                            <p>Color : {color}</p>
-                            <p>Country of Origin: {country}</p>
-                            <p>Warranty period: {warranty} years</p>
-                            <p>Inside Box : {box}</p>
+                            <p><span className="text-accent">Color</span> : {color}</p>
+                            <p><span className="text-accent">Country of Origin:</span> {country}</p>
+                            <p><span className="text-accent">Warranty period:</span> {warranty} years</p>
+                            <p><span className="text-accent">Inside Box :</span> {box}</p>
                         </div>
                     </div>
                 </div>
