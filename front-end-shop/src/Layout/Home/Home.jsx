@@ -6,19 +6,20 @@ import NewsLetter from "../../Components/NewsLetter/NewsLetter";
 
 const Home = () => {
     const allProducts = useLoaderData();
-    const firstFiveProducts = allProducts.slice(0, 5);
-    const galleryProducts = allProducts.slice(0, 9);
+    const oddIndexProducts = allProducts.filter((element, index) => index % 2 === 1);
+    const evenIndexProducts = allProducts.filter((element, index) => index % 2 === 0);
+    
 
     return (
         <div className="md:space-y-8 py-4">
             <div>
-                <CarouselCustomNavigation allProducts={firstFiveProducts}></CarouselCustomNavigation>
+                <CarouselCustomNavigation oddIndexProducts={oddIndexProducts}></CarouselCustomNavigation>
             </div>
             <div>
                 <BrandDisplay></BrandDisplay>
             </div>
             <div>
-                <Gallery galleryProducts={galleryProducts}></Gallery>
+                <Gallery evenIndexProducts={evenIndexProducts}></Gallery>
             </div>
             <div>
                 <NewsLetter></NewsLetter>

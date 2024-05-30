@@ -10,7 +10,6 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const attemptURL = location.state;
-    console.log(attemptURL);
 
     const handleGoogleLogIn = () => {
         googleSignIn()

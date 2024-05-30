@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "@material-tailwind/react";
 
-export function CarouselCustomNavigation({ allProducts }) {
+export function CarouselCustomNavigation({ oddIndexProducts }) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setActiveIndex((prevIndex) => (prevIndex + 1) % allProducts.length);
+            setActiveIndex((prevIndex) => (prevIndex + 1) % oddIndexProducts.length);
         }, 3000); // 2000ms = 2s
 
         return () => clearInterval(interval); // Clean up the interval on component unmount
-    }, [allProducts.length]);
+    }, [oddIndexProducts.length]);
 
     return (
         <Carousel
@@ -35,7 +35,7 @@ export function CarouselCustomNavigation({ allProducts }) {
                 );
             }}
         >
-            {allProducts.map((product, index) => (
+            {oddIndexProducts.map((product, index) => (
                 <img
                     key={index}
                     src={product.image}
