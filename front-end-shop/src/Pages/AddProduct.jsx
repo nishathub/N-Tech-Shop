@@ -37,12 +37,10 @@ const AddProduct = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: "Your product added",
-                        icon: "success",
                         timer: 2000,
                         customClass: {
                             container: 'swal-custom-container',
                             title: 'swal-custom-title',
-                            icon: 'swal-custom-icon',
                             content: 'swal-custom-content',
                         }
                     });

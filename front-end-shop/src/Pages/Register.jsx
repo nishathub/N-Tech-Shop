@@ -1,7 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import '../SweetAlertStyle.css';
+
 
 
 const Register = () => {
@@ -34,8 +36,12 @@ const Register = () => {
                 Swal.fire({
                     title: "Account Created",
                     // text: "You clicked the button!",
-                    icon: "success",
-                    timer: 500
+                    timer: 1000,
+                    customClass: {
+                        container: 'swal-custom-container',
+                        title: 'swal-custom-title',
+                        text: 'swal-custom-text',
+                    }
 
                   });
                 updateUser(name, photo)
@@ -43,8 +49,12 @@ const Register = () => {
                     Swal.fire({
                         // title: "Info Updated",
                         text: "Info Updated",
-                        icon: "success",
-                        timer: 500
+                        timer: 1000,
+                        customClass: {
+                            container: 'swal-custom-container',
+                            title: 'swal-custom-title',
+                            text: 'swal-custom-text',
+                        }
     
                       });
                       form.reset();

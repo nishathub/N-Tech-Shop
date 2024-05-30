@@ -18,12 +18,10 @@ const Login = () => {
             console.log(result.user);
             Swal.fire({
                 title: "Logged in by google",
-                icon: "success",
                 timer: 2000,
                 customClass: {
                     container: 'swal-custom-container',
                     title: 'swal-custom-title',
-                    icon: 'swal-custom-icon',
                     content: 'swal-custom-content',
                 }
             });
@@ -48,12 +46,10 @@ const Login = () => {
         .then(() => {
             Swal.fire({
                 title: "Logged in by mail",
-                icon: "success",
                 timer: 2000,
                 customClass: {
                     container: 'swal-custom-container',
                     title: 'swal-custom-title',
-                    icon: 'swal-custom-icon',
                     content: 'swal-custom-content',
                 }
             });

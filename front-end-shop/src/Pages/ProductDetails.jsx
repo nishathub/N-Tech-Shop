@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
+import '../SweetAlertStyle.css';
 
 
 const ProductDetails = () => {
@@ -23,12 +24,10 @@ const ProductDetails = () => {
             if(data.insertedId){
                 Swal.fire({
                     title: "Item Added to the Cart",
-                    icon: "success",
                     timer: 2000,
                     customClass: {
                         container: 'swal-custom-container',
                         title: 'swal-custom-title',
-                        icon: 'swal-custom-icon',
                         content: 'swal-custom-content',
                     }
                 }); 

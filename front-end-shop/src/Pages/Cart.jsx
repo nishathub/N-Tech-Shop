@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import CartItemCard from "../Components/CartItem/CartItemCard";
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CartItem2 from "../Components/CartItem/CartItem2";
@@ -35,7 +34,6 @@ const Cart = () => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
-            icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
@@ -43,7 +41,6 @@ const Cart = () => {
             customClass: {
                 container: 'swal-custom-container',
                 title: 'swal-custom-title',
-                icon: 'swal-custom-icon',
                 text: 'swal-custom-text',
             }
         }).then((result) => {
@@ -58,12 +55,10 @@ const Cart = () => {
                             Swal.fire({
                                 title: "Deleted",
                                 text: "You won't be able to revert this!",
-                                icon: "success",
                                 timer: 2000,
                                 customClass: {
                                     container: 'swal-custom-container',
                                     title: 'swal-custom-title',
-                                    icon: 'swal-custom-icon',
                                     content: 'swal-custom-content',
                                 }
                             });
@@ -73,12 +68,10 @@ const Cart = () => {
                             Swal.fire({
                                 title: "Error",
                                 text: "Something went wrong",
-                                icon: "error",
                                 timer: 2000,
                                 customClass: {
                                     container: 'swal-custom-container',
                                     title: 'swal-custom-title',
-                                    icon: 'swal-custom-icon',
                                     content: 'swal-custom-content',
                                 }
                             });
@@ -88,12 +81,10 @@ const Cart = () => {
                         Swal.fire({
                             title: "Error",
                             text: "Something went wrong",
-                            icon: "error",
                             timer: 2000,
                             customClass: {
                                 container: 'swal-custom-container',
                                 title: 'swal-custom-title',
-                                icon: 'swal-custom-icon',
                                 content: 'swal-custom-content',
                             }
                         });

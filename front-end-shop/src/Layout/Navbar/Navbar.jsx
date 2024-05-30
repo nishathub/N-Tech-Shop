@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 import Swal from 'sweetalert2'
+import '../../SweetAlertStyle.css';
 
 const Navbar = () => {
 
@@ -14,7 +15,12 @@ const Navbar = () => {
             .then(() => {
                 Swal.fire({
                     title: "Logged Out",
-                    timer: 500
+                    timer: 1000,
+                    customClass: {
+                        container: 'swal-custom-container',
+                        title: 'swal-custom-title',
+                        text: 'swal-custom-text',
+                    }
                   });
                 
 

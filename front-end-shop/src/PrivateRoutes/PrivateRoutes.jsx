@@ -18,12 +18,10 @@ const PrivateRoutes = ({ children }) => {
         Swal.fire({
             title: "Log In to Visit this page",
             // text: "You clicked the button!",
-            icon: "error",
             timer: 7000,
             customClass: {
                 container: 'swal-custom-container',
                 title: 'swal-custom-title',
-                icon: 'swal-custom-icon',
                 text: 'swal-custom-text',
             }
           });

@@ -9,6 +9,7 @@ const BrandDisplay = () => {
         fetch('/brandList.json')
             .then(res => res.json())
             .then(data => setBrand(data))
+            .catch(error => console.error(error.message))
     }, [])
     return (
         <div className=" py-8">

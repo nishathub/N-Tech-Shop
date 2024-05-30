@@ -41,12 +41,10 @@ const UpdateProduct = () => {
             if(data.modifiedCount > 0){
                 Swal.fire({
                     title: "Your product updated",
-                    icon: "success",
                     timer: 2000,
                     customClass: {
                         container: 'swal-custom-container',
                         title: 'swal-custom-title',
-                        icon: 'swal-custom-icon',
                         content: 'swal-custom-content',
                     }
                 });
