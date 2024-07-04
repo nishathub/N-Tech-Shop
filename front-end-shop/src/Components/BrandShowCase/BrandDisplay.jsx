@@ -12,8 +12,8 @@ const BrandDisplay = () => {
             .catch(error => console.error(error.message))
     }, [])
     return (
-        <div className=" py-8">
-            <h2 className="text-center text-lg md:text-2xl my-4 tracking-wider text-accent font-semibold">Available Brands</h2>
+        <div className=" max-w-6xl mx-auto md:px-4 px-1">
+            <h2 className="text-center text-lg md:text-2xl py-4 tracking-wider text-accent font-semibold">Available Brands</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 items-center place-items-center gap-8">
                 {brand.map(brand => <BrandCard key={brand.name} brand={brand}></BrandCard>)}
             </div>

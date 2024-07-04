@@ -66,7 +66,7 @@ const AddProduct = () => {
                     </select>
                 </div>
                 <div className="md:flex gap-4">
-                    <input type="text" name="price" placeholder="$ Price" className="input input-bordered w-full" />
+                    <input type="number" name="price" placeholder="$ Price" className="input input-bordered w-full" />
                     <input type="text" name="color" placeholder="Color" className="input input-bordered w-full" />
                 </div>
                 <div className="md:flex gap-4">

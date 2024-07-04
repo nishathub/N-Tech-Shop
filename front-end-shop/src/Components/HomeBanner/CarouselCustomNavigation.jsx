@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Carousel } from "@material-tailwind/react";
 
 export function CarouselCustomNavigation({ oddIndexProducts }) {
@@ -7,14 +7,14 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveIndex((prevIndex) => (prevIndex + 1) % oddIndexProducts.length);
-        }, 3000); // 2000ms = 2s
+        }, 4500);
 
         return () => clearInterval(interval); // Clean up the interval on component unmount
     }, [oddIndexProducts.length]);
 
     return (
         <Carousel
-            className="rounded-xl h-40 md:h-96"
+            className="h-40 md:h-[500px]"
             navigation={({ setActiveIndex: setActiveIndexInternal, activeIndex: activeIndexInternal, length }) => {
                 // Sync internal state with our custom state
                 if (activeIndexInternal !== activeIndex) {

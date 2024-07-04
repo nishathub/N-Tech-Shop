@@ -1,7 +1,7 @@
 
 const NewsLetter = () => {
     return (
-        <div className="flex mt-8 md:mt-0 gap-4 flex-col md:flex-row justify-between items-center bg-teal-900 p-8 rounded-md">
+        <div className="flex mt-8 md:mt-0 gap-4 flex-col md:flex-row justify-between items-center p-8 max-w-6xl mx-auto md:px-4 px-1">
             <div>
                 <p className="text-lg">Sign up to Newsletter and get a <span className="text-xl text-accent">$20</span> coupon on first Shopping</p>
             </div>

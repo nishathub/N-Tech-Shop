@@ -12,23 +12,6 @@ const Cart = () => {
     const [tax, setTax] = useState(0);
 
     console.log(cartDisplayLoading);
-    // WE HAVE TRANSFERRED THESE CODES TO AUTHPROVIDER, TO USE INFO ON OTHER COMPONENTS
-
-
-    // const cartItems = useLoaderData();
-    // const [showCartItems, setShowCartItems] = useState([]);
-
-    // useEffect(() => {
-    //     fetch('https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products')
-    //         .then(res => res.json())
-    //         .then(data => {
-
-    //             const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
-    //             const displayItems = data.filter(product => cartItemsIds.includes(product._id)); // match id and get items
-    //             setShowCartItems(displayItems);
-    //         })
-    //         .catch(error => console.error('Error fetching products:', error));
-    // }, [cartItems]);
 
     const handleDeleteCartItem = (id) => {
         Swal.fire({
@@ -124,7 +107,9 @@ const Cart = () => {
         if (subTotal < 5000) {
             setTax(0);
         } else {
-            setTax(subTotal * 0.05)
+            const tax = subTotal * 0.05;
+            const formattedTax = tax.toFixed(2);
+            setTax(formattedTax)
         }
 
     }, [cartItemQuantities, showCartItems]) // whenever these changes, update the subtotal
@@ -132,7 +117,7 @@ const Cart = () => {
 
 
     const deliveryCharge = 70;
-    const totalAmount = subTotal + tax + deliveryCharge;
+    const totalAmount = subTotal + parseFloat(tax) + deliveryCharge;
 
     return (
         <div>

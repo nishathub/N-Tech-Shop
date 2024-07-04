@@ -8,20 +8,21 @@ const Home = () => {
     const allProducts = useLoaderData();
     const oddIndexProducts = allProducts.filter((element, index) => index % 2 === 1);
     const evenIndexProducts = allProducts.filter((element, index) => index % 2 === 0);
+    const oddFiveProducts = oddIndexProducts.slice(4,8);
     
 
     return (
-        <div className="md:space-y-8 py-4">
+        <div className="">
             <div>
-                <CarouselCustomNavigation oddIndexProducts={oddIndexProducts}></CarouselCustomNavigation>
+                <CarouselCustomNavigation oddIndexProducts={oddFiveProducts}></CarouselCustomNavigation>
             </div>
-            <div>
-                <BrandDisplay></BrandDisplay>
-            </div>
-            <div>
+            <div className="bg-gray-900 py-12">
                 <Gallery evenIndexProducts={evenIndexProducts}></Gallery>
             </div>
-            <div>
+            <div className="bg-black py-12">
+                <BrandDisplay></BrandDisplay>
+            </div>
+            <div className="bg-teal-900">
                 <NewsLetter></NewsLetter>
             </div>
         </div>
