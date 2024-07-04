@@ -36,7 +36,7 @@ const Navbar = () => {
             <li><Link to={'/addProduct'}>Add-Product</Link></li>
         </>
     return (
-        <div className="bg-base-100">
+        <div className="bg-base-200">
             <div className="navbar max-w-6xl mx-auto md:px-4 px-1">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -48,8 +48,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="flex items-center">
-                        <img className="w-12 rounded-full" src="https://scalebranding.com/wp-content/uploads/2022/02/N-TECHNO.jpg" alt="company-logo" />
-                        <h2 className="hidden sm:inline-block px-4 font-semibold text-xl text-accent">N-Tech</h2>
+                        <img className="w-12 rounded-full" src="https://i.ibb.co/DrRq2bx/N-TECHNO.jpg" alt="company-logo" />
+                        <h2 className="hidden sm:inline-block px-4 font-semibold text-xl text-[#3BBFE3]">N-Tech</h2>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -72,7 +72,7 @@ const Navbar = () => {
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                                 <div className="indicator">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                                    <span className="badge badge-sm indicator-item text-accent">{cartDisplayLoading? 'loading' : showCartItems.length}</span>
+                                                    <span className="badge badge-sm indicator-item text-[#3BBFE3]">{cartDisplayLoading? 'loading' : showCartItems.length}</span>
                                                 </div>
                                             </div>
                                             <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content md:w-52 bg-base-100 shadow">
@@ -91,7 +91,7 @@ const Navbar = () => {
                                                 </div>
                                             </div>
                                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box md:w-52 space-y-1">
-                                                <li className="md:text-lg text-center text-accent">{user.email}</li>
+                                                <li className="md:text-lg text-center text-[#3BBFE3]">{user.email}</li>
                                                 <li className="md:text-lg text-error" onClick={handleLogOut}><a className="btn btn-error">Logout</a></li>
                                             </ul>
                                         </div>

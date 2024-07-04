@@ -16,10 +16,10 @@ const Home = () => {
             <div>
                 <CarouselCustomNavigation oddIndexProducts={oddFiveProducts}></CarouselCustomNavigation>
             </div>
-            <div className="bg-gray-900 py-12">
+            <div className="bg-gray-200 py-12">
                 <Gallery evenIndexProducts={evenIndexProducts}></Gallery>
             </div>
-            <div className="bg-black py-12">
+            <div className="bg-gray-400 py-12">
                 <BrandDisplay></BrandDisplay>
             </div>
             <div className="bg-teal-900">

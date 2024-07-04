@@ -43,21 +43,21 @@ const ProductDetails = () => {
         <div className="py-8">
             <div className="flex flex-col gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w-4xl mx-auto">
                 <div className="my-4">
-                    <h2 className="sm:text-3xl text-xl text-center uppercase font-semibold text-accent tracking-wider">{name}</h2>
+                    <h2 className="sm:text-3xl text-xl text-center uppercase font-semibold text-[#3BBFE3] tracking-wider">{name}</h2>
                 </div>
                 <div className="my-4">
                     <div className="capitalize grid sm:grid-cols-2 sm:gap-8 text-lg">
                         <div>
-                            <p><span className="text-accent">Device</span> : {type}</p>
-                            <p><span className="text-accent">Brand</span>  : {brand}</p>
-                            <p><span className="text-accent">Rating</span> : {rating ? rating : "rating-point"} / 5 </p>
-                            <p><span className="text-accent">Price</span> : ${price}</p>
+                            <p><span className="text-[#3BBFE3]">Device</span> : {type}</p>
+                            <p><span className="text-[#3BBFE3]">Brand</span>  : {brand}</p>
+                            <p><span className="text-[#3BBFE3]">Rating</span> : {rating ? rating : "rating-point"} / 5 </p>
+                            <p><span className="text-[#3BBFE3]">Price</span> : ${price}</p>
                         </div>
                         <div>
-                            <p><span className="text-accent">Color</span> : {color}</p>
-                            <p><span className="text-accent">Country of Origin:</span> {country}</p>
-                            <p><span className="text-accent">Warranty period:</span> {warranty} years</p>
-                            <p><span className="text-accent">Inside Box :</span> {box}</p>
+                            <p><span className="text-[#3BBFE3]">Color</span> : {color}</p>
+                            <p><span className="text-[#3BBFE3]">Country of Origin:</span> {country}</p>
+                            <p><span className="text-[#3BBFE3]">Warranty period:</span> {warranty} years</p>
+                            <p><span className="text-[#3BBFE3]">Inside Box :</span> {box}</p>
                         </div>
                     </div>
                 </div>

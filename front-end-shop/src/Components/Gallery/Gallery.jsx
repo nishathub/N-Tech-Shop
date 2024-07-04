@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import GalleryProductCard from "./GalleryProductCard";
 
 
 export function Gallery({ evenIndexProducts }) {
@@ -45,19 +46,10 @@ export function Gallery({ evenIndexProducts }) {
 
     return (
         <div className="w-11/12 sm:w-full mx-auto max-w-6xl md:px-4 px-1">
-            <h2 className="text-center text-lg md:text-2xl py-4 tracking-wider text-accent font-semibold">Top Selling Products</h2>
+            <h2 className="text-center text-lg md:text-3xl py-8 tracking-wider text-gray-900 font-semibold">Top Selling Products</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {evenIndexProducts.map((product, index) => (
-                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index} className="relative">
-                        <p className="absolute left-0 text-yellow-800 bg-black/75 p-1 rounded-lg">{product.rating} &#9733;</p>
-                        <p className="absolute left-0 top-8 text-accent bg-black/75 p-1 rounded-lg">$ {product.price}</p>
-                        <p className="absolute right-0 bottom-0 bg-black/75 p-1 rounded-lg text-white">{product.name}</p>
-                        <img
-                            className="h-40 w-full max-w-full rounded-lg object-cover object-center"
-                            src={product.image}
-                            alt="gallery-photo"
-                        />
-                    </Link>
+                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}><GalleryProductCard product={product}></GalleryProductCard></Link>
                 ))}
             </div>
         </div>
