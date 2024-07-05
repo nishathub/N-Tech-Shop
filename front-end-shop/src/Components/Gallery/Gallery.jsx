@@ -49,7 +49,9 @@ export function Gallery({ evenIndexProducts }) {
             <h2 className="text-center text-lg md:text-3xl py-8 tracking-wider text-gray-900 font-semibold">Top Selling Products</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {evenIndexProducts.map((product, index) => (
-                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}><GalleryProductCard product={product}></GalleryProductCard></Link>
+                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}>
+                        <GalleryProductCard product={product}></GalleryProductCard>
+                    </Link>
                 ))}
             </div>
         </div>

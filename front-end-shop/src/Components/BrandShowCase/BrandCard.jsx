@@ -12,9 +12,11 @@ const BrandCard = ({brand}) => {
 
     }
     return (
-        <div className=" rounded-md bg-blue-gray-900 hover:shadow-blue-700 shadow-md duration-300 max-w-sm">
-            <img className="p-4 h-40 sm:h-full" src={brand.brand_photo_link} alt="" />
-            <button onClick={() => handleBrandClick(brand.name)} className="btn w-full text-lg ">{brand.name}</button>
+        <div 
+        onClick={() => handleBrandClick(brand.name)}
+        className=" rounded-md hover:cursor-pointer max-w-sm border border-black">
+            <img className="p-4 h-40" src={brand.brand_photo_link} alt="" />
+            {/* <p className="btn hover:w-full">{brand.name} Products</p> */}
         </div>
     );
 };
