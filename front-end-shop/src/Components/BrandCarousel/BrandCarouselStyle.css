@@ -1,0 +1,23 @@
+.slick-prev, .slick-next {
+    background-color: #000; 
+    color: #000;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    padding-top: 2px;
+    opacity: 0.75;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background-color: #000; /* Change this to the desired hover background color */
+    color: #000; /* Change this to the desired hover text color */
+    opacity: 1;
+}
+
+.slick-prev {
+    left: -30px; /* Adjust this value to move the left arrow */
+}
+
+.slick-next {
+    right: -30px; /* Adjust this value to move the right arrow */
+}

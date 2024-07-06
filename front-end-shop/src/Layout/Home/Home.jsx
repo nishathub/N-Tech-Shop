@@ -3,6 +3,10 @@ import BrandDisplay from "../../Components/BrandShowCase/BrandDisplay";
 import { CarouselCustomNavigation } from "../../Components/HomeBanner/CarouselCustomNavigation";
 import { Gallery } from "../../Components/Gallery/Gallery";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
+import BrandCarousel from "../../Components/BrandCarousel/BrandCarousel";
+import WebsiteFeatures from "../../Components/WebsiteFeatures/WebsiteFeatures";
+import FlagshipCard from "../../Components/FlagshipCard/FlagshipCard";
+import TopSellingCarousel from "../../Components/Gallery/TopSellingCarousel";
 
 const Home = () => {
     const allProducts = useLoaderData();
@@ -17,13 +21,22 @@ const Home = () => {
             <div>
                 <CarouselCustomNavigation oddIndexProducts={oddFiveProducts}></CarouselCustomNavigation>
             </div>
-            <div className="bg-gray-200 py-12">
+            {/* <div className="bg-gray-400 py-12">
                 <Gallery evenIndexProducts={evenNineProducts}></Gallery>
+            </div> */}
+            <div className="bg-gray-400 py-12">
+                <TopSellingCarousel evenIndexProducts={evenNineProducts}></TopSellingCarousel>
             </div>
-            <div className="bg-gray-100 py-12">
-                <BrandDisplay></BrandDisplay>
+            <div className="bg-gray-400 py-12">
+                <FlagshipCard></FlagshipCard>
             </div>
-            <div className="bg-teal-900">
+            <div className="bg-gray-400 py-12 ">
+                <BrandCarousel></BrandCarousel>
+            </div>
+            <div className="bg-gray-400 py-12">
+                <WebsiteFeatures></WebsiteFeatures>
+            </div>
+            <div className="bg-[#0bb7e65c]">
                 <NewsLetter></NewsLetter>
             </div>
         </div>

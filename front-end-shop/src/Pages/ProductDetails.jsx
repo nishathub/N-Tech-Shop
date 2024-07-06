@@ -52,6 +52,7 @@ const ProductDetails = () => {
                             <p><span className="text-[#3BBFE3]">Brand</span>  : {brand}</p>
                             <p><span className="text-[#3BBFE3]">Rating</span> : {rating ? rating : "rating-point"} / 5 </p>
                             <p><span className="text-[#3BBFE3]">Price</span> : ${price}</p>
+
                         </div>
                         <div>
                             <p><span className="text-[#3BBFE3]">Color</span> : {color}</p>

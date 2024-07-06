@@ -40,7 +40,7 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
                     key={index}
                     src={product.image}
                     alt={`image ${index + 1}`}
-                    className="h-full w-full object-cover"
+                    className="w-full h-full object-cover"
                 />
             ))}
         </Carousel>
