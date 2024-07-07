@@ -24,6 +24,17 @@ const getOneBrandProducts = async (req, res) => {
         res.status(500).send(error);
     }
 }
+// Get One Category Products
+const getOneCategoryProducts = async (req, res) => {
+    try {
+        const categoryName = req.params.categoryName;
+        const query = { type: categoryName }
+        const categoryProducts = await productCollection().find(query).toArray();
+        res.send(categoryProducts)
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
 
 const getOneProduct = async (req, res) => {
     try {
@@ -113,4 +124,4 @@ const removeCartItem = async (req, res) => {
     }
 }
 
-module.exports = { getAllProducts, createProduct, getOneBrandProducts, getOneProduct, createCartItem, getCartItems, getOneCartItem, removeCartItem, updateProduct };
+module.exports = { getAllProducts, createProduct, getOneBrandProducts,getOneCategoryProducts, getOneProduct, createCartItem, getCartItems, getOneCartItem, removeCartItem, updateProduct };

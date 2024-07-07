@@ -28,7 +28,7 @@ const Cart = () => {
             }
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/cartItems/${id}`, {
+                fetch(`https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

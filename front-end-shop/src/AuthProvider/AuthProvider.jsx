@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
     // we could easily use these code on cart page, but we want to use these info on other components, so, we put them here to utilize context data.
 
     useEffect(() => {
-        fetch('https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/cartItems')
+        fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems')
             .then(res => res.json())
             .then(data => {
                 setCartItems(data)
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (!loadCart) {
-            fetch('https://back-end-shop-4lq6iejmf-nishats-projects-890e0902.vercel.app/products')
+            fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products')
                 .then(res => res.json())
                 .then(data => {
                     const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
