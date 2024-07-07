@@ -1,14 +1,13 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './TopSellingCarouselStyle.css';
 import GalleryProductCard from "./GalleryProductCard";
 import { Link } from 'react-router-dom';
 
 const TopSellingCarousel = ({ evenIndexProducts }) => {
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3, // or 5

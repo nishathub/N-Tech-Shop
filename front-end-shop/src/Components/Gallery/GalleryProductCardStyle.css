@@ -1,5 +1,5 @@
 .gallery-product-card:hover{
-    box-shadow: 0px 0px 5px 0px #0bb7e6;
+    scale: 1.01;
     transition-duration: .3s;
 }
 

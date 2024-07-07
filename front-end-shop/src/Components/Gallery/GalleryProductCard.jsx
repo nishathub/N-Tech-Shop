@@ -6,7 +6,7 @@ const GalleryProductCard = ({ product }) => {
     const saleStyle = { textDecoration: product.rating < 4 ? 'line-through' : 'none', color : product.rating < 4 ? 'red' : '' };
     const priceStyle = { display: product.rating < 4 ? 'flex' : 'none' };
     return (
-        <div className="p-2 rounded-sm bg-[#D9D9D9] hover:bg-white hover:scale-105 duration-300 gallery-product-card">
+        <div className="p-2 rounded-sm bg-[#D9D9D9] hover:bg-white duration-300 gallery-product-card">
             {/* DYNAMIC BADGE ACCORDING TO RATING  */}
             <div className='product-image'>
                 {product.rating == 5 && (

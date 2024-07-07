@@ -7,38 +7,39 @@ import '../SweetAlertStyle.css';
 
 const ProductDetails = () => {
     const oneProduct = useLoaderData();
-    const {setAddCartClick} = useContext(BrandShopContext);
+    const { setAddCartClick } = useContext(BrandShopContext);
     const { name, brand, color, price, image, rating, type, country, year, warranty, box, _id } = oneProduct;
     const handleAddToCart = () => {
-        
+
         fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
-            body: JSON.stringify({productId : _id, name: name})
+            body: JSON.stringify({ productId: _id, name: name })
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.insertedId){
-                Swal.fire({
-                    title: "Item Added to the Cart",
-                    timer: 2000,
-                    customClass: {
-                        container: 'swal-custom-container',
-                        title: 'swal-custom-title',
-                        content: 'swal-custom-content',
-                    }
-                }); 
-                  setAddCartClick(true);
-            }
-        })
-        .catch(error =>{
-            console.error(error)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: "Item Added to the Cart",
+                        timer: 2000,
+                        customClass: {
+                            container: 'swal-custom-container',
+                            title: 'swal-custom-title',
+                            content: 'swal-custom-content',
+                        }
+                    });
+                    setAddCartClick(true);
+                }
+            })
+            .catch(error => {
+                console.error(error)
+            })
 
     }
+
     return (
         <div className="py-8">
             <div className="flex flex-col gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w-4xl mx-auto">
@@ -51,7 +52,7 @@ const ProductDetails = () => {
                             <p><span className="text-[#3BBFE3]">Device</span> : {type}</p>
                             <p><span className="text-[#3BBFE3]">Brand</span>  : {brand}</p>
                             <p><span className="text-[#3BBFE3]">Rating</span> : {rating ? rating : "rating-point"} / 5 </p>
-                            <p><span className="text-[#3BBFE3]">Price</span> : ${price}</p>
+                            <p><span className="text-[#3BBFE3]">Price</span> : <span className="line-through text-red-500">{rating < 4 && '$'+price}</span> ${rating < 4 ? price * 0.8 : price}</p>
 
                         </div>
                         <div>

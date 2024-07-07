@@ -19,7 +19,8 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
             <Carousel
             prevArrow={false} // hiding arrows
             nextArrow={false}
-                className="h-40 md:h-[500px] no-arrows"
+            interval='1000'
+                className="h-40 md:h-[500px]"
                 navigation={({ setActiveIndex: setActiveIndexInternal, activeIndex: activeIndexInternal, length }) => {
                     // Sync internal state with our custom state
                     if (activeIndexInternal !== activeIndex) {
