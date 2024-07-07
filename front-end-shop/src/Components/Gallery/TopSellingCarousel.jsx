@@ -3,6 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './TopSellingCarouselStyle.css';
 import GalleryProductCard from "./GalleryProductCard";
+import { Link } from 'react-router-dom';
 
 const TopSellingCarousel = ({ evenIndexProducts }) => {
 
@@ -50,8 +51,10 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
         <div className="max-w-6xl mx-auto px-1 md:px-0">
             <h2 className="text-lg md:text-3xl py-8 tracking-wider text-gray-900 font-semibold">Top Selling Products</h2>
             <Slider {...settings}>
-                {evenIndexProducts.map(product => (
-                    <GalleryProductCard key={product.name} product={product} />
+                {evenIndexProducts.map((product, index) => (
+                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}>
+                        <GalleryProductCard product={product}></GalleryProductCard>
+                    </Link>
                 ))}
             </Slider>
         </div>

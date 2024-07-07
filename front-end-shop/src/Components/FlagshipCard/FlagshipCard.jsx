@@ -17,7 +17,7 @@ const FlagshipCard = () => {
                     <p className="text-4xl first-letter:text-[#0bb7e6]">Google AI in your hand.</p>
                     <p className="text-xl">Pixel phones make it easy to edit photos and videos and get more done.</p>
                     <p className="text-xl">1 year warranty included</p>
-                    <button onClick={handleBrandClick} className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:btn w-40 mt-8">EXPLORE</button>
+                    <button onClick={handleBrandClick} className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 w-40 mt-8">EXPLORE</button>
                 </div>
             </div>
         </div>
