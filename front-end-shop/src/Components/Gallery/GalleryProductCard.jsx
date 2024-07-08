@@ -5,6 +5,7 @@ const GalleryProductCard = ({ product }) => {
     const totalStars = 5;
     const saleStyle = { textDecoration: product.rating < 4 ? 'line-through' : 'none', color : product.rating < 4 ? 'red' : '' };
     const priceStyle = { display: product.rating < 4 ? 'flex' : 'none' };
+    const discountedPrice = (product.price * 0.8).toFixed(2);
     return (
         <div className="p-2 rounded-sm bg-[#D9D9D9] hover:bg-white duration-300 gallery-product-card">
             {/* DYNAMIC BADGE ACCORDING TO RATING  */}
@@ -33,12 +34,12 @@ const GalleryProductCard = ({ product }) => {
                     <h2 className="text-lg text-gray-900 uppercase font-bold">{product.name}</h2>
                     <div className='flex gap-4'>
                         <h4 style={saleStyle} className="text-lg text-gray-700 font-bold">$ {product.price}</h4>
-                        <h4 style={priceStyle} className="text-lg text-gray-700 font-bold">$ {product.price * 0.8}</h4>
+                        <h4 style={priceStyle} className="text-lg text-gray-700 font-bold">$ {discountedPrice}</h4>
                     </div>
                 </div>
                 <div className="space-y-2 flex flex-col">
                     <p className="text-gray-700 font-bold">{product.type}</p>
-                    {/* <p className="text-yellow-900">{product.rating} &#9733;</p> */}
+                    {/* RATING  */}
                     <div className="rating rating-xs">
                         {[...Array(totalStars)].map((_, index) => {
                             const isFilled = index < product.rating;

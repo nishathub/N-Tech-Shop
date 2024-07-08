@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const CategoryContainer = () => {
     return (
-        <div className="max-w-6xl mx-auto px-1 md:px-0 flex flex-wrap gap-6 items-center justify-center">
+        <div className="max-w-7xl mx-auto px-1 md:px-0 flex flex-wrap gap-6 items-center justify-center">
             <Link to={'/products/category/Laptop'}>
                 <div className="relative group">
                     <div className="w-24 md:w-40 h-24 md:h-40 flex items-center justify-center rounded-full  duration-300 bg-gray-200  p-4 bg-[url('https://i.ibb.co/G2Vr7sk/laptop-rem-bg.png')] bg-cover">

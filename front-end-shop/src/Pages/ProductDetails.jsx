@@ -1,14 +1,30 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import '../SweetAlertStyle.css';
 
 
+
 const ProductDetails = () => {
+    const [isPhysicalSpecOpen, setPhysicalSpecOpen] = useState(false);
+    const [isDisplayOpen, setDisplayOpen] = useState(false);
     const oneProduct = useLoaderData();
     const { setAddCartClick } = useContext(BrandShopContext);
     const { name, brand, color, price, image, rating, type, country, year, warranty, box, _id } = oneProduct;
+    const discountedPrice = (price * 0.8).toFixed(2);
+    const totalStars = 5;
+    const specificationStyle = {
+        maxHeight: isPhysicalSpecOpen ? '100vh' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.7s ease-in-out',
+    };
+    const displayStyle = {
+        maxHeight: isDisplayOpen ? '100vh' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.7s ease-in-out',
+    };
+
     const handleAddToCart = () => {
 
         fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems', {
@@ -41,31 +57,77 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="py-8">
-            <div className="flex flex-col gap-4 items-center rounded-md bg-base-100 p-4 shadow-xl max-w-4xl mx-auto">
-                <div className="my-4">
-                    <h2 className="sm:text-3xl text-xl text-center uppercase font-semibold text-[#3BBFE3] tracking-wider">{name}</h2>
+        <div className="py-8 bg-gray-100">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start max-w-7xl mx-auto px-4">
+                {/* IMAGE  */}
+                <div className="rounded-sm flex justify-center">
+                    <div><img className="h-auto sm:h-96 w-fit" src={image} alt="product-image" /></div>
                 </div>
-                <div className="my-4">
-                    <div className="capitalize grid sm:grid-cols-2 sm:gap-8 text-lg">
-                        <div>
-                            <p><span className="text-[#3BBFE3]">Device</span> : {type}</p>
-                            <p><span className="text-[#3BBFE3]">Brand</span>  : {brand}</p>
-                            <p><span className="text-[#3BBFE3]">Rating</span> : {rating ? rating : "rating-point"} / 5 </p>
-                            <p><span className="text-[#3BBFE3]">Price</span> : <span className="line-through text-red-500">{rating < 4 && '$'+price}</span> ${rating < 4 ? price * 0.8 : price}</p>
+                {/* DESCRIPTION  */}
+                <div>
+                    <div className="rounded-md text-gray-800 p-4 bg-[#D9D9D9] space-y-4">
+                        <div className=" flex flex-col-reverse md:flex-row justify-between md:items-center">
+                            <div>
+                                <h2 className="text-2xl md:text-4xl font-bold mb-2">{name}</h2>
+                                <h4>{country} | {color} | {year}</h4>
+                                <div className="rating rating-xs">
+                                    {[...Array(totalStars)].map((_, index) => {
+                                        const isFilled = index < rating;
+                                        const starClass = isFilled ? 'mask mask-star-2 bg-orange-900' : 'mask mask-star-2 bg-orange-400';
+                                        return <input key={index} type="radio" name={`rating-${_id}`} className={starClass} defaultChecked={isFilled} />;
+                                    })}
+                                </div>
+                            </div>
+                            <div className="flex flex-row md:flex-col items-center md:items-end gap-2 md:gap-0 mb-4 md:mb-0">
+                                <p> {rating < 4 && 'Discount Price:'}</p>
+                                <p className="text-2xl md:text-3xl">${rating < 4 ? discountedPrice : price}</p>
+                                <p className="line-through text-red-500">{rating < 4 && '$' + price}</p>
 
+                            </div>
                         </div>
                         <div>
-                            <p><span className="text-[#3BBFE3]">Color</span> : {color}</p>
-                            <p><span className="text-[#3BBFE3]">Country of Origin:</span> {country}</p>
-                            <p><span className="text-[#3BBFE3]">Warranty period:</span> {warranty} years</p>
-                            <p><span className="text-[#3BBFE3]">Inside Box :</span> {box}</p>
+                            <p>The {name} can be a lucrative deal at this price currently in the tech market. With a gorgeous {color} look and high performance, it should be worthy to be a choice.</p>
+                        </div>
+                        <div>
+                            <p className="bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] w-fit p-2 rounded-md">10 Days Replacement & 2 Years Service Warranty</p>
+                        </div>
+                        <div>
+                            <p className="bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] w-fit p-2 rounded-md">Status : <span className="text-green-700 font-bold">Stock available</span></p>
+                        </div>
+
+                    </div>
+                    <div className="w-full mt-2">
+                        <button onClick={handleAddToCart} className="w-full hover:bg-[#D9D9D9] hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 duration-300">Add to Cart</button>
+                    </div>
+                    <div className="mt-6 rounded-md text-gray-800 p-4 bg-[#D9D9D9] space-y-4">
+                        <h2 className="text-2xl md:text-3xl mb-2">Specification</h2>
+                        <div>
+                            <div onClick={() => setPhysicalSpecOpen(!isPhysicalSpecOpen)} className="flex justify-between items-center bg-gray-200 p-2 rounded-md hover:cursor-pointer">
+                                <h4>Physical Specification</h4>
+                                <span> {isPhysicalSpecOpen ? '\u2B9D': '\u2B9F' }</span>
+                            </div>
+                            <div style={specificationStyle}>
+                                <div className="space-y-2 p-4">
+                                    <p>Build</p>
+                                    <p>Weight</p>
+                                    <p>Dimension</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div onClick={() => setDisplayOpen(!isDisplayOpen)} className="flex justify-between bg-gray-200 p-2 rounded-md hover:cursor-pointer">
+                                <h4>Display</h4>
+                                <span> {isDisplayOpen ? '\u2B9D': '\u2B9F' }</span>
+                            </div>
+                            <div style={displayStyle}>
+                                <div className="space-y-2 p-4">
+                                    <p>Size</p>
+                                    <p>Type</p>
+                                    <p>Resolution</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div><img className="w-full" src={image} alt="product-image" /></div>
-                <div className="w-full">
-                    <button onClick={handleAddToCart} className="btn btn-accent w-full text-lg">Add to Cart</button>
                 </div>
             </div>
         </div>

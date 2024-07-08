@@ -6,8 +6,8 @@ import { SiFsecure, SiAuth0  } from "react-icons/si";
 
 const WebsiteFeatures = () => {
     return (
-        <div className="relative max-w-6xl mx-auto">
-            <div className="flex gap-8 flex-wrap justify-center left-0 bottom-0 max-w-6xl mx-auto px-1 md:px-4 py-4 bg-white">
+        <div className="relative max-w-7xl mx-auto">
+            <div className="flex gap-8 flex-wrap justify-center left-0 bottom-0 max-w-7xl mx-auto px-1 md:px-4 py-4 bg-white">
                 <div className="w-52 h-52 flex flex-col gap-4 items-center justify-center p-4 rounded-sm">
                     <div>
                         <p className="text-6xl text-black hover:bg-[#0bb7e6] hover:text-white duration-300 p-8 w-fit rounded-full bg-[#D9D9D9]"><RiCustomerService2Line /></p>

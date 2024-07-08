@@ -1,19 +1,13 @@
 import BrandCard from "../BrandShowCase/BrandCard";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './BrandCarouselStyle.css';
+import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
 const BrandCarousel = () => {
-    const [brand, setBrand] = useState([]);
-
-    useEffect(() => {
-        fetch('/brandList.json')
-            .then(res => res.json())
-            .then(data => setBrand(data))
-            .catch(error => console.error(error.message));
-    }, []);
+    const {productBrands} = useContext(BrandShopContext);
 
     const settings = {
         dots: false,
@@ -31,7 +25,7 @@ const BrandCarousel = () => {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             },
             {
@@ -40,7 +34,7 @@ const BrandCarousel = () => {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             },
             {
@@ -49,16 +43,16 @@ const BrandCarousel = () => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             }
         ]
     };
 
     return (
-        <div className="max-w-6xl mx-auto px-1 md:px-0">
+        <div className="max-w-7xl mx-auto px-1 md:px-0">
             <Slider {...settings}>
-                {brand.map(brandItem => (
+                {productBrands.map(brandItem => (
                     <BrandCard key={brandItem.name} brand={brandItem} />
                 ))}
             </Slider>

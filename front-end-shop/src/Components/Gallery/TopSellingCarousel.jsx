@@ -22,7 +22,7 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             },
             {
@@ -31,7 +31,7 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
                     slidesToShow: 2,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             },
             {
@@ -40,15 +40,15 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false
                 }
             }
         ]
     };
 
     return (
-        <div className="max-w-6xl mx-auto px-1 md:px-0">
-            <h2 className="text-lg md:text-3xl py-8 tracking-wider text-gray-900 font-semibold">Top Selling Products</h2>
+        <div className="max-w-7xl mx-auto px-1 md:px-0">
+            <h2 className="text-lg md:text-3xl py-8 text-gray-900 font-bold ml-4">Top Selling Products</h2>
             <Slider {...settings}>
                 {evenIndexProducts.map((product, index) => (
                     <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}>

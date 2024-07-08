@@ -53,7 +53,7 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
                         <div className="absolute hidden md:block top-1/2 left-0 -translate-y-1/2 bg-black/60 w-full md:pl-40 py-6">
                             <p className="text-xl text-gray-200">Super Value Deals</p>
                             <p className="text-3xl md:text-5xl text-gray-200 first-letter:text-[#0bb7e6]">{product.name}</p>
-                            <button onClick={()=> navigate(`/products/brand/${product.brand}/${product._id}`)} className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 w-40 mt-8">Shop Now</button>
+                            <button onClick={()=> navigate(`/products/brand/${product.brand}/${product._id}`)} className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300 w-40 mt-8">Shop Now</button>
                             </div>
                     </div>
                 ))}
