@@ -17,7 +17,15 @@ const BrandProducts = () => {
         <div style={!oneBrandProducts.length ? bgStyle : {}} className="py-12 bg-gray-100">
             { // if No products available, show message
                 oneBrandProducts.length < 1 ?
-                    <h2 className="text-center md:text-2xl text-red-600 font-bold mt-12">{brandName} products are currently out of stock <br /> Please Checkout Later</h2>
+                    <div>
+                        <div className="w-full mx-auto group">
+                            <div
+                                className="rounded-sm justify-center flex ">
+                                <img className="h-20 group-hover:scale-110 duration-700" src={selectedBrand.brand_photo_link} alt="brand-logo" />
+                            </div>
+                        </div>
+                        <h2 className="text-center md:text-2xl text-red-600 font-bold mt-12">{brandName} products are currently out of stock <br /> Please Checkout Later</h2>
+                    </div>
                     :
                     <div className="max-w-7xl mx-auto px-1">
                         <div className="mb-12">

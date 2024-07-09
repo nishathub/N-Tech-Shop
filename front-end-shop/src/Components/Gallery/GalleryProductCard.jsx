@@ -9,6 +9,7 @@ const GalleryProductCard = ({ product }) => {
     const saleStyle = { textDecoration: product.rating < 4 ? 'line-through' : 'none', color: product.rating < 4 ? 'red' : '' };
     const priceStyle = { display: product.rating < 4 ? 'flex' : 'none' };
     const discountedPrice = (product.price * 0.8).toFixed(2);
+
     return (
         <div className="p-2 rounded-sm bg-[#D9D9D9] hover:bg-white duration-300 gallery-product-card max-w-96">
             {/* DYNAMIC BADGE ACCORDING TO RATING  */}
@@ -61,6 +62,7 @@ const GalleryProductCard = ({ product }) => {
                         <div className=" ">
                             <Link to={`/products/brand/${product.brand}/${product._id}`}><button className="w-1/2 bg-gray-700 p-2 hover:bg-gray-200 text-gray-200 hover:text-gray-800 duration-300">Details</button></Link>
                             <Link to={`/products/brand/${product.brand}/update/${product._id}`}><button className="w-1/2 bg-gray-800 p-2 hover:bg-gray-200 text-gray-200 hover:text-gray-800 duration-300">Update</button></Link>
+                            
                         </div>
                         :
                         <div className=" ">

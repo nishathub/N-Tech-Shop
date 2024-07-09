@@ -55,6 +55,74 @@ const UpdateProduct = () => {
         })
         .catch(error => console.error(error))
     }
+
+    const handleDeleteProduct = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            customClass: {
+                container: 'swal-custom-container',
+                title: 'swal-custom-title',
+                text: 'swal-custom-text',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/products/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data) {
+                            console.log(data);
+                            Swal.fire({
+                                title: "Deleted",
+                                text: "You won't be able to revert this!",
+                                timer: 2000,
+                                customClass: {
+                                    container: 'swal-custom-container',
+                                    title: 'swal-custom-title',
+                                    content: 'swal-custom-content',
+                                }
+                            });
+
+                            setTimeout(() => {
+                                navigate(`/products/brand/${brand}`)
+                            }, 2000);
+                        } else {
+                            Swal.fire({
+                                title: "Error",
+                                text: "Something went wrong",
+                                timer: 2000,
+                                customClass: {
+                                    container: 'swal-custom-container',
+                                    title: 'swal-custom-title',
+                                    content: 'swal-custom-content',
+                                }
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: "Error",
+                            text: "Something went wrong",
+                            timer: 2000,
+                            customClass: {
+                                container: 'swal-custom-container',
+                                title: 'swal-custom-title',
+                                content: 'swal-custom-content',
+                            }
+                        });
+                        console.error('Error deleting cart item:', error);
+                    });
+            }
+        });
+
+
+    };
     return (
         <div className="mt-12 bg-blue-gray-900 p-8 rounded-md">
             <h2 className="text-xl text-center font-semibold mb-4">Update Your Product Here</h2>
@@ -112,6 +180,7 @@ const UpdateProduct = () => {
                     <input type="submit" value="Update-Product" className="mt-4 md:mt-0 btn btn-primary w-full" />
                 </div>
             </form>
+            <button onClick={() => handleDeleteProduct(_id)} className='w-full p-1 bg-red-900 text-white hover:bg-red-500 duration-300'>Delete</button>
         </div>
     );
 };

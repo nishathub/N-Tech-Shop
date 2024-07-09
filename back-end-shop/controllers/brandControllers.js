@@ -123,5 +123,20 @@ const removeCartItem = async (req, res) => {
         console.error(error)
     }
 }
+const removeProduct = async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        const query = { _id: new ObjectId(productId)  };
+        const result = productCollection().deleteOne(query);
+        res.send(result);
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-module.exports = { getAllProducts, createProduct, getOneBrandProducts,getOneCategoryProducts, getOneProduct, createCartItem, getCartItems, getOneCartItem, removeCartItem, updateProduct };
+module.exports = {
+    getAllProducts, createProduct, getOneBrandProducts,
+    getOneCategoryProducts, getOneProduct, createCartItem,
+    getCartItems, getOneCartItem, removeCartItem, updateProduct,
+    removeProduct
+};
