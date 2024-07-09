@@ -42,13 +42,13 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
             >
                 {oddIndexProducts.map((product, index) => (
                     <div
-                        className="w-full h-full object-cover relative"
+                        className="h-[500px] relative"
                         key={index}
                     >
                         <img
                             src={product.image}
                             alt={`image ${index + 1}`}
-                            className="w-full h-full object-cover"
+                            className="h-full mx-auto"
                         />
                         <div className="absolute hidden md:block top-1/2 left-0 -translate-y-1/2 bg-black/60 w-full md:pl-40 py-6">
                             <p className="text-xl text-gray-200">Super Value Deals</p>

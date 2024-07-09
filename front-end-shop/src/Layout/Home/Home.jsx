@@ -13,8 +13,8 @@ const Home = () => {
     const allProducts = useLoaderData();
     const oddIndexProducts = allProducts.filter((element, index) => index % 2 === 1);
     const evenIndexProducts = allProducts.filter((element, index) => index % 2 === 0);
-    const oddFiveProducts = oddIndexProducts.slice(4,8);
-    const evenNineProducts = evenIndexProducts.slice(0,9);
+    const oddFiveProducts = oddIndexProducts.slice(0,5);
+    const evenNineProducts = evenIndexProducts.slice(0,10);
     
 
     return (
