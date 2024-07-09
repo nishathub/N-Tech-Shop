@@ -1,29 +1,36 @@
 
 import { useLoaderData, useParams } from "react-router-dom";
 import ProductCard from "../Components/ProductCase/ProductCard";
-import { CarouselTransition } from "../Components/ProductCase/CarouselTransition";
+import GalleryProductCard from "../Components/Gallery/GalleryProductCard";
+import { useContext } from "react";
+import { BrandShopContext } from "../AuthProvider/AuthProvider";
+import BrandCard from "../Components/BrandShowCase/BrandCard";
 
 
 const BrandProducts = () => {
     const { brandName } = useParams();
     const oneBrandProducts = useLoaderData();
-    const bgStyle = {height: '80vh'};
+    const { productBrands } = useContext(BrandShopContext);
+    const selectedBrand = productBrands.find(brand => brand.name === brandName);
+    const bgStyle = { height: '80vh' };
     return (
-        <div style={!oneBrandProducts.length ? bgStyle : {}} className="py-8">
+        <div style={!oneBrandProducts.length ? bgStyle : {}} className="py-12 bg-gray-100">
             { // if No products available, show message
                 oneBrandProducts.length < 1 ?
-                    <h2 className="text-center md:text-2xl text-red-400 font-bold mt-12">{brandName} products are currently out of stock <br /> Please Checkout Later</h2>
+                    <h2 className="text-center md:text-2xl text-red-600 font-bold mt-12">{brandName} products are currently out of stock <br /> Please Checkout Later</h2>
                     :
-                    <div>
-                        <div>
-                           <h2 className="sm:text-3xl text-xl text-center uppercase font-semibold text-[#3BBFE3] tracking-wider">{brandName}</h2> 
-                        </div>
-                        <div className="my-8">
-                            <CarouselTransition products ={oneBrandProducts}></CarouselTransition>
+                    <div className="max-w-7xl mx-auto px-1">
+                        <div className="mb-12">
+                            <div className="w-full mx-auto group">
+                                <div
+                                    className="rounded-sm justify-center flex ">
+                                    <img className="h-20 group-hover:scale-110 duration-700" src={selectedBrand.brand_photo_link} alt="brand-logo" />
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="grid lg:grid-cols-2 gap-4 justify-center">
-                            {oneBrandProducts.map(product => <ProductCard key={product._id} product={product}></ProductCard>)}
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+                            {oneBrandProducts.map(product => <GalleryProductCard key={product._id} product={product}></GalleryProductCard>)}
                         </div>
                     </div>
             }

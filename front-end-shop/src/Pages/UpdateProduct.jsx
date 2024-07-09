@@ -72,15 +72,15 @@ const UpdateProduct = () => {
                     </select>
                 </div>
                 <div className="md:flex gap-4">
-                    <input type="text" name="price" defaultValue={price} placeholder="$ Price" className="input input-bordered w-full" />
+                    <input type="number" name="price" defaultValue={price} placeholder="$ Price" className="input input-bordered w-full" />
                     <input type="text" name="color" defaultValue={color} placeholder="Color" className="input input-bordered w-full" />
                 </div>
                 <div className="md:flex gap-4">
                     <input type="text" name="country" defaultValue={country} placeholder="Country" className="input input-bordered w-full" />
-                    <input type="text" name="year" defaultValue={year} placeholder="Release Year" className="input input-bordered w-full" />
+                    <input type="number" name="year" defaultValue={year} placeholder="Release Year" className="input input-bordered w-full" />
                 </div>
                 <div className="md:flex gap-4">
-                    <input type="text" name="warranty" defaultValue={warranty} placeholder="Warranty-period" className="input input-bordered w-full" />
+                    <input type="number" name="warranty" defaultValue={warranty} placeholder="Warranty-period" className="input input-bordered w-full" />
                     <input type="text" name="box" defaultValue={box} placeholder="Provided in the box" className="input input-bordered w-full" />
                 </div>
                 <div className="">
@@ -92,7 +92,7 @@ const UpdateProduct = () => {
                         <option value="Phone">Phone</option>
                         <option value="Laptop">Laptop</option>
                         <option value="Watch">Watch</option>
-                        <option value="Headphone">Headphone</option>
+                        <option value="Camera">Camera</option>
                         <option value="Speaker">Speaker</option>
                         <option value="Monitor">Monitor</option>
                     </select>

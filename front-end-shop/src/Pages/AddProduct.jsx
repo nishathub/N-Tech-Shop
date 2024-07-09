@@ -71,10 +71,10 @@ const AddProduct = () => {
                 </div>
                 <div className="md:flex gap-4">
                     <input type="text" name="country" placeholder="Country" className="input input-bordered w-full" />
-                    <input type="text" name="year" placeholder="Release Year" className="input input-bordered w-full" />
+                    <input type="number" name="year" placeholder="Release Year" className="input input-bordered w-full" />
                 </div>
                 <div className="md:flex gap-4">
-                    <input type="text" name="warranty" placeholder="Warranty-period" className="input input-bordered w-full" />
+                    <input type="number" name="warranty" placeholder="Warranty-period" className="input input-bordered w-full" />
                     <input type="text" name="box" placeholder="Provided in the box" className="input input-bordered w-full" />
                 </div>
                 <div className="">
@@ -86,7 +86,7 @@ const AddProduct = () => {
                         <option value="Phone">Phone</option>
                         <option value="Laptop">Laptop</option>
                         <option value="Watch">Watch</option>
-                        <option value="Headphone">Headphone</option>
+                        <option value="Camera">Camera</option>
                         <option value="Speaker">Speaker</option>
                         <option value="Monitor">Monitor</option>
                     </select>

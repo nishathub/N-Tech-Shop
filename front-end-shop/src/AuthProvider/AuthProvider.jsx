@@ -9,8 +9,9 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
-    // json file brand
+    // json file 
     const [productBrands, setProductBrands] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     // Cart code start here
     const [loadCart, setLoadCart] = useState(true);
@@ -98,13 +99,20 @@ const AuthProvider = ({ children }) => {
             .catch(error => console.error(error.message))
     }, []);
 
+    useEffect(()=> {
+        fetch('/categoryList.json')
+        .then(res => res.json())
+        .then(data => setCategories(data))
+        .catch(error => console.log(error))
+    },[])
+
     const authData = { 
         user, loading, loadCart, 
         showCartItems, cartItemsTotalPrice, cartDisplayLoading, 
         setCartDisplayLoading, setShowCartItems, setAddCartClick, 
         setLoading, createNewUser, signInUser, updateUser, 
         errorMessage, setErrorMessage, logOutUser, 
-        googleSignIn , productBrands};
+        googleSignIn , productBrands, categories};
     return (
         <BrandShopContext.Provider value={authData}>
             {children}
