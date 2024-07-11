@@ -20,7 +20,7 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
             prevArrow={false} // hiding arrows
             nextArrow={false}
             interval='1000'
-                className="h-40 md:h-[500px]"
+                className="h-60 md:h-[500px]"
                 navigation={({ setActiveIndex: setActiveIndexInternal, activeIndex: activeIndexInternal, length }) => {
                     // Sync internal state with our custom state
                     if (activeIndexInternal !== activeIndex) {
@@ -42,18 +42,18 @@ export function CarouselCustomNavigation({ oddIndexProducts }) {
             >
                 {oddIndexProducts.map((product, index) => (
                     <div
-                        className="h-[500px] relative"
+                        className="h-full md:h-[500px] relative"
                         key={index}
                     >
                         <img
                             src={product.image}
                             alt={`image ${index + 1}`}
-                            className="h-full mx-auto"
+                            className="md:h-full h-full mx-auto"
                         />
-                        <div className="absolute hidden md:block top-1/2 left-0 -translate-y-1/2 bg-black/60 w-full md:pl-40 py-6">
-                            <p className="text-xl text-gray-200">Super Value Deals</p>
+                        <div className="absolute top-1/2 left-0 -translate-y-1/2 bg-black/60 w-full md:pl-40 md:py-6">
+                            <p className="hidden md:block text-xl text-gray-200">Super Value Deals</p>
                             <p className="text-3xl md:text-5xl text-gray-200 first-letter:text-[#0bb7e6]">{product.name}</p>
-                            <button onClick={()=> navigate(`/products/brand/${product.brand}/${product._id}`)} className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300 w-40 mt-8">Shop Now</button>
+                            <button onClick={()=> navigate(`/products/brand/${product.brand}/${product._id}`)} className="bg-gray-200 text-gray-800 font-bold md:p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300 w-40 mt-2 md:mt-8">Shop Now</button>
                             </div>
                     </div>
                 ))}

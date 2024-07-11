@@ -36,30 +36,30 @@ const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => 
         })
     }
     return (
-        <div>
-            <div className="flex md:gap-4 items-center rounded-md bg-base-100 md:p-4 shadow-xl max-h-56">
+        <div className="text-gray-900">
+            <div className="flex md:gap-4 items-center bg-[#D9D9D9] max-h-56 md:px-2">
                 <div className="flex items-center">
-                    <button onClick={() => handleDeleteCartItem(_id)} className="md:btn btn-ghost md:text-2xl">&#10060;</button>
+                    <button onClick={() => handleDeleteCartItem(_id)} className="md:text-xl hover:bg-red-200 duration-300">&#10060;</button>
                 </div>
-                <div className="w-full p-1 md:p-4 flex justify-between items-center">
+                <div className="w-full p-1 flex justify-between items-center">
 
                     <div className="flex gap-4">
-                        <img className="w-8 md:w-32" src={image} alt="product-image" />
-                        <div>
-                            <h2 className="text-sm md:text-lg w-40 md:w-fit md:font-bold md:mb-4">{name}</h2>
+                        <img className="w-16 md:w-32" src={image} alt="product-image" />
+                        <div className="my-auto">
+                            <h2 className="text-sm md:text-lg w-32 md:w-fit md:font-bold md:mb-2">{name}</h2>
                             <div className="hidden md:block">
-                                <p>Device : {type}</p>
-                                <p>Brand : {brand}</p>
+                                <p>{color}</p>
+                                <p>${price}</p>
                             </div>
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row gap-2 md:gap-8 items-center">
                         <div className="flex gap-2 md:gap-0">
-                            <button onClick={handleQuantityDecrease} className="md:btn btn-error text-pink-200 bg-base-300 w-6 md:w-12 md:text-2xl">-</button>
+                            <button onClick={handleQuantityDecrease} className="rounded-sm text-white bg-red-900 hover:bg-red-500 w-6 md:w-12 md:text-2xl">-</button>
                             <input onChange={handleInputChange} className="md:w-16 w-6 text-center" type="text" disabled name="quantity" min={1} value={itemQuantity} />
-                            <button onClick={handleQuantityIncrease} className="md:btn btn-success text-green-200 bg-base-300 w-6 md:w-12 md:text-2xl">+</button>
+                            <button onClick={handleQuantityIncrease} className="rounded-sm bg-green-900 hover:bg-green-600 text-white  w-6 md:w-12 md:text-2xl">+</button>
                         </div>
-                        <div className="bg-base-300 p-2 rounded-md w-24 text-center">
+                        <div className="bg-[#e0e0e0] p-1 rounded-md w-24 text-center">
                             <p className="md:text-xl">$ <span>{oneProductAmount}</span></p>
                         </div>
                     </div>

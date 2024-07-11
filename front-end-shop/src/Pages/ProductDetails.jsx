@@ -57,7 +57,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="py-8 bg-gray-600">
+        <div className="py-8 bg-gray-200">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start max-w-7xl mx-auto px-4">
                 {/* IMAGE  */}
                 <div className="rounded-sm flex justify-center">

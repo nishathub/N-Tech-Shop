@@ -58,9 +58,9 @@ const AddProduct = () => {
 
     }
     return (
-        <div className="bg-gray-100 py-12 text-gray-800">
-            <div className="max-w-5xl mx-auto px-2">
-                <h2 className="text-4xl text-center font-bold mb-8">Add New Product Here</h2>
+        <div className="bg-gray-200 py-12 text-gray-900">
+            <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register">
+                <h2 className="text-3xl text-center font-bold mb-8">Add a New Product Here</h2>
                 <form onSubmit={handleAddProduct} className="space-y-2">
                     <div className="md:flex gap-4">
                         <input type="text" name="name" placeholder="Name" className="input input-bordered w-full mb-2 md:mb-0" />
@@ -112,7 +112,7 @@ const AddProduct = () => {
                     </div>
 
                     <div className="md:flex gap-4">
-                        <input type="submit" value="Add-Product" className="mt-4 md:mt-0 w-full p-2 rounded-sm submit-button" />
+                        <input type="submit" value="Add-Product" className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full" />
                     </div>
                 </form>
             </div>

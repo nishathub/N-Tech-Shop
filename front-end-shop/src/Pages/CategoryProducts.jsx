@@ -16,7 +16,7 @@ const CategoryProducts = () => {
 
     const bgStyle = { height: '80vh' };
     return (
-        <div style={!oneCategoryProducts.length ? bgStyle : {}} className="py-12 bg-gray-600">
+        <div style={!oneCategoryProducts.length ? bgStyle : {}} className="py-12 bg-gray-200">
             { // if No products available, show message
                 oneCategoryProducts.length < 1 ?
                     <h2 className="text-center md:text-2xl text-red-600 font-bold mt-12">{categoryName} products are currently out of stock <br /> Please Checkout Later</h2>

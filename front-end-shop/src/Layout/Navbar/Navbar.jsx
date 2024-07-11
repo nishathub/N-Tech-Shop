@@ -36,7 +36,7 @@ const Navbar = () => {
             <li><Link to={'/addProduct'}>Add-Product</Link></li>
         </>
     return (
-        <div className="bg-base-200">
+        <div className="bg-base-300">
             <div className="navbar max-w-7xl mx-auto md:px-4 px-1">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -64,7 +64,7 @@ const Navbar = () => {
                             <div>
                                 {!user ?
 
-                                    <Link to={'/login'}><button className="btn btn-primary">Login</button></Link>
+                                    <Link to={'/login'}><button className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300">Login</button></Link>
                                     :
                                     <div className="flex items-center gap-2">
                                         <h2 className="md:text-lg text-gray-200">{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0, 10) + ".."}</h2>

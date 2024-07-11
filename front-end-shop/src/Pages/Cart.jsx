@@ -120,70 +120,76 @@ const Cart = () => {
     const totalAmount = subTotal + parseFloat(tax) + deliveryCharge;
 
     return (
-        <div>
-            {
-                cartDisplayLoading ? <h2>Loading</h2>
-                    :
+        <div className="bg-gray-200 py-20 text-gray-900">
+            <div className="max-w-7xl mx-auto px-1">
 
-                    <div>
-                        {showCartItems.length < 1 ?
-                            <div className="md:h-96">
+                {
+                    cartDisplayLoading ? <h2>Loading</h2>
+                        :
 
-                                <h2 className="my-12 text-center md:text-4xl text-red-200 ">
-                                    Your Cart is Empty
-                                </h2>
-                            </div>
-                            :
-                            <div>
-                                <div className="my-8 flex flex-col gap-4">
+                        <div>
+                            {showCartItems.length < 1 ?
+                                <div className="md:h-96">
 
-                                    {showCartItems.map(item => (
-                                        // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
-                                        <CartItem2
-                                            key={item._id}
-                                            item={item}
-                                            handleDeleteCartItem={handleDeleteCartItem}
-                                            updateCartItemQuantities={updateCartItemQuantities}
-                                        />
-                                    ))}
+                                    <h2 className="py-12 text-center md:text-4xl text-red-700 ">
+                                        Your Cart is Empty
+                                    </h2>
                                 </div>
-                                <div>
-                                    <div className=" md:text-lg gap-4 items-center rounded-md bg-teal-900 p-4 shadow-xl max-h-56 px-8">
-                                        <div className="flex justify-between">
-                                            <p>Subtotal</p>
-                                            <p>$ {subTotal}</p>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <p>Tax (5% above $5000)</p>
-                                            <p>$ {tax}</p>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <p>Delivery Charge</p>
-                                            <p>$ {deliveryCharge}</p>
-                                        </div>
-                                        <div className="w-full border my-4 border-accent">
+                                :
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
+                                    <div className="flex flex-col gap-4 lg:col-span-2">
+
+                                        {showCartItems.map(item => (
+                                            // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
+                                            <CartItem2
+                                                key={item._id}
+                                                item={item}
+                                                handleDeleteCartItem={handleDeleteCartItem}
+                                                updateCartItemQuantities={updateCartItemQuantities}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div className="col-span-1">
+                                        <div className="">
+                                            <div className="w md:text-lg bg-[#D9D9D9] p-4">
+                                                <div className="flex justify-between">
+                                                    <p>Subtotal</p>
+                                                    <p>$ {subTotal}</p>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <p>Tax (5% above $5000)</p>
+                                                    <p>$ {tax}</p>
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <p>Delivery Charge</p>
+                                                    <p>$ {deliveryCharge}</p>
+                                                </div>
+                                                <div className="w-full border my-4 border-gray-900">
+
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <p className="font-bold">Grand Total</p>
+                                                    <p className="font-bold">$ {totalAmount}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="flex justify-between">
-                                            <p className="text-green-100">Grand Total</p>
-                                            <p className="text-green-100">$ {totalAmount}</p>
+                                        <div className="mt-4 p-4 bg-[#D9D9D9]">
+                                            <div className="">
+                                                <ul className="space-y-2">
+                                                    <li>&#10003; Cash on Delivery Available</li>
+                                                    <li>&#10003; 7 Days replacement Policy</li>
+                                                    <li>&#10003; 100% Money Back Guarantee</li>
+                                                    <li>&#10003; 100% Original Product</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="mt-4 p-8">
-                                    <div className="">
-                                        <ul className="space-y-2">
-                                            <li>&#10003; Cash on Delivery Available</li>
-                                            <li>&#10003; 7 Days replacement Policy</li>
-                                            <li>&#10003; 100% Money Back Guarantee</li>
-                                            <li>&#10003; 100% Original Product</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-            }
+                            }
+                        </div>
+                }
+            </div>
 
         </div>
     );

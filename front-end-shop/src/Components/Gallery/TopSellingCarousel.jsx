@@ -49,13 +49,15 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
     return (
         <div className="max-w-7xl mx-auto px-1 md:px-0">
             <h2 className="text-lg md:text-3xl py-8 text-gray-900 font-bold ml-4">Top Selling Products</h2>
-            <Slider {...settings}>
-                {evenIndexProducts.map((product, index) => (
-                    <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}>
-                        <GalleryProductCard product={product}></GalleryProductCard>
-                    </Link>
-                ))}
-            </Slider>
+            <div className=''>
+                <Slider {...settings}>
+                    {evenIndexProducts.map((product, index) => (
+                        <Link to={`/products/brand/${product.brand}/${product._id}`} key={index}>
+                            <GalleryProductCard product={product}></GalleryProductCard>
+                        </Link>
+                    ))}
+                </Slider>
+            </div>
         </div>
     );
 };

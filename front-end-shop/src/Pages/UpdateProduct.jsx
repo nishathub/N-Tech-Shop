@@ -133,9 +133,9 @@ const UpdateProduct = () => {
     };
     
     return (
-        <div className="bg-gray-100 py-12 text-gray-800">
-            <div className="max-w-5xl mx-auto px-2">
-                <h2 className="text-4xl text-center font-semibold mb-4">Update Your Product Here</h2>
+        <div className="bg-gray-100 py-12 text-gray-900">
+            <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register">
+                <h2 className="text-3xl text-center font-semibold mb-4">Update Your Product Here</h2>
                 <form onSubmit={handleUpdateProduct} className="space-y-2">
                     <div className="md:flex gap-4">
                         <input type="text" name="name" defaultValue={name} placeholder="Name" className="input input-bordered w-full mb-2 md:mb-0" />
@@ -187,7 +187,7 @@ const UpdateProduct = () => {
                     </div>
 
                     <div className="md:flex gap-4">
-                        <input type="submit" value="Update-Product" className="mt-4 md:mt-0 w-full p-2 rounded-sm submit-button" />
+                        <input type="submit" value="Update-Product" className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full" />
                     </div>
                 </form>
                 <button onClick={() => handleDeleteProduct(_id)} className='w-full mt-2 rounded-sm p-2 bg-red-900 text-white hover:bg-red-500 duration-300'>Delete</button>
