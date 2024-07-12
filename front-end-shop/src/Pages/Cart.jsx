@@ -1,8 +1,12 @@
 import { useContext, useEffect, useState } from "react";
+import { GiMoneyStack, GiReturnArrow, GiCheckedShield } from "react-icons/gi";
+import { TbBrandAuth0 } from "react-icons/tb";
+
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CartItem2 from "../Components/CartItem/CartItem2";
 import '../SweetAlertStyle.css';
+
 
 const Cart = () => {
 
@@ -10,6 +14,7 @@ const Cart = () => {
     const [cartItemQuantities, setCartItemQuantities] = useState({});
     const [subTotal, setSubTotal] = useState(0);
     const [tax, setTax] = useState(0);
+    const [discount, setDiscount] = useState(0);
 
     console.log(cartDisplayLoading);
 
@@ -100,6 +105,36 @@ const Cart = () => {
         }
         return subTotal;
     }
+    const calculateDiscount = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const couponCode = form.coupon.value;
+        if (couponCode === 'NTECH10') {
+            Swal.fire({
+                title: "10% Discounted",
+                timer: 2000,
+                customClass: {
+                    container: 'swal-custom-container',
+                    title: 'swal-custom-title',
+                    content: 'swal-custom-content',
+                }
+            });
+            return setDiscount(0.1 * subTotal)
+        }
+        // If coupon not matched
+
+        Swal.fire({
+            title: "No coupon found",
+            timer: 2000,
+            customClass: {
+                container: 'swal-custom-container',
+                title: 'swal-custom-title',
+                content: 'swal-custom-content',
+            }
+        });
+        return setDiscount(0);
+    }
 
     useEffect(() => {
         const subTotal = calculateSubTotal();
@@ -117,7 +152,7 @@ const Cart = () => {
 
 
     const deliveryCharge = 70;
-    const totalAmount = subTotal + parseFloat(tax) + deliveryCharge;
+    const totalAmount = subTotal + parseFloat(tax) + deliveryCharge - discount;
 
     return (
         <div className="bg-[#D7D8D9] py-20 text-gray-900">
@@ -136,19 +171,28 @@ const Cart = () => {
                                     </h2>
                                 </div>
                                 :
+                                // Main Design Starts Here
+
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-
                                     <div className="flex flex-col gap-4 lg:col-span-2">
+                                        <div className="flex flex-col gap-4">
 
-                                        {showCartItems.map(item => (
-                                            // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
-                                            <CartItem2
-                                                key={item._id}
-                                                item={item}
-                                                handleDeleteCartItem={handleDeleteCartItem}
-                                                updateCartItemQuantities={updateCartItemQuantities}
-                                            />
-                                        ))}
+                                            {showCartItems.map(item => (
+                                                // <CartItemCard key={item._id} item={item} handleDeleteCartItem={handleDeleteCartItem} />
+                                                <CartItem2
+                                                    key={item._id}
+                                                    item={item}
+                                                    handleDeleteCartItem={handleDeleteCartItem}
+                                                    updateCartItemQuantities={updateCartItemQuantities}
+                                                />
+                                            ))}
+                                        </div>
+                                        <div>
+                                            <form onSubmit={calculateDiscount} className="flex gap-6">
+                                                <input className="input" type="text" name="coupon" placeholder="Coupon Code" />
+                                                <input className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-1/3" type="submit" value="Apply Coupon" />
+                                            </form>
+                                        </div>
                                     </div>
                                     <div className="col-span-1">
                                         <div className="">
@@ -165,6 +209,10 @@ const Cart = () => {
                                                     <p>Delivery Charge</p>
                                                     <p>$ {deliveryCharge}</p>
                                                 </div>
+                                                <div className="flex justify-between">
+                                                    <p>Discount</p>
+                                                    <p>$ {discount}</p>
+                                                </div>
                                                 <div className="w-full border my-4 border-gray-900">
 
                                                 </div>
@@ -176,13 +224,25 @@ const Cart = () => {
                                         </div>
                                         <div className="mt-4 p-4 bg-[#BABCBF]">
                                             <div className="">
-                                                <ul className="space-y-2">
-                                                    <li>&#10003; Cash on Delivery Available</li>
-                                                    <li>&#10003; 7 Days replacement Policy</li>
-                                                    <li>&#10003; 100% Money Back Guarantee</li>
-                                                    <li>&#10003; 100% Original Product</li>
+                                                <ul className="space-y-3">
+                                                    <li className="flex items-center gap-2"> <div className="text-2xl"><GiMoneyStack /></div>
+                                                        <p>Cash on Delivery Available</p>
+                                                    </li>
+                                                    <li className="flex items-center gap-2"> <div className="text-2xl"><GiReturnArrow /></div>
+                                                        <p>7 Days replacement Policy</p>
+                                                    </li>
+                                                    <li className="flex items-center gap-2"> <div className="text-2xl"><TbBrandAuth0 /></div>
+                                                        <p>100% Money Back Guarantee</p>
+                                                    </li>
+                                                    <li className="flex items-center gap-2"> <div className="text-2xl"><GiCheckedShield /></div>
+                                                        <p>100% Original Product</p>
+                                                    </li>
+
                                                 </ul>
                                             </div>
+                                        </div>
+                                        <div>
+                                            <button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out</button>
                                         </div>
                                     </div>
                                 </div>

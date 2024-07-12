@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => {
 
     const { name, brand, color, price, image, rating, type, _id } = item;
