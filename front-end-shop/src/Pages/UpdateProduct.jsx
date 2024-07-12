@@ -133,7 +133,7 @@ const UpdateProduct = () => {
     };
     
     return (
-        <div className="bg-gray-100 py-12 text-gray-900">
+        <div className="bg-[#BABCBF] py-12 text-gray-900">
             <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register">
                 <h2 className="text-3xl text-center font-semibold mb-4">Update Your Product Here</h2>
                 <form onSubmit={handleUpdateProduct} className="space-y-2">

@@ -18,7 +18,7 @@ const Root = () => {
         return null;
     }
     return (
-        <div className="bg-base-300">
+        <div className="bg-[#BABCBF]">
             <div className="">
                 <ScrollToTop></ScrollToTop>
 

@@ -37,14 +37,16 @@ const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => 
     }
     return (
         <div className="text-gray-900">
-            <div className="flex md:gap-4 items-center bg-[#D9D9D9] max-h-56 md:px-2">
+            <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 md:px-2 ">
                 <div className="flex items-center">
                     <button onClick={() => handleDeleteCartItem(_id)} className="md:text-xl hover:bg-red-200 duration-300">&#10060;</button>
                 </div>
                 <div className="w-full p-1 flex justify-between items-center">
 
                     <div className="flex gap-4">
-                        <img className="w-16 md:w-32" src={image} alt="product-image" />
+                        <div className="w-16 h-16 md:w-32 md:h-32">
+                            <img className="h-full w-full object-contain" src={image} alt="product-image" />
+                        </div>
                         <div className="my-auto">
                             <h2 className="text-sm md:text-lg w-32 md:w-fit md:font-bold md:mb-2">{name}</h2>
                             <div className="hidden md:block">

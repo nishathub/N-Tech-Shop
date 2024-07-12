@@ -58,8 +58,8 @@ const AddProduct = () => {
 
     }
     return (
-        <div className="bg-gray-200 py-12 text-gray-900">
-            <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register">
+        <div className="bg-[#BABCBF] py-12 text-gray-900">
+            <div className="max-w-5xl mx-auto bg-[#D7D8D9] p-4 sm:p-12 custom-login-register">
                 <h2 className="text-3xl text-center font-bold mb-8">Add a New Product Here</h2>
                 <form onSubmit={handleAddProduct} className="space-y-2">
                     <div className="md:flex gap-4">

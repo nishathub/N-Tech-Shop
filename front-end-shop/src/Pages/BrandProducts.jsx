@@ -14,7 +14,7 @@ const BrandProducts = () => {
     const selectedBrand = productBrands.find(brand => brand.name === brandName);
     const bgStyle = { height: '80vh' };
     return (
-        <div style={!oneBrandProducts.length ? bgStyle : {}} className="py-12 bg-gray-100">
+        <div style={!oneBrandProducts.length ? bgStyle : {}} className="py-12 bg-[#D7D8D9]">
             { // if No products available, show message
                 oneBrandProducts.length < 1 ?
                     <div>

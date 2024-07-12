@@ -7,37 +7,37 @@ import { SiFsecure, SiAuth0  } from "react-icons/si";
 const WebsiteFeatures = () => {
     return (
         <div className="relative max-w-7xl mx-auto">
-            <div className="flex gap-8 flex-wrap justify-center left-0 bottom-0 max-w-7xl mx-auto px-1 md:px-4 py-4 bg-white">
-                <div className="w-52 h-52 flex flex-col gap-4 items-center justify-center p-4 rounded-sm">
+            <div className="flex gap-2 lg:gap-8 flex-wrap justify-center left-0 bottom-0 max-w-7xl mx-auto px-1 md:px-4 py-4 bg-[#D7D8D9]">
+                <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300">
                     <div>
-                        <p className="text-6xl text-black hover:bg-[#0bb7e6] hover:text-white duration-300 p-8 w-fit rounded-full bg-[#D9D9D9]"><RiCustomerService2Line /></p>
+                        <p className="text-3xl lg:text-6xl p-8 w-fit rounded-full bg-[#F2F2F2]"><RiCustomerService2Line /></p>
                     </div>
-                    <div className="bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] bg-center rounded-md">
-                        <p className="p-2 font-bold text-black">24/7 Support</p>
+                    <div className="bg-[#F2F2F2] bg-center rounded-md">
+                        <p className="p-2 font-bold">24/7 Support</p>
                     </div>
                 </div>
-                <div className="w-52 h-52 flex flex-col gap-4 items-center justify-center p-4 rounded-sm">
+                <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300 ">
                     <div>
-                        <p className="text-6xl text-black hover:bg-[#0bb7e6] hover:text-white duration-300 p-8 w-fit rounded-full bg-[#D9D9D9]"><TbTruckDelivery /></p>
+                        <p className="text-3xl lg:text-6xl p-8 w-fit rounded-full bg-[#F2F2F2]"><TbTruckDelivery /></p>
                     </div>
-                    <div className="bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] bg-center rounded-md">
-                        <p className="p-2 font-bold text-black">Fast Delivery</p>
+                    <div className="bg-[#F2F2F2] bg-center rounded-md">
+                        <p className="p-2 font-bold">Fast Delivery</p>
                     </div>
                 </div>
-                <div className="w-52 h-52 flex flex-col gap-4 items-center justify-center p-4 rounded-sm">
+                <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300 ">
                     <div>
-                        <p className="text-6xl text-black hover:bg-[#0bb7e6] hover:text-white duration-300 p-8 w-fit rounded-full bg-[#D9D9D9]"><SiFsecure /></p>
+                        <p className="text-3xl lg:text-6xl p-8 w-fit rounded-full bg-[#F2F2F2]"><SiFsecure /></p>
                     </div>
-                    <div className="bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] bg-center rounded-md">
-                        <p className="p-2 font-bold text-black">Secure Payment</p>
+                    <div className="bg-[#F2F2F2] bg-center rounded-md">
+                        <p className="p-2 font-bold">Secure Payment</p>
                     </div>
                 </div>
-                <div className="w-52 h-52 flex flex-col gap-4 items-center justify-center p-4 rounded-sm">
+                <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300 ">
                     <div>
-                        <p className="text-6xl text-black hover:bg-[#0bb7e6] hover:text-white duration-300 p-8 w-fit rounded-full bg-[#D9D9D9]"><SiAuth0 /></p>
+                        <p className="text-3xl lg:text-6xl p-8 w-fit rounded-full bg-[#F2F2F2]"><SiAuth0 /></p>
                     </div>
-                    <div className="bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] bg-center rounded-md">
-                        <p className="p-2 font-bold text-black">Authentic Product</p>
+                    <div className="bg-[#F2F2F2] bg-center rounded-md">
+                        <p className="p-2 font-bold">Authentic Product</p>
                     </div>
                 </div>
             </div>

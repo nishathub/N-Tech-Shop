@@ -120,7 +120,7 @@ const Cart = () => {
     const totalAmount = subTotal + parseFloat(tax) + deliveryCharge;
 
     return (
-        <div className="bg-gray-200 py-20 text-gray-900">
+        <div className="bg-[#D7D8D9] py-20 text-gray-900">
             <div className="max-w-7xl mx-auto px-1">
 
                 {
@@ -152,7 +152,7 @@ const Cart = () => {
                                     </div>
                                     <div className="col-span-1">
                                         <div className="">
-                                            <div className="w md:text-lg bg-[#D9D9D9] p-4">
+                                            <div className="w md:text-lg bg-[#BABCBF] p-4">
                                                 <div className="flex justify-between">
                                                     <p>Subtotal</p>
                                                     <p>$ {subTotal}</p>
@@ -174,7 +174,7 @@ const Cart = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="mt-4 p-4 bg-[#D9D9D9]">
+                                        <div className="mt-4 p-4 bg-[#BABCBF]">
                                             <div className="">
                                                 <ul className="space-y-2">
                                                     <li>&#10003; Cash on Delivery Available</li>

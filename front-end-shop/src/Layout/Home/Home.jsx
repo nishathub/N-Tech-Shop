@@ -19,25 +19,22 @@ const Home = () => {
 
     return (
         <div className="">
-            <div className="">
+            <div className="pt-12">
                 <CarouselCustomNavigation oddIndexProducts={oddFiveProducts}></CarouselCustomNavigation>
             </div>
-            {/* <div className="bg-gray-200 py-12">
-                <Gallery evenIndexProducts={evenNineProducts}></Gallery>
-            </div> */}
-            <div className="bg-gray-200 pt-24 pb-12">
+            <div className="bg-[#BABCBF] pt-24 pb-12">
                 <CategoryContainer></CategoryContainer>
             </div>
-            <div className="bg-gray-200 py-12">
+            <div className="bg-[#BABCBF] py-12">
                 <TopSellingCarousel evenIndexProducts={evenNineProducts}></TopSellingCarousel>
             </div>
-            <div className="bg-gray-200 py-12">
+            <div className="bg-[#BABCBF] py-12">
                 <FlagshipCard></FlagshipCard>
             </div>
-            <div className="bg-gray-200 py-12 ">
+            <div className="bg-[#BABCBF] py-12 ">
                 <BrandCarousel></BrandCarousel>
             </div>
-            <div className="bg-gray-200 py-12">
+            <div className="bg-[#BABCBF] py-12">
                 <WebsiteFeatures></WebsiteFeatures>
             </div>
             <div className="bg-[#044d61]">

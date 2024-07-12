@@ -30,5 +30,5 @@ input::placeholder{
     color: rgba(255, 255, 255, 0.9) !important;
 }
 .custom-login-register{
-    box-shadow: 0 0 10px 5px white;
+    box-shadow: 0 0 10px 2px white;
 }

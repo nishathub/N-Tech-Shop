@@ -68,7 +68,7 @@ const Login = () => {
     }
 
     return (
-        <div className="bg-gray-200">
+        <div className="bg-[#BABCBF]">
             <div className="max-w-5xl mx-auto py-20 text-gray-900">
                 <div className="bg-[#D9D9D9] p-4 sm:p-12 max-w-2xl mx-auto rounded-sm custom-login-register">
 

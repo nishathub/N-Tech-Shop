@@ -57,7 +57,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="py-8 bg-gray-200">
+        <div className="py-8 bg-[#BABCBF]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start max-w-7xl mx-auto px-4">
                 {/* IMAGE  */}
                 <div className="rounded-sm flex justify-center">
@@ -65,7 +65,7 @@ const ProductDetails = () => {
                 </div>
                 {/* DESCRIPTION  */}
                 <div>
-                    <div className="rounded-md text-gray-800 p-4 bg-[#D9D9D9] space-y-4">
+                    <div className="rounded-md text-gray-800 p-4 bg-[#D7D8D9] space-y-4">
                         <div className=" flex flex-col-reverse md:flex-row justify-between md:items-center">
                             <div>
                                 <h2 className="text-2xl md:text-4xl font-bold mb-2">{name}</h2>
@@ -97,9 +97,9 @@ const ProductDetails = () => {
 
                     </div>
                     <div className="w-full mt-2">
-                        <button onClick={handleAddToCart} className="w-full hover:bg-[#D9D9D9] hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 duration-300">Add to Cart</button>
+                        <button onClick={handleAddToCart} className="w-full hover:bg-[#e2e2e2] hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 duration-300">Add to Cart</button>
                     </div>
-                    <div className="mt-6 rounded-md text-gray-800 p-4 bg-[#D9D9D9] space-y-4">
+                    <div className="mt-6 rounded-md text-gray-800 p-4 bg-[#D7D8D9] space-y-4">
                         <h2 className="text-2xl md:text-3xl mb-2">Specification</h2>
                         <div>
                             <div onClick={() => setPhysicalSpecOpen(!isPhysicalSpecOpen)} className="flex justify-between items-center bg-gray-200 p-2 rounded-md hover:cursor-pointer">

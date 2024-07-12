@@ -11,7 +11,7 @@ const GalleryProductCard = ({ product }) => {
     const discountedPrice = (product.price * 0.8).toFixed(2);
 
     return (
-        <div className="p-2 rounded-sm bg-[#D9D9D9] hover:bg-white duration-300 gallery-product-card max-w-96 xl:min-w-96">
+        <div className="p-2 rounded-sm bg-[#D7D8D9] hover:bg-gray-100 duration-300 gallery-product-card max-w-96 xl:min-w-96">
             {/* DYNAMIC BADGE ACCORDING TO RATING  */}
             <div className='product-image'>
                 {product.rating == 5 && (
