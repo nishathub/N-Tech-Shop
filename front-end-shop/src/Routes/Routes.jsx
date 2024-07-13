@@ -12,6 +12,7 @@ import BrandProducts from "../Pages/BrandProducts";
 import ProductDetails from "../Pages/ProductDetails";
 import Cart from "../Pages/Cart";
 import CategoryProducts from "../Pages/CategoryProducts";
+import AdminRoutes from "../AdminRoutes/AdminRoutes";
 
 const Routes = createBrowserRouter([
     {
@@ -34,32 +35,31 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "/addProduct",
-                element: <PrivateRoutes><AddProduct></AddProduct></PrivateRoutes>,
+                element: <AdminRoutes><AddProduct></AddProduct></AdminRoutes>,
             },
             {
                 path: "/products/brand/:brand/update/:id",
-                element: <PrivateRoutes><UpdateProduct></UpdateProduct></PrivateRoutes>,
+                element: <AdminRoutes><UpdateProduct></UpdateProduct></AdminRoutes>,
                 loader: ({ params }) => fetch(`https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products/${params.id}`)
             },
             {
                 path: "/products/brand/:brandName",
-                element: <PrivateRoutes><BrandProducts></BrandProducts></PrivateRoutes>,
+                element: <BrandProducts></BrandProducts>,
                 loader: ({ params }) => fetch(`https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products/brand/${params.brandName}`)
             },
             {
                 path: "/products/category/:categoryName",
-                element: <PrivateRoutes><CategoryProducts></CategoryProducts></PrivateRoutes>,
+                element: <CategoryProducts></CategoryProducts>,
                 loader: ({ params }) => fetch(`https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products/category/${params.categoryName}`)
             },
             {
                 path: "/products/brand/:brandName/:productId",
-                element: <PrivateRoutes><ProductDetails></ProductDetails></PrivateRoutes>,
+                element: <ProductDetails></ProductDetails>,
                 loader: ({ params }) => fetch(`https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products/${params.productId}`)
             },
             {
                 path: "/cart",
                 element: <PrivateRoutes><Cart></Cart></PrivateRoutes>,
-                loader: () => fetch(`https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems`)
             },
         ]
     }

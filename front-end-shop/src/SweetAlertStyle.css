@@ -3,7 +3,7 @@
     /* width: 90% !important; */
     /* max-width: 400px; */
     /* max-height: 200px; */
-    background-color: rgba(0, 0, 0, 0.741);
+    background-color: rgba(0, 0, 0);
 }
 
 .swal-custom-title {
@@ -13,7 +13,7 @@
 
 .swal-custom-text {
     font-size: 1em;
-    color: white;
+    color: white !important;
 }
 
 

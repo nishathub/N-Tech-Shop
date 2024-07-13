@@ -10,13 +10,12 @@ import '../SweetAlertStyle.css';
 
 const Cart = () => {
 
-    const { showCartItems, setShowCartItems, cartDisplayLoading } = useContext(BrandShopContext);
+    const { showCartItems, setShowCartItems, cartDisplayLoading} = useContext(BrandShopContext);
     const [cartItemQuantities, setCartItemQuantities] = useState({});
     const [subTotal, setSubTotal] = useState(0);
     const [tax, setTax] = useState(0);
     const [discount, setDiscount] = useState(0);
-
-    console.log(cartDisplayLoading);
+    console.log(showCartItems);
 
     const handleDeleteCartItem = (id) => {
         Swal.fire({
@@ -43,6 +42,7 @@ const Cart = () => {
                             Swal.fire({
                                 title: "Deleted",
                                 text: "You won't be able to revert this!",
+                                showConfirmButton: false,
                                 timer: 2000,
                                 customClass: {
                                     container: 'swal-custom-container',
@@ -57,6 +57,7 @@ const Cart = () => {
                                 title: "Error",
                                 text: "Something went wrong",
                                 timer: 2000,
+                                showConfirmButton: false,
                                 customClass: {
                                     container: 'swal-custom-container',
                                     title: 'swal-custom-title',
@@ -70,6 +71,7 @@ const Cart = () => {
                             title: "Error",
                             text: "Something went wrong",
                             timer: 2000,
+                            showConfirmButton: false,
                             customClass: {
                                 container: 'swal-custom-container',
                                 title: 'swal-custom-title',
@@ -114,19 +116,21 @@ const Cart = () => {
             Swal.fire({
                 title: "10% Discounted",
                 timer: 2000,
+                showConfirmButton: false,
                 customClass: {
                     container: 'swal-custom-container',
                     title: 'swal-custom-title',
                     content: 'swal-custom-content',
                 }
             });
-            return setDiscount(0.1 * subTotal)
+            return setDiscount((0.1 * subTotal).toFixed(2))
         }
         // If coupon not matched
 
         Swal.fire({
             title: "No coupon found",
             timer: 2000,
+            showConfirmButton: false,
             customClass: {
                 container: 'swal-custom-container',
                 title: 'swal-custom-title',

@@ -46,6 +46,16 @@ const getOneProduct = async (req, res) => {
         res.status(500).send(error);
     }
 }
+const removeProduct = async (req, res) => {
+    try {
+        const productId = req.params.productId;
+        const query = { _id: new ObjectId(productId)  };
+        const result = productCollection().deleteOne(query);
+        res.send(result);
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 const updateProduct = async (req, res) => {
     const productId = req.params.productId;
@@ -95,7 +105,9 @@ const createCartItem = async (req, res) => {
 
 const getCartItems = async (req, res) => {
     try {
-        const products = await cartCollection().find().toArray();
+        const userEmail = req.params.userEmail;
+        const query = {email : userEmail};
+        const products = await cartCollection().find(query).toArray();
         res.send(products);
     } catch (error) {
         res.status(500).send(error);
@@ -118,16 +130,6 @@ const removeCartItem = async (req, res) => {
         const itemId = req.params.productId;
         const query = { productId: itemId };
         const result = cartCollection().deleteOne(query);
-        res.send(result);
-    } catch (error) {
-        console.error(error)
-    }
-}
-const removeProduct = async (req, res) => {
-    try {
-        const productId = req.params.productId;
-        const query = { _id: new ObjectId(productId)  };
-        const result = productCollection().deleteOne(query);
         res.send(result);
     } catch (error) {
         console.error(error)

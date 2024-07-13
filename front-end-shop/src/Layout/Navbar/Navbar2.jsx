@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
+import { MdOutlineSecurity } from "react-icons/md";
+
 import Swal from 'sweetalert2'
 import '../../SweetAlertStyle.css';
 
 const Navbar2 = () => {
 
-    const { loading, user, logOutUser, showCartItems, cartDisplayLoading } = useContext(BrandShopContext);
+    const { loading, user, isAdmin, logOutUser, showCartItems, cartDisplayLoading } = useContext(BrandShopContext);
     const [isFixed, setIsFixed] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
@@ -18,7 +20,7 @@ const Navbar2 = () => {
     };
     // Navbar fixed/relative according to scroll position
     const handleScroll = () => {
-        if (window.scrollY > 100) {
+        if (window.scrollY > 20) {
             setIsFixed(true);
         } else {
             setIsFixed(false);
@@ -39,6 +41,7 @@ const Navbar2 = () => {
                 Swal.fire({
                     title: "Logged Out",
                     timer: 1000,
+                    showConfirmButton: false,
                     customClass: {
                         container: 'swal-custom-container',
                         title: 'swal-custom-title',
@@ -92,7 +95,10 @@ const Navbar2 = () => {
                                     <Link to={'/login'}><button className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300">Login</button></Link>
                                     :
                                     <div className="flex items-center gap-2">
-                                        <h2 className="md:text-lg text-gray-200">{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0, 10) + ".."}</h2>
+                                        <div className="flex items-center gap-2">
+                                            <h2 className={`text-xl ${isAdmin ? 'text-orange-400' : 'hidden'}`}><MdOutlineSecurity /></h2>
+                                            <h2 className={`md:text-lg text-gray-200`}>{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0, 10) + ".."}</h2>
+                                        </div>
                                         <div onClick={handleDropdownClick} className="dropdown dropdown-end">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                                 <div className="indicator">
@@ -105,7 +111,7 @@ const Navbar2 = () => {
                                                     <div className="p-4 space-y-3">
                                                         <span className="font-bold text-gray-200 md:text-lg">{showCartItems.length} Items</span>
                                                         <div>
-                                                            {showCartItems.map(item => 
+                                                            {showCartItems.map(item =>
                                                                 <h4 key={item._id}>{item.name}</h4>
                                                             )}
                                                         </div>
@@ -123,11 +129,17 @@ const Navbar2 = () => {
                                                 </div>
                                             </div>
                                             {isOpen &&
-                                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-4 bg-base-100/90 rounded-sm w-52 md:w-80 space-y-2">
+                                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-4 bg-base-100/90 rounded-sm w-52 md:w-80 space-y-3">
                                                     <li><div className="w-20 rounded-full mx-auto">
-                                                        <img alt="User-Photo" src={user?.photoURL ? user.photoURL : altUserPhoto} />
+                                                        <img className="" alt="User-Photo" src={user?.photoURL ? user.photoURL : altUserPhoto} />
                                                     </div></li>
                                                     <li className="md:text-lg text-gray-200 text-center">{user.displayName}</li>
+                                                    <li className={`${isAdmin ? 'text-orange-400' : 'hidden'} text-center`}>
+                                                        <div className="flex items-center gap-2 mx-auto">
+                                                            <p><MdOutlineSecurity /></p>
+                                                            <p>Admin</p>
+                                                        </div>
+                                                    </li>
                                                     <li className="md:text-lg text-center text-[#3BBFE3]">{user.email}</li>
                                                     <li className="md:text-lg text-error" onClick={handleLogOut}><a className="btn btn-sm btn-error">Logout</a></li>
                                                 </ul>

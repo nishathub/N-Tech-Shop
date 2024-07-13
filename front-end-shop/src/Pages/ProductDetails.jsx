@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import '../SweetAlertStyle.css';
@@ -10,10 +10,13 @@ const ProductDetails = () => {
     const [isPhysicalSpecOpen, setPhysicalSpecOpen] = useState(false);
     const [isDisplayOpen, setDisplayOpen] = useState(false);
     const oneProduct = useLoaderData();
-    const { setAddCartClick } = useContext(BrandShopContext);
     const { name, brand, color, price, image, rating, type, country, year, warranty, box, _id } = oneProduct;
+    const { setAddCartClick, user, loading } = useContext(BrandShopContext);
     const discountedPrice = (price * 0.8).toFixed(2);
     const totalStars = 5;
+    const location = useLocation();
+    const attemptURL = location.pathname;
+    const navigate = useNavigate();
     const specificationStyle = {
         maxHeight: isPhysicalSpecOpen ? '100vh' : '0px',
         overflow: 'hidden',
@@ -26,13 +29,27 @@ const ProductDetails = () => {
     };
 
     const handleAddToCart = () => {
+        if (!loading && !user) {
+            Swal.fire({
+                title: "Log in to add product",
+                timer: 2000,
+                showConfirmButton: false,
+                customClass: {
+                    container: 'swal-custom-container',
+                    title: 'swal-custom-title',
+                    content: 'swal-custom-content',
+                }
+            });
+           return navigate('/login', { state: attemptURL});
+        }
 
+        const userMail = user.email;
         fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ productId: _id, name: name })
+            body: JSON.stringify({ productId: _id, name: name, email: userMail })
         })
             .then(res => res.json())
             .then(data => {
@@ -41,6 +58,7 @@ const ProductDetails = () => {
                     Swal.fire({
                         title: "Item Added to the Cart",
                         timer: 2000,
+                        showConfirmButton: false,
                         customClass: {
                             container: 'swal-custom-container',
                             title: 'swal-custom-title',
@@ -104,7 +122,7 @@ const ProductDetails = () => {
                         <div>
                             <div onClick={() => setPhysicalSpecOpen(!isPhysicalSpecOpen)} className="flex justify-between items-center bg-gray-200 p-2 rounded-md hover:cursor-pointer">
                                 <h4>Physical Specification</h4>
-                                <span> {isPhysicalSpecOpen ? '\u2B9D': '\u2B9F' }</span>
+                                <span> {isPhysicalSpecOpen ? '\u2B9D' : '\u2B9F'}</span>
                             </div>
                             <div style={specificationStyle}>
                                 <div className="space-y-2 p-4">
@@ -117,7 +135,7 @@ const ProductDetails = () => {
                         <div>
                             <div onClick={() => setDisplayOpen(!isDisplayOpen)} className="flex justify-between bg-gray-200 p-2 rounded-md hover:cursor-pointer">
                                 <h4>Display</h4>
-                                <span> {isDisplayOpen ? '\u2B9D': '\u2B9F' }</span>
+                                <span> {isDisplayOpen ? '\u2B9D' : '\u2B9F'}</span>
                             </div>
                             <div style={displayStyle}>
                                 <div className="space-y-2 p-4">

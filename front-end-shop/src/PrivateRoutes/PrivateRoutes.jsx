@@ -17,8 +17,6 @@ const PrivateRoutes = ({ children }) => {
     } else if (!user) {
         Swal.fire({
             title: "Log In to Visit this page",
-            // text: "You clicked the button!",
-            timer: 7000,
             customClass: {
                 container: 'swal-custom-container',
                 title: 'swal-custom-title',

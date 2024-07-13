@@ -17,7 +17,7 @@ router.put('/products/:productId', updateProduct);
 router.delete('/products/:productId', removeProduct);
 //cart
 router.post('/cartItems', createCartItem);
-router.get('/cartItems', getCartItems);
+router.get('/cartItems/:userEmail', getCartItems);
 router.get('/cartItems/:productId', getOneCartItem);
 router.delete('/cartItems/:productId', removeCartItem);
 

@@ -37,7 +37,7 @@ const Home = () => {
             <div className="bg-[#BABCBF] py-12">
                 <WebsiteFeatures></WebsiteFeatures>
             </div>
-            <div className="bg-[#044d61]">
+            <div className="bg-[#15191E]">
                 <NewsLetter></NewsLetter>
             </div>
         </div>

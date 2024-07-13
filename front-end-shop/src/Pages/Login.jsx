@@ -49,6 +49,7 @@ const Login = () => {
                 Swal.fire({
                     title: "Logged in by mail",
                     timer: 2000,
+                    showConfirmButton: false,
                     customClass: {
                         container: 'swal-custom-container',
                         title: 'swal-custom-title',

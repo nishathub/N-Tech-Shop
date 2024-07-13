@@ -37,8 +37,8 @@ const Register = () => {
                     console.log(result.user);
                     Swal.fire({
                         title: "Account Created",
-                        // text: "You clicked the button!",
                         timer: 1000,
+                        showConfirmButton: false,
                         customClass: {
                             container: 'swal-custom-container',
                             title: 'swal-custom-title',
@@ -49,9 +49,9 @@ const Register = () => {
                     updateUser(name, photo)
                         .then(() => {
                             Swal.fire({
-                                // title: "Info Updated",
                                 text: "Info Updated",
                                 timer: 1000,
+                                showConfirmButton: false,
                                 customClass: {
                                     container: 'swal-custom-container',
                                     title: 'swal-custom-title',

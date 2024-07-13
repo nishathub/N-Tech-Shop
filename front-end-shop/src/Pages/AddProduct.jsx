@@ -46,6 +46,7 @@ const AddProduct = () => {
                     Swal.fire({
                         title: "Your product added",
                         timer: 2000,
+                        showConfirmButton: false,
                         customClass: {
                             container: 'swal-custom-container',
                             title: 'swal-custom-title',

@@ -6,6 +6,7 @@ export const BrandShopContext = createContext();
 
 const AuthProvider = ({ children }) => {
 
+    const [isAdmin, setIsAdmin] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
@@ -19,19 +20,21 @@ const AuthProvider = ({ children }) => {
     const [showCartItems, setShowCartItems] = useState([]);
     const [cartDisplayLoading, setCartDisplayLoading] = useState(true);
     const [cartItemsTotalPrice, setCartItemTotalPrice] = useState(0);
-    const [addCartClick, setAddCartClick] = useState(false); // as the whole code is transferred here from cart page, after adding cart items, the cart page is updated only after refreshing the page. So, I am using a state that, it will become true as soon as we click on add cart button. That state is a dependency to fetch data from cart database each time on useEffect below. this way, the code is working! Alhamdulillah, this idea was mine.
+    const [addCartClick, setAddCartClick] = useState(false); // as the whole code is transferred here from cart page, after adding cart items, the cart page is updated only after refreshing the page. So, I am using a state that, it will become true as soon as we click on add cart button. That state is a dependency to fetch data from cart database each time on useEffect below. this way, the code is working!
 
     // we could easily use these code on cart page, but we want to use these info on other components, so, we put them here to utilize context data.
 
     useEffect(() => {
-        fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems')
-            .then(res => res.json())
-            .then(data => {
-                setCartItems(data)
-                setLoadCart(false);
-                setAddCartClick(false); // here is the dependency hero
-            })
-    }, [addCartClick]);
+         if (!loading) {
+            fetch(`http://localhost:5000/cartItems/${user?.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setCartItems(data)
+                    setLoadCart(false);
+                    setAddCartClick(false); // here is the dependency hero
+                })
+        }
+    }, [addCartClick, loading, user]);
 
     useEffect(() => {
         if (!loadCart) {
@@ -87,6 +90,11 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            if(currentUser?.email === 'nishat@mail.com'){
+                setIsAdmin(true);
+            } else if(currentUser?.email !== 'nishat@mail.com'){
+                setIsAdmin(false);
+            }
             setLoading(false);
         })
         return () => unSubscribe();
@@ -99,20 +107,21 @@ const AuthProvider = ({ children }) => {
             .catch(error => console.error(error.message))
     }, []);
 
-    useEffect(()=> {
+    useEffect(() => {
         fetch('/categoryList.json')
-        .then(res => res.json())
-        .then(data => setCategories(data))
-        .catch(error => console.log(error))
-    },[])
+            .then(res => res.json())
+            .then(data => setCategories(data))
+            .catch(error => console.log(error))
+    }, [])
 
-    const authData = { 
-        user, loading, loadCart, 
-        showCartItems, cartItemsTotalPrice, cartDisplayLoading, 
-        setCartDisplayLoading, setShowCartItems, setAddCartClick, 
-        setLoading, createNewUser, signInUser, updateUser, 
-        errorMessage, setErrorMessage, logOutUser, 
-        googleSignIn , productBrands, categories};
+    const authData = {
+        user, loading, loadCart,
+        showCartItems, cartItemsTotalPrice, cartDisplayLoading,
+        setCartDisplayLoading, setShowCartItems, setAddCartClick,
+        setLoading, createNewUser, signInUser, updateUser,
+        errorMessage, setErrorMessage, logOutUser,
+        googleSignIn, productBrands, categories, isAdmin
+    };
     return (
         <BrandShopContext.Provider value={authData}>
             {children}
