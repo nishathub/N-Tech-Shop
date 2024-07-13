@@ -2,7 +2,7 @@ import { FaEnvelope } from "react-icons/fa6";
 
 const NewsLetter = () => {
     return (
-        <div className="flex  mt-8 md:mt-0 gap-4 flex-col md:flex-row justify-between md:items-center py-12 max-w-7xl mx-auto md:px-4 px-1">
+        <div className="flex mt-8 md:mt-0 gap-4 flex-col md:flex-row justify-between md:items-center py-12 max-w-7xl mx-auto md:px-4 px-1">
             <div className="flex items-center gap-4 ">
                 <div>
                     <p className="text-6xl hidden md:flex"><FaEnvelope /></p>

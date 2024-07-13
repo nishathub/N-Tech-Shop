@@ -36,7 +36,7 @@ const Navbar = () => {
             <li><Link to={'/addProduct'}>Add-Product</Link></li>
         </>
     return (
-        <div className="bg-base-300">
+        <div className="bg-base-300 md:py-2">
             <div className="navbar max-w-7xl mx-auto md:px-4 px-1">
                 <div className="navbar-start">
                     <div className="dropdown">

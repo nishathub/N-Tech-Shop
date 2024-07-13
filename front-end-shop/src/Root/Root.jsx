@@ -3,6 +3,7 @@ import Navbar from "../Layout/Navbar/Navbar";
 import Footer from "../Layout/Footer/Footer";
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Navbar2 from "../Layout/Navbar/Navbar2";
 
 
 const Root = () => {
@@ -22,7 +23,7 @@ const Root = () => {
             <div className="">
                 <ScrollToTop></ScrollToTop>
 
-                <Navbar></Navbar>
+                <Navbar2></Navbar2>
                 <Outlet></Outlet>
                 <Footer></Footer>
             </div>
