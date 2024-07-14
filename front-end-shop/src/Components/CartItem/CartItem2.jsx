@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { MdDelete } from "react-icons/md";
+
 
 
 const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => {
@@ -40,12 +42,12 @@ const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => 
         <div className="text-gray-900">
             <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 md:px-2 ">
                 <div className="flex items-center">
-                    <button onClick={() => handleDeleteCartItem(_id)} className="md:text-xl hover:bg-red-200 duration-300">&#10060;</button>
+                    <button onClick={() => handleDeleteCartItem(_id)} className="text-xl md:text-2xl hover:text-red-900 duration-300"><MdDelete /></button>
                 </div>
                 <div className="w-full p-1 flex justify-between items-center">
 
                     <div className="flex gap-4">
-                        <div className="w-16 h-16 md:w-32 md:h-32">
+                        <div className="w-16 h-16 md:w-32 md:h-32 hidden sm:block">
                             <img className="h-full w-full object-contain" src={image} alt="product-image" />
                         </div>
                         <div className="my-auto">

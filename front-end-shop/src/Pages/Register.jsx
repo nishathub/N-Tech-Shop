@@ -77,9 +77,9 @@ const Register = () => {
 
     return (
         <div className="bg-[#BABCBF]">
-            <div className="max-w-5xl mx-auto py-20 text-gray-900">
+            <div className="max-w-5xl mx-auto md:py-20 p-4 md:p-0 text-gray-900">
                 <div className="bg-[#D9D9D9] p-4 sm:p-12 max-w-2xl mx-auto rounded-sm custom-login-register">
-                    <h2 className="text-3xl text-center font-semibold mb-4">Register Here</h2>
+                    <h2 className="text-xl md:text-3xl text-center font-semibold mb-4">Register Here</h2>
 
                     <form onSubmit={handleRegister} className="space-y-2">
                         <input type="text" name="name" placeholder="Name" className="input input-bordered w-full" required />

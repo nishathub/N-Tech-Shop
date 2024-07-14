@@ -159,7 +159,7 @@ const Cart = () => {
     const totalAmount = subTotal + parseFloat(tax) + deliveryCharge - discount;
 
     return (
-        <div className="bg-[#D7D8D9] py-20 text-gray-900">
+        <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900">
             <div className="max-w-7xl mx-auto px-1">
 
                 {
@@ -192,9 +192,9 @@ const Cart = () => {
                                             ))}
                                         </div>
                                         <div>
-                                            <form onSubmit={calculateDiscount} className="flex gap-6">
+                                            <form onSubmit={calculateDiscount} className="flex flex-col gap-2 md:flex-row md:gap-6">
                                                 <input className="input" type="text" name="coupon" placeholder="Coupon Code" />
-                                                <input className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-1/3" type="submit" value="Apply Coupon" />
+                                                <input className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-1/2 md:w-1/3" type="submit" value="Apply Coupon" />
                                             </form>
                                         </div>
                                     </div>

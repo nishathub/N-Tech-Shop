@@ -95,8 +95,8 @@ const Navbar2 = () => {
                                     <Link to={'/login'}><button className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300">Login</button></Link>
                                     :
                                     <div className="flex items-center gap-2">
-                                        <div className="flex items-center gap-2">
-                                            <h2 className={`text-xl ${isAdmin ? 'text-orange-400' : 'hidden'}`}><MdOutlineSecurity /></h2>
+                                        <div className="flex items-center gap-1">
+                                            <h2 className={`text-xl ${isAdmin ? 'text-orange-900' : 'hidden'}`}><MdOutlineSecurity /></h2>
                                             <h2 className={`md:text-lg text-gray-900`}>{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0, 10) + ".."}</h2>
                                         </div>
                                         <div onClick={handleDropdownClick} className="dropdown dropdown-end">

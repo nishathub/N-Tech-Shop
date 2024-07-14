@@ -3,7 +3,7 @@ import '../../Pages/customStyle.css'
 
 const NewsLetter = () => {
     return (
-        <div className="flex gap-4 flex-col lg:flex-row justify-between items-center py-12 max-w-7xl mx-auto md:px-8 px-1 bg-[#D7D8D9] custom-login-register rounded-md">
+        <div className="flex gap-4 flex-col lg:flex-row justify-between items-center py-12 max-w-7xl px-8 mx-4 xl:mx-0 bg-[#D7D8D9] custom-login-register xl:rounded-md">
             <div className="flex items-center gap-4 ">
                 <div>
                     <p className="text-6xl text-gray-900 hidden md:flex"><FaEnvelope /></p>
@@ -16,7 +16,7 @@ const NewsLetter = () => {
             </div>
             <div className="">
                 <div className="join">
-                    <input className="input input-bordered join-item" placeholder="Email" />
+                    <input className="input input-bordered join-item w-40 sm:w-full" placeholder="Email" />
                     <button className="btn hover:bg-gray-200 hover:text-gray-800 duration-300 join-item rounded-r-md ">Subscribe</button>
                 </div>
             </div>

@@ -22,22 +22,22 @@ const Home = () => {
             <div className="">
                 <CarouselCustomNavigation oddIndexProducts={oddFiveProducts}></CarouselCustomNavigation>
             </div>
-            <div className="bg-[#BABCBF] pt-24 pb-12">
+            <div className="bg-[#BABCBF] pt-12 md:pt-24 md:pb-12">
                 <CategoryContainer></CategoryContainer>
             </div>
             <div className="bg-[#BABCBF] py-12">
                 <TopSellingCarousel evenIndexProducts={evenNineProducts}></TopSellingCarousel>
             </div>
-            <div className="bg-[#BABCBF] py-12">
+            <div className="bg-[#BABCBF] md:py-12">
                 <FlagshipCard></FlagshipCard>
             </div>
             <div className="bg-[#BABCBF] py-12 ">
                 <BrandCarousel></BrandCarousel>
             </div>
-            <div className="bg-[#BABCBF] py-12 ">
+            <div className="bg-[#BABCBF] md:py-12 pb-12 lg:pb-0 ">
                 <WebsiteFeatures></WebsiteFeatures>
             </div>
-            <div className="relative xl:py-12 ">
+            <div className="relative lg:py-12 ">
                 <div className="xl:absolute -bottom-24 left-1/2 xl:-translate-x-1/2 xl:w-[1280px] max-w-7xl mx-auto">
                     <NewsLetter></NewsLetter>
                 </div>

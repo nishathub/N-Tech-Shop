@@ -59,9 +59,9 @@ const AddProduct = () => {
 
     }
     return (
-        <div className="bg-[#BABCBF] py-12 text-gray-900">
+        <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
             <div className="max-w-5xl mx-auto bg-[#D7D8D9] p-4 sm:p-12 custom-login-register">
-                <h2 className="text-3xl text-center font-bold mb-8">Add a New Product Here</h2>
+                <h2 className="text-xl md:text-3xl text-center font-bold mb-8">Add a New Product Here</h2>
                 <form onSubmit={handleAddProduct} className="space-y-2">
                     <div className="md:flex gap-4">
                         <input type="text" name="name" placeholder="Name" className="input input-bordered w-full mb-2 md:mb-0" />
@@ -100,9 +100,9 @@ const AddProduct = () => {
                             <option value="Speaker">Speaker</option>
                             <option value="Monitor">Monitor</option>
                         </select>
-                        <div className="flex items-center gap-4 w-full mt-4 md:mt-0">
+                        <div className="flex flex-col md:flex-row items-center md:gap-4 w-full mt-4 md:mt-0">
                             <h2>Rate Your Product</h2>
-                            <div className="flex w-max gap-1 rating">
+                            <div className="flex w-max md:gap-1 rating">
                                 <Radio name="color" value={1} color="pink"onChange={handleRatingInput}/>
                                 <Radio name="color" value={2} color="deep-orange" onChange={handleRatingInput}/>
                                 <Radio name="color" value={3} color="lime" defaultChecked onChange={handleRatingInput}/>

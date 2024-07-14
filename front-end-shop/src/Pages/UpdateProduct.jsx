@@ -135,9 +135,9 @@ const UpdateProduct = () => {
     };
     
     return (
-        <div className="bg-[#BABCBF] py-12 text-gray-900">
+        <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
             <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register">
-                <h2 className="text-3xl text-center font-semibold mb-4">Update Your Product Here</h2>
+                <h2 className="text-xl md:text-3xl text-center font-semibold mb-4">Update Your Product Here</h2>
                 <form onSubmit={handleUpdateProduct} className="space-y-2">
                     <div className="md:flex gap-4">
                         <input type="text" name="name" defaultValue={name} placeholder="Name" className="input input-bordered w-full mb-2 md:mb-0" />
@@ -176,9 +176,9 @@ const UpdateProduct = () => {
                             <option value="Speaker">Speaker</option>
                             <option value="Monitor">Monitor</option>
                         </select>
-                        <div className="flex items-center gap-4 w-full mt-4 md:mt-0">
+                        <div className="flex flex-col md:flex-row items-center md:gap-4 w-full mt-4 md:mt-0">
                             <h2>Rate Your Product</h2>
-                            <div className="flex w-max gap-1 rating">
+                            <div className="flex w-max md:gap-1 rating">
                                 <Radio name="color" value={1} color="pink" onChange={handleRatingInput} />
                                 <Radio name="color" value={2} color="deep-orange" onChange={handleRatingInput} />
                                 <Radio name="color" value={3} color="lime" defaultChecked onChange={handleRatingInput} />
@@ -192,7 +192,7 @@ const UpdateProduct = () => {
                         <input type="submit" value="Update-Product" className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full" />
                     </div>
                 </form>
-                <button onClick={() => handleDeleteProduct(_id)} className='w-full mt-2 rounded-sm p-2 bg-red-900 text-white hover:bg-red-500 duration-300'>Delete</button>
+                <button onClick={() => handleDeleteProduct(_id)} className='w-full mt-2 rounded-md p-2 bg-red-900 text-white hover:bg-red-500 duration-300'>Delete</button>
             </div>
         </div>
     );

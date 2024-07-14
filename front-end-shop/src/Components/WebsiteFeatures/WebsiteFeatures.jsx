@@ -6,10 +6,10 @@ import { SiFsecure, SiAuth0 } from "react-icons/si";
 
 const WebsiteFeatures = () => {
     return (
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-7xl px-4 xl:px-0 mx-auto">
             <div className='flex justify-between items-center mb-8 group'>
                 <h2 className="text-2xl md:text-3xl py-2 text-gray-900 font-bold ml-4">Why Choose Us</h2>
-                <div className='border border-black w-2/3 group-hover:w-1/2 duration-500'></div>
+                <div className='border border-black hidden md:block md:w-1/3 lg:w-1/2 xl:w-2/3'></div>
             </div>
             <div className="flex gap-2 lg:gap-8 flex-wrap justify-center left-0 bottom-0 max-w-7xl mx-auto px-1 md:px-4 py-4 bg-[#D7D8D9]">
                 <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300">
