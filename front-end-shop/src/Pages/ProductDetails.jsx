@@ -49,7 +49,7 @@ const ProductDetails = () => {
         
         // TO RESTRICT ADDING SAME PRODUCT
 
-        fetch(`http://localhost:5000/cartItems/${user?.email}`)
+        fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/${user?.email}`)
         .then(res => res.json())
         .then(cartItems => {
             const itemExists = cartItems.some(item => item.productId === _id && item.email === userMail);
@@ -67,7 +67,7 @@ const ProductDetails = () => {
                 });
             } else {
                 // Item not in the cart, proceed to add it
-                fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems', {
+                fetch('https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

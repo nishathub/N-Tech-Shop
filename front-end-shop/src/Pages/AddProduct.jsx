@@ -32,7 +32,7 @@ const AddProduct = () => {
         const newProduct = { name, brand, color, price, image, rating, type, country, year, warranty, box };
         console.log(newProduct);
 
-        fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products', {
+        fetch('https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

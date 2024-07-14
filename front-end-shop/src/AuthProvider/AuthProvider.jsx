@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
          if (!loading) {
-            fetch(`http://localhost:5000/cartItems/${user?.email}`)
+            fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setCartItems(data)
@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (!loadCart) {
-            fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/products')
+            fetch('https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products')
                 .then(res => res.json())
                 .then(data => {
                     const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
