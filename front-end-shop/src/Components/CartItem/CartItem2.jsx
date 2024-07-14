@@ -40,7 +40,7 @@ const CartItem2 = ({ item, handleDeleteCartItem, updateCartItemQuantities }) => 
     }
     return (
         <div className="text-gray-900">
-            <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 md:px-2 ">
+            <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 px-2 ">
                 <div className="flex items-center">
                     <button onClick={() => handleDeleteCartItem(_id)} className="text-xl md:text-2xl hover:text-red-900 duration-300"><MdDelete /></button>
                 </div>
