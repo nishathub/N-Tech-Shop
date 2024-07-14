@@ -15,7 +15,6 @@ const Cart = () => {
     const [subTotal, setSubTotal] = useState(0);
     const [tax, setTax] = useState(0);
     const [discount, setDiscount] = useState(0);
-    console.log(showCartItems);
 
     const handleDeleteCartItem = (id) => {
         Swal.fire({
@@ -93,8 +92,6 @@ const Cart = () => {
             return newQuantities; // this function return an object {id: quantity}
         })
     }
-
-    console.log(cartItemQuantities);
 
     const calculateSubTotal = () => {
         let subTotal = 0;

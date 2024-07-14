@@ -49,7 +49,7 @@ const ProductDetails = () => {
         
         // TO RESTRICT ADDING SAME PRODUCT
 
-        fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/${user?.email}`)
+        fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`)
         .then(res => res.json())
         .then(cartItems => {
             const itemExists = cartItems.some(item => item.productId === _id && item.email === userMail);
