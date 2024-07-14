@@ -29,6 +29,7 @@ const ProductDetails = () => {
     };
 
     const handleAddToCart = () => {
+        // IF USER NOT FOUND
         if (!loading && !user) {
             Swal.fire({
                 title: "Log in to add product",
@@ -43,34 +44,61 @@ const ProductDetails = () => {
            return navigate('/login', { state: attemptURL});
         }
 
+        
         const userMail = user.email;
-        fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ productId: _id, name: name, email: userMail })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: "Item Added to the Cart",
-                        timer: 2000,
-                        showConfirmButton: false,
-                        customClass: {
-                            container: 'swal-custom-container',
-                            title: 'swal-custom-title',
-                            content: 'swal-custom-content',
+        
+        // TO RESTRICT ADDING SAME PRODUCT
+
+        fetch(`http://localhost:5000/cartItems/${user?.email}`)
+        .then(res => res.json())
+        .then(cartItems => {
+            const itemExists = cartItems.some(item => item.productId === _id && item.email === userMail);
+
+            if (itemExists) {
+                Swal.fire({
+                    title: "Item already in the cart",
+                    timer: 2000,
+                    showConfirmButton: false,
+                    customClass: {
+                        container: 'swal-custom-container',
+                        title: 'swal-custom-title',
+                        content: 'swal-custom-content',
+                    }
+                });
+            } else {
+                // Item not in the cart, proceed to add it
+                fetch('https://back-end-shop-hxnt69rib-nishats-projects-890e0902.vercel.app/cartItems', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId: _id, name: name, email: userMail })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Item Added to the Cart",
+                                timer: 2000,
+                                showConfirmButton: false,
+                                customClass: {
+                                    container: 'swal-custom-container',
+                                    title: 'swal-custom-title',
+                                    content: 'swal-custom-content',
+                                }
+                            });
+                            setAddCartClick(true);
                         }
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
-                    setAddCartClick(true);
-                }
-            })
-            .catch(error => {
-                console.error(error)
-            })
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
     }
 
