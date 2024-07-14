@@ -4,6 +4,7 @@ import Footer from "../Layout/Footer/Footer";
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar2 from "../Layout/Navbar/Navbar2";
+import '../../googleFontStyle.css'
 
 
 const Root = () => {
@@ -19,7 +20,7 @@ const Root = () => {
         return null;
     }
     return (
-        <div className="bg-[#BABCBF]">
+        <div className="bg-[#BABCBF] montserrat-regular">
             <div className="">
                 <ScrollToTop></ScrollToTop>
 
