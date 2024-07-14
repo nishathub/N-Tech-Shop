@@ -7,7 +7,7 @@ import './BrandCarouselStyle.css';
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
 const BrandCarousel = () => {
-    const {productBrands} = useContext(BrandShopContext);
+    const { productBrands } = useContext(BrandShopContext);
 
     const settings = {
         dots: false,
@@ -51,6 +51,10 @@ const BrandCarousel = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-1 md:px-0">
+            <div className='flex justify-between items-center mb-8 group'>
+                <h2 className="text-2xl md:text-3xl py-2 text-gray-900 font-bold ml-4">Available Brands</h2>
+                <div className='border border-black w-2/3 group-hover:w-1/2 duration-500'></div>
+            </div>
             <Slider {...settings}>
                 {productBrands.map(brandItem => (
                     <BrandCard key={brandItem.name} brand={brandItem} />

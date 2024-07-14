@@ -47,8 +47,11 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-1 md:px-0">
-            <h2 className="text-lg md:text-3xl py-8 text-gray-900 font-bold ml-4">Top Selling Products</h2>
+        <div className="max-w-7xl mx-auto px-1 md:px-0 ">
+            <div className='flex justify-between items-center mb-8 group'>
+                <h2 className="text-2xl md:text-3xl py-2 text-gray-900 font-bold ml-4">Top Selling Products</h2>
+                <div className='border border-black w-2/3 group-hover:w-1/2 duration-500'></div>
+            </div>
             <div className=''>
                 <Slider {...settings}>
                     {evenIndexProducts.map((product, index) => (
