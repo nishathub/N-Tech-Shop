@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
+
 import { Navigate, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
@@ -150,7 +152,7 @@ const ProductDetails = () => {
                         <div>
                             <div onClick={() => setPhysicalSpecOpen(!isPhysicalSpecOpen)} className="flex justify-between items-center bg-gray-200 p-2 rounded-md hover:cursor-pointer">
                                 <h4>Physical Specification</h4>
-                                <span> {isPhysicalSpecOpen ? '\u2B9D' : '\u2B9F'}</span>
+                                <span> {!isPhysicalSpecOpen ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowUp />}</span>
                             </div>
                             <div style={specificationStyle}>
                                 <div className="space-y-2 p-4">
@@ -163,7 +165,7 @@ const ProductDetails = () => {
                         <div>
                             <div onClick={() => setDisplayOpen(!isDisplayOpen)} className="flex justify-between bg-gray-200 p-2 rounded-md hover:cursor-pointer">
                                 <h4>Display</h4>
-                                <span> {isDisplayOpen ? '\u2B9D' : '\u2B9F'}</span>
+                                <span> {!isDisplayOpen ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowUp />}</span>
                             </div>
                             <div style={displayStyle}>
                                 <div className="space-y-2 p-4">

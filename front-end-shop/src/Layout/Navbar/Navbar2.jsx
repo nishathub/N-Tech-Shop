@@ -70,7 +70,7 @@ const Navbar2 = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
                         {isOpen &&
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 bg-base-100 rounded-sm w-52 space-y-2">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content font-semibold mt-3 z-[1] p-2 bg-base-100 rounded-sm w-52 space-y-2">
                                 {links}
                             </ul>
                         }
@@ -92,12 +92,13 @@ const Navbar2 = () => {
                             <div>
                                 {!user ?
 
-                                    <Link to={'/login'}><button className="bg-gray-200 text-gray-800 font-bold p-2 rounded-md hover:bg-base-100 hover:text-gray-200 duration-300">Login</button></Link>
+                                    <Link to={'/login'}><button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-2 rounded-md bg-base-100 text-gray-200 duration-300">Login</button></Link>
                                     :
                                     <div className="flex items-center gap-2">
                                         <div className="flex items-center gap-1">
                                             <h2 title="Admin" className={`text-xl ${isAdmin ? 'text-orange-900' : 'hidden'}`}><MdOutlineSecurity /></h2>
-                                            <h2 className={`md:text-lg text-gray-900`}>{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0, 10) + ".."}</h2>
+                                            <h2 className="md:text-lg text-gray-900 font-semibold hidden lg:block">{user.displayName}</h2>
+                                            <h2 className={`md:text-lg text-gray-900 font-semibold lg:hidden`}>{user.displayName.length < 10 ? user.displayName : user.displayName.slice(0, 10) + ".."}</h2>
                                         </div>
                                         <div onClick={handleDropdownClick} className="dropdown dropdown-end">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
