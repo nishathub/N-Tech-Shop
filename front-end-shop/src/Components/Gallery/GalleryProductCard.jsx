@@ -1,10 +1,11 @@
 
 import { Link } from 'react-router-dom';
 import './GalleryProductCardStyle.css'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { BrandShopContext } from '../../AuthProvider/AuthProvider';
 
 const GalleryProductCard = ({ product }) => {
-    const isAdmin = true;
+    const {isAdmin} = useContext(BrandShopContext);
     const totalStars = 5;
     const saleStyle = { textDecoration: product.rating < 4 ? 'line-through' : 'none', color: product.rating < 4 ? 'red' : '' };
     const priceStyle = { display: product.rating < 4 ? 'flex' : 'none' };
@@ -60,6 +61,7 @@ const GalleryProductCard = ({ product }) => {
                 <div>
                     {isAdmin ?
                         <div className=" ">
+
                             <Link to={`/products/brand/${product.brand}/${product._id}`}><button className="w-1/2 bg-gray-700 p-2 hover:bg-gray-200 text-gray-200 hover:text-gray-800 duration-300">Details</button></Link>
                             <Link to={`/products/brand/${product.brand}/update/${product._id}`}><button className="w-1/2 bg-gray-800 p-2 hover:bg-gray-200 text-gray-200 hover:text-gray-800 duration-300">Update</button></Link>
                             

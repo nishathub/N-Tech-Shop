@@ -10,6 +10,11 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
+
+    // All Products
+    const [allProducts, setAllProducts] = useState([]);
+    // Searched Products
+    const [foundProducts, setFoundProduct] = useState([]);
     // json file 
     const [productBrands, setProductBrands] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -41,6 +46,7 @@ const AuthProvider = ({ children }) => {
             fetch('https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products')
                 .then(res => res.json())
                 .then(data => {
+                    setAllProducts(data);
                     const cartItemsIds = cartItems.map(item => item.productId); // collection of cart item ids
                     const displayItems = data.filter(product => cartItemsIds.includes(product._id)); // match id and get items
                     setShowCartItems(displayItems);
@@ -120,7 +126,8 @@ const AuthProvider = ({ children }) => {
         setCartDisplayLoading, setShowCartItems, setAddCartClick,
         setLoading, createNewUser, signInUser, updateUser,
         errorMessage, setErrorMessage, logOutUser,
-        googleSignIn, productBrands, categories, isAdmin
+        googleSignIn, productBrands, categories, isAdmin,
+        allProducts, foundProducts, setFoundProduct
     };
     return (
         <BrandShopContext.Provider value={authData}>

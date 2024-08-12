@@ -13,6 +13,7 @@ import ProductDetails from "../Pages/ProductDetails";
 import Cart from "../Pages/Cart";
 import CategoryProducts from "../Pages/CategoryProducts";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
+import SearchedProducts from "../Pages/SearchedProducts";
 
 const Routes = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>,
+            },
+            {
+                path: "/searchedProducts",
+                element: <SearchedProducts></SearchedProducts>,
             },
             {
                 path: "/addProduct",

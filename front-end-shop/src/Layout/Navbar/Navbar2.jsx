@@ -1,39 +1,63 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 import { MdOutlineSecurity } from "react-icons/md";
+
 
 import Swal from 'sweetalert2'
 import '../../SweetAlertStyle.css';
 
 const Navbar2 = () => {
 
-    const { loading, user, isAdmin, logOutUser, showCartItems, cartDisplayLoading } = useContext(BrandShopContext);
-    const [isFixed, setIsFixed] = useState(false);
+    const { loading, user, isAdmin, logOutUser, showCartItems, cartDisplayLoading, allProducts, foundProducts, setFoundProduct } = useContext(BrandShopContext);
     const [isOpen, setIsOpen] = useState(false);
+    const [showSearchItems, setShowSearchItems] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
+    
     const navigate = useNavigate();
+    const location = useLocation();
+    const searchBoxRef = useRef();
     const altUserPhoto = 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg';
 
     // Navbar dropDown toggle
     const handleDropdownClick = () => {
         setIsOpen(!isOpen);
     };
-    // Navbar fixed/relative according to scroll position
-    const handleScroll = () => {
-        if (window.scrollY > 20) {
-            setIsFixed(true);
-        } else {
-            setIsFixed(false);
-        }
+
+    const handleSearchInput = (e) => {
+        const inputValue = e.target.value.toLowerCase();
+        setSearchInput(inputValue);
+        const foundItems = allProducts.filter(product => product.name.toLowerCase().includes(inputValue));
+        setFoundProduct(foundItems);
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+        if (searchInput.length > 2) {
+            setShowSearchItems(true);
+        } else {
+            setShowSearchItems(false)
+        }
+    }, [searchInput]);
 
+    // hide searchBox on location change
+    useEffect(()=> {
+        setShowSearchItems(false);
+    }, [location])
+
+    // hide searchBox when click outside
+    useEffect(()=> {
+        const handleClickOutside = (e) => {
+            if(searchBoxRef.current && !searchBoxRef.current.contains(e.target)) {
+                setShowSearchItems(false);
+            }
+        }
+        
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [])
 
     const handleLogOut = () => {
         logOutUser()
@@ -57,12 +81,20 @@ const Navbar2 = () => {
     }
 
     const links =
-        <>
-            <li className="bg-gray-200 text-gray-900 duration-300 rounded-md"><Link to={'/'}>Home</Link></li>
-            <li className="bg-gray-200 text-gray-900 duration-300 rounded-md"><Link to={'/addProduct'}>Add-Product</Link></li>
-        </>
+
+        isAdmin ?
+            <>
+                {/* <li className="bg-gray-200 text-gray-900 duration-300 rounded-md"><Link to={'/'}>Home</Link></li> */}
+                <li className="text-gray-200 bg-gray-900 duration-300 rounded-md"><Link to={'/addProduct'}>Add-Product</Link></li>
+            </>
+            :
+            <>
+                {/* <li className="bg-gray-200 text-gray-900 duration-300 rounded-md"><Link to={'/'}>Home</Link></li> */}
+                <label className="input flex justify-between items-center md:w-96 font-semibold"><input onKeyUp={handleSearchInput} placeholder="search for products" type="text" /> <Link className="text-2xl" to={'/searchedProducts'}><CiSearch /></Link> </label>
+            </>
+
     return (
-        <div className={`bg-[rgba(224,224,224,0.9)] md:py-2 ${isFixed ? 'fixed w-full z-10' : 'relative'} custom-login-register`}>
+        <div className={`bg-[rgba(224,224,224,0.95)] md:py-2 fixed w-full z-10 custom-login-register`}>
             <div className="navbar max-w-7xl mx-auto md:px-4 px-1">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -70,7 +102,7 @@ const Navbar2 = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
                         {isOpen &&
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content font-semibold mt-3 z-[1] p-2 bg-base-100 rounded-sm w-52 space-y-2">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content font-semibold mt-3 z-[1] p-2 rounded-sm w-52 space-y-2">
                                 {links}
                             </ul>
                         }
@@ -151,6 +183,22 @@ const Navbar2 = () => {
                             </div>
                     }
 
+                </div>
+            </div>
+            <div ref={searchBoxRef} className={`${!showSearchItems && 'hidden'} md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 left-1/2 -translate-x-1/2 overflow-y-scroll`}>
+                {!foundProducts.length &&
+                    <div className="p-4">
+                        <h2 className="text-red-900">No items found</h2>
+                    </div>}
+                <div className="text-black space-y-2">
+                    {foundProducts.map(product =>
+                        <Link to={`/products/brand/${product.brand}/${product._id}`} key={product._id}>
+                            <div className="flex justify-between items-center p-2 border-b hover:bg-blue-gray-200 duration-300">
+                                <img className="w-16 h-16" src={product.image} alt="product-image" />
+                                <h2>{product.name}</h2>
+                                <p>$ {product.price}</p>
+                            </div></Link>
+                    )}
                 </div>
             </div>
         </div>
