@@ -11,21 +11,21 @@ const CashReceiptModal = ({ billDetails, setBillDetails }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
 
                     {/* Customer Information */}
-                    <div>
+                    <div className="">
                         <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-4 border-b border-black pb-2 md:pb-4">Billing Information</h3>
-                        <div className="mb-1 md:mb-2">
+                        <div className="mb-1 md:mb-2 break-words">
                             <strong>Name:</strong> {billDetails.customerName}
                         </div>
-                        <div className="mb-1 md:mb-2">
+                        <div className="mb-1 md:mb-2 break-words">
                             <strong>Phone:</strong> {billDetails.customerPhone}
                         </div>
-                        <div className="mb-1 md:mb-2">
+                        <div className="mb-1 md:mb-2 break-words">
                             <strong>Email:</strong> {billDetails.customerEmail}
                         </div>
-                        <div className="mb-1 md:mb-2">
+                        <div className="mb-1 md:mb-2 break-words">
                             <strong>Location:</strong> {billDetails.customerLocation}
                         </div>
-                        <div className="mb-1 md:mb-2">
+                        <div className="mb-1 md:mb-2 break-words">
                             <strong>Notes:</strong> {billDetails.customerNote}
                         </div>
                         <div className="mb-1 md:mb-2">
