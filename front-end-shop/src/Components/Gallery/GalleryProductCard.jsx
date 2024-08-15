@@ -49,7 +49,7 @@ const GalleryProductCard = ({ product }) => {
                         {[...Array(totalStars)].map((_, index) => {
                             const isFilled = index < product.rating;
                             const starClass = isFilled ? 'mask mask-star-2 bg-orange-900' : 'mask mask-star-2 bg-orange-400';
-                            return <input key={index} type="radio" name={`rating-${product.id}`} className={starClass} defaultChecked={isFilled} />;
+                            return <input disabled key={index} type="radio" name={`rating-${product.id}`} className={starClass} defaultChecked={isFilled} />;
                         })}
                     </div>
                 </div>
