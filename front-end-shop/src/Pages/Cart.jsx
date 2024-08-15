@@ -13,10 +13,9 @@ const Cart = () => {
 
     const { showCartItems, setShowCartItems, cartDisplayLoading, cartItemQuantities,
         setCartItemQuantities, cartsubTotal, setcartSubTotal, tax, setTax, discount,
-        setDiscount, cartItemsTotalPrice, setCartItemTotalPrice } = useContext(BrandShopContext);
+        setDiscount, cartItemsTotalPrice, setCartItemTotalPrice, isOrderPlaced } = useContext(BrandShopContext);
 
     const deliveryCharge = 70;
-
 
     const handleDeleteCartItem = (id) => {
         Swal.fire({
@@ -150,7 +149,7 @@ const Cart = () => {
             setTax(formattedTax)
         }
 
-    }, [cartItemQuantities, showCartItems, setTax, setcartSubTotal]) // whenever these changes, update the cartsubtotal
+    }, [cartItemQuantities, showCartItems, setTax, setcartSubTotal, isOrderPlaced]) // whenever these changes, update the cartsubtotal
 
     const totalAmount = cartsubTotal + parseFloat(tax) + deliveryCharge - discount;
 
@@ -248,8 +247,7 @@ const Cart = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out </button>
-                                           <Link to={'/checkout'}><button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out </button></Link> 
+                                            <Link to={'/checkout'}><button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out </button></Link>
                                         </div>
                                     </div>
                                 </div>

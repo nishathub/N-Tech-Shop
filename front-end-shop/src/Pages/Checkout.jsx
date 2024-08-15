@@ -10,10 +10,7 @@ import { FaShoppingBag } from "react-icons/fa";
 
 
 const CheckoutPage = () => {
-    const { showCartItems, cartItemQuantities, cartsubTotal,
-        tax, discount, cartItemsTotalPrice } = useContext(BrandShopContext);
-
-    console.log(showCartItems, cartItemQuantities);
+    const { setOrderPlaced } = useContext(BrandShopContext);
 
     const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
     const [selectedPaymentSubOption, setSelectedPaymentSubOption] = useState(null);
@@ -212,7 +209,7 @@ const CheckoutPage = () => {
                     </div>
                 </div>
                 <div className="mt-4 w-80 md:w-96 lg:w-full mx-auto">
-                    <button type="submit" className="w-full p-4 rounded-md font-semibold bg-gray-900 text-gray-200 hover:text-gray-900 hover:bg-gray-200 duration-300 ">
+                    <button onClick={()=> setOrderPlaced(true)} type="submit" className="w-full p-4 rounded-md font-semibold bg-gray-900 text-gray-200 hover:text-gray-900 hover:bg-gray-200 duration-300 ">
                         Confirm Order
                     </button>
                 </div>

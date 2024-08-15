@@ -2,7 +2,9 @@ import { useContext } from "react";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
 const CashReceiptModal = ({ billDetails, setBillDetails }) => {
-    const { showCartItems, cartItemQuantities, cartsubTotal, tax, discount, cartItemsTotalPrice } = useContext(BrandShopContext);
+    const { showCartItems, cartItemQuantities, cartsubTotal, tax, 
+        discount, cartItemsTotalPrice } = useContext(BrandShopContext);
+
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-800 z-50">

@@ -18,6 +18,8 @@ const AuthProvider = ({ children }) => {
     // json file 
     const [productBrands, setProductBrands] = useState([]);
     const [categories, setCategories] = useState([]);
+    // Checkout page button
+    const [isOrderPlaced, setOrderPlaced] = useState(false);
 
     // Cart code start here
     const [loadCart, setLoadCart] = useState(true);
@@ -32,7 +34,7 @@ const AuthProvider = ({ children }) => {
     const [addCartClick, setAddCartClick] = useState(false); // as the whole code is transferred here from cart page, after adding cart items, the cart page is updated only after refreshing the page. So, I am using a state that, it will become true as soon as we click on add cart button. That state is a dependency to fetch data from cart database each time on useEffect below. this way, the code is working!
 
     // we could easily use these code on cart page, but we want to use these info on other components, so, we put them here to utilize context data.
-
+    
     useEffect(() => {
         if (!loading) {
             fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`)
@@ -128,7 +130,7 @@ const AuthProvider = ({ children }) => {
         user, loading, loadCart,
         showCartItems, cartItemsTotalPrice, setCartItemTotalPrice, cartDisplayLoading,
         setCartDisplayLoading, setShowCartItems, setAddCartClick,
-        cartItemQuantities,
+        cartItemQuantities, isOrderPlaced, setOrderPlaced,
         setCartItemQuantities, cartsubTotal, setcartSubTotal,
         tax, setTax, discount, setDiscount,
         setLoading, createNewUser, signInUser, updateUser,
@@ -136,7 +138,7 @@ const AuthProvider = ({ children }) => {
         googleSignIn, productBrands, categories, isAdmin,
         allProducts, foundProducts, setFoundProduct
     };
-    console.log(cartItemQuantities, tax, cartsubTotal);
+    console.log(isOrderPlaced);
     return (
         <BrandShopContext.Provider value={authData}>
             {children}
