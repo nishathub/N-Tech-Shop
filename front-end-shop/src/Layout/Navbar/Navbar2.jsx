@@ -188,7 +188,7 @@ const Navbar2 = () => {
             {/* SEARCH-BOX */}
             <div
                 ref={searchBoxRef}
-                className={`${!showSearchItems && 'hidden'} md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 mt-16 lg:mt-0 left-1/2 -translate-x-2/3 overflow-y-scroll`}>
+                className={`${!showSearchItems && 'hidden'} md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 mt-16 lg:mt-0 left-1/2 -translate-x-1/2 lg:-translate-x-2/3 overflow-y-scroll`}>
                 {!foundProducts.length &&
                     <div className="p-4">
                         <h2 className="text-red-900">No items found</h2>
