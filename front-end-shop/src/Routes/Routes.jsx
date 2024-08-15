@@ -14,6 +14,7 @@ import Cart from "../Pages/Cart";
 import CategoryProducts from "../Pages/CategoryProducts";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import SearchedProducts from "../Pages/SearchedProducts";
+import Checkout from "../Pages/Checkout";
 
 const Routes = createBrowserRouter([
     {
@@ -65,6 +66,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/cart",
                 element: <PrivateRoutes><Cart></Cart></PrivateRoutes>,
+            },
+            {
+                path: "/checkout",
+                element: <PrivateRoutes><Checkout></Checkout></PrivateRoutes>,
             },
         ]
     }

@@ -25,12 +25,16 @@ const AuthProvider = ({ children }) => {
     const [showCartItems, setShowCartItems] = useState([]);
     const [cartDisplayLoading, setCartDisplayLoading] = useState(true);
     const [cartItemsTotalPrice, setCartItemTotalPrice] = useState(0);
+    const [cartItemQuantities, setCartItemQuantities] = useState({});
+    const [cartsubTotal, setcartSubTotal] = useState(0);
+    const [tax, setTax] = useState(0);
+    const [discount, setDiscount] = useState(0);
     const [addCartClick, setAddCartClick] = useState(false); // as the whole code is transferred here from cart page, after adding cart items, the cart page is updated only after refreshing the page. So, I am using a state that, it will become true as soon as we click on add cart button. That state is a dependency to fetch data from cart database each time on useEffect below. this way, the code is working!
 
     // we could easily use these code on cart page, but we want to use these info on other components, so, we put them here to utilize context data.
 
     useEffect(() => {
-         if (!loading) {
+        if (!loading) {
             fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
@@ -96,9 +100,9 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            if(currentUser?.email === 'nishat@mail.com'){
+            if (currentUser?.email === 'nishat@mail.com') {
                 setIsAdmin(true);
-            } else if(currentUser?.email !== 'nishat@mail.com'){
+            } else if (currentUser?.email !== 'nishat@mail.com') {
                 setIsAdmin(false);
             }
             setLoading(false);
@@ -122,13 +126,17 @@ const AuthProvider = ({ children }) => {
 
     const authData = {
         user, loading, loadCart,
-        showCartItems, cartItemsTotalPrice, cartDisplayLoading,
+        showCartItems, cartItemsTotalPrice, setCartItemTotalPrice, cartDisplayLoading,
         setCartDisplayLoading, setShowCartItems, setAddCartClick,
+        cartItemQuantities,
+        setCartItemQuantities, cartsubTotal, setcartSubTotal,
+        tax, setTax, discount, setDiscount,
         setLoading, createNewUser, signInUser, updateUser,
         errorMessage, setErrorMessage, logOutUser,
         googleSignIn, productBrands, categories, isAdmin,
         allProducts, foundProducts, setFoundProduct
     };
+    console.log(cartItemQuantities, tax, cartsubTotal);
     return (
         <BrandShopContext.Provider value={authData}>
             {children}

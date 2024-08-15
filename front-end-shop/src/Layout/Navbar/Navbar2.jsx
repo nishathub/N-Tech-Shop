@@ -14,7 +14,7 @@ const Navbar2 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showSearchItems, setShowSearchItems] = useState(false);
     const [searchInput, setSearchInput] = useState('');
-    
+
     const navigate = useNavigate();
     const location = useLocation();
     const searchBoxRef = useRef();
@@ -41,18 +41,18 @@ const Navbar2 = () => {
     }, [searchInput]);
 
     // hide searchBox on location change
-    useEffect(()=> {
+    useEffect(() => {
         setShowSearchItems(false);
     }, [location])
 
     // hide searchBox when click outside
-    useEffect(()=> {
+    useEffect(() => {
         const handleClickOutside = (e) => {
-            if(searchBoxRef.current && !searchBoxRef.current.contains(e.target)) {
+            if (searchBoxRef.current && !searchBoxRef.current.contains(e.target)) {
                 setShowSearchItems(false);
             }
         }
-        
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -84,12 +84,12 @@ const Navbar2 = () => {
 
         isAdmin ?
             <>
-                {/* <li className="bg-gray-200 text-gray-900 duration-300 rounded-md"><Link to={'/'}>Home</Link></li> */}
-                <li className="text-gray-200 bg-gray-900 duration-300 rounded-md"><Link to={'/addProduct'}>Add-Product</Link></li>
+                <label className="input flex justify-between items-center md:w-96 font-semibold"><input onKeyUp={handleSearchInput} placeholder="search for products" type="text" /> <Link className="text-2xl" to={'/searchedProducts'}><CiSearch /></Link> </label>
+                <li className="text-gray-200 flex justify-center items-center bg-gray-900 hover:bg-gray-800 duration-300 rounded-md"><Link to={'/addProduct'}>Add-Product</Link></li>
             </>
             :
             <>
-                {/* <li className="bg-gray-200 text-gray-900 duration-300 rounded-md"><Link to={'/'}>Home</Link></li> */}
+
                 <label className="input flex justify-between items-center md:w-96 font-semibold"><input onKeyUp={handleSearchInput} placeholder="search for products" type="text" /> <Link className="text-2xl" to={'/searchedProducts'}><CiSearch /></Link> </label>
             </>
 
@@ -185,7 +185,10 @@ const Navbar2 = () => {
 
                 </div>
             </div>
-            <div ref={searchBoxRef} className={`${!showSearchItems && 'hidden'} md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 left-1/2 -translate-x-1/2 overflow-y-scroll`}>
+            {/* SEARCH-BOX */}
+            <div
+                ref={searchBoxRef}
+                className={`${!showSearchItems && 'hidden'} md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 left-1/2 -translate-x-1/2 overflow-y-scroll`}>
                 {!foundProducts.length &&
                     <div className="p-4">
                         <h2 className="text-red-900">No items found</h2>

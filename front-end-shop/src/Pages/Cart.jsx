@@ -6,15 +6,17 @@ import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CartItem2 from "../Components/CartItem/CartItem2";
 import '../SweetAlertStyle.css';
+import { Link } from "react-router-dom";
 
 
 const Cart = () => {
 
-    const { showCartItems, setShowCartItems, cartDisplayLoading} = useContext(BrandShopContext);
-    const [cartItemQuantities, setCartItemQuantities] = useState({});
-    const [subTotal, setSubTotal] = useState(0);
-    const [tax, setTax] = useState(0);
-    const [discount, setDiscount] = useState(0);
+    const { showCartItems, setShowCartItems, cartDisplayLoading, cartItemQuantities,
+        setCartItemQuantities, cartsubTotal, setcartSubTotal, tax, setTax, discount,
+        setDiscount, cartItemsTotalPrice, setCartItemTotalPrice } = useContext(BrandShopContext);
+
+    const deliveryCharge = 70;
+
 
     const handleDeleteCartItem = (id) => {
         Swal.fire({
@@ -93,16 +95,16 @@ const Cart = () => {
         })
     }
 
-    const calculateSubTotal = () => {
-        let subTotal = 0;
+    const calculatecartSubTotal = () => {
+        let cartsubTotal = 0;
         for (let i = 0; i < showCartItems.length; i++) {
             const item = showCartItems[i]; // get the current product
             const quantity = cartItemQuantities[item._id] || 1; // get quantity by searching by id
             const price = item.price;
             const amount = quantity * price;
-            subTotal += amount;
+            cartsubTotal += amount;
         }
-        return subTotal;
+        return cartsubTotal;
     }
     const calculateDiscount = (e) => {
         e.preventDefault();
@@ -120,7 +122,7 @@ const Cart = () => {
                     content: 'swal-custom-content',
                 }
             });
-            return setDiscount((0.1 * subTotal).toFixed(2))
+            return setDiscount((0.1 * cartsubTotal).toFixed(2))
         }
         // If coupon not matched
 
@@ -138,22 +140,25 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        const subTotal = calculateSubTotal();
-        setSubTotal(subTotal);
-        if (subTotal < 5000) {
+        const cartsubTotal = calculatecartSubTotal();
+        setcartSubTotal(cartsubTotal);
+        if (cartsubTotal < 5000) {
             setTax(0);
         } else {
-            const tax = subTotal * 0.05;
+            const tax = cartsubTotal * 0.05;
             const formattedTax = tax.toFixed(2);
             setTax(formattedTax)
         }
 
-    }, [cartItemQuantities, showCartItems]) // whenever these changes, update the subtotal
+    }, [cartItemQuantities, showCartItems, setTax, setcartSubTotal]) // whenever these changes, update the cartsubtotal
+
+    const totalAmount = cartsubTotal + parseFloat(tax) + deliveryCharge - discount;
+
+    useEffect(() => {
+        setCartItemTotalPrice(totalAmount.toFixed(2));
+    }, [totalAmount, setCartItemTotalPrice])
 
 
-
-    const deliveryCharge = 70;
-    const totalAmount = subTotal + parseFloat(tax) + deliveryCharge - discount;
 
     return (
         <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900">
@@ -199,8 +204,8 @@ const Cart = () => {
                                         <div className="">
                                             <div className="w md:text-lg bg-[#BABCBF] p-4">
                                                 <div className="flex justify-between">
-                                                    <p>Subtotal</p>
-                                                    <p>$ {subTotal}</p>
+                                                    <p>cartSubtotal</p>
+                                                    <p>$ {cartsubTotal}</p>
                                                 </div>
                                                 <div className="flex justify-between">
                                                     <p>Tax (5% above $5000)</p>
@@ -219,7 +224,7 @@ const Cart = () => {
                                                 </div>
                                                 <div className="flex justify-between">
                                                     <p className="font-bold">Grand Total</p>
-                                                    <p className="font-bold">$ {totalAmount}</p>
+                                                    <p className="font-bold">$ {cartItemsTotalPrice}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -243,7 +248,8 @@ const Cart = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out</button>
+                                            <button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out </button>
+                                           <Link to={'/checkout'}><button className="hover:bg-gray-200 hover:text-gray-800 font-bold p-3 rounded-md bg-base-100 text-gray-200 cursor-pointer duration-300 w-full mt-4">Check Out </button></Link> 
                                         </div>
                                     </div>
                                 </div>
