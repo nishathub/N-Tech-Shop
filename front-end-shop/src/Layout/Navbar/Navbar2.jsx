@@ -44,7 +44,7 @@ const Navbar2 = () => {
   };
 
   useEffect(() => {
-    if (searchInput.length > 2) {
+    if (searchInput.length > 0) {
       setShowSearchItems(true);
     } else {
       setShowSearchItems(false);
