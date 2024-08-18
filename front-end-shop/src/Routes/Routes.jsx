@@ -17,62 +17,93 @@ import SearchedProducts from "../Pages/SearchedProducts";
 import Checkout from "../Pages/Checkout";
 
 const Routes = createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <Root></Root>,
+    errorElement: <ErrorElement></ErrorElement>,
+    children: [
+      {
         path: "/",
-        element: <Root></Root>,
-        errorElement: <ErrorElement></ErrorElement>,
-        children: [
-            {
-                path: "/",
-                element: <Home></Home>,
-                loader: () => fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products`)
-            },
-            {
-                path: "/login",
-                element: <Login></Login>,
-            },
-            {
-                path: "/register",
-                element: <Register></Register>,
-            },
-            {
-                path: "/searchedProducts",
-                element: <SearchedProducts></SearchedProducts>,
-            },
-            {
-                path: "/addProduct",
-                element: <AdminRoutes><AddProduct></AddProduct></AdminRoutes>,
-            },
-            {
-                path: "/products/brand/:brand/update/:id",
-                element: <AdminRoutes><UpdateProduct></UpdateProduct></AdminRoutes>,
-                loader: ({ params }) => fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.id}`)
-            },
-            {
-                path: "/products/brand/:brandName",
-                element: <BrandProducts></BrandProducts>,
-                loader: ({ params }) => fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/brand/${params.brandName}`)
-            },
-            {
-                path: "/products/category/:categoryName",
-                element: <CategoryProducts></CategoryProducts>,
-                loader: ({ params }) => fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/category/${params.categoryName}`)
-            },
-            {
-                path: "/products/brand/:brandName/:productId",
-                element: <ProductDetails></ProductDetails>,
-                loader: ({ params }) => fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.productId}`)
-            },
-            {
-                path: "/cart",
-                element: <PrivateRoutes><Cart></Cart></PrivateRoutes>,
-            },
-            {
-                path: "/checkout",
-                element: <PrivateRoutes><Checkout></Checkout></PrivateRoutes>,
-            },
-        ]
-    }
-])
+        element: <Home></Home>,
+        loader: () =>
+          fetch(
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products`,
+          ),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/searchedProducts",
+        element: <SearchedProducts></SearchedProducts>,
+      },
+      {
+        path: "/addProduct",
+        element: (
+          <AdminRoutes>
+            <AddProduct></AddProduct>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "/products/brand/:brand/update/:id",
+        element: (
+          <AdminRoutes>
+            <UpdateProduct></UpdateProduct>
+          </AdminRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.id}`,
+          ),
+      },
+      {
+        path: "/products/brand/:brandName",
+        element: <BrandProducts></BrandProducts>,
+        loader: ({ params }) =>
+          fetch(
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/brand/${params.brandName}`,
+          ),
+      },
+      {
+        path: "/products/category/:categoryName",
+        element: <CategoryProducts></CategoryProducts>,
+        loader: ({ params }) =>
+          fetch(
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/category/${params.categoryName}`,
+          ),
+      },
+      {
+        path: "/products/brand/:brandName/:productId",
+        element: <ProductDetails></ProductDetails>,
+        loader: ({ params }) =>
+          fetch(
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.productId}`,
+          ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <PrivateRoutes>
+            <Cart></Cart>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/checkout",
+        element: (
+          <PrivateRoutes>
+            <Checkout></Checkout>
+          </PrivateRoutes>
+        ),
+      },
+    ],
+  },
+]);
 
 export default Routes;

@@ -1,27 +1,26 @@
 [
-    {
-        "categoryName": "Monitor",
-        "categoryPhotoLink": "https://i.ibb.co/YX3MjbF/monitor-rem-bg.png"
-    },
-    {
-        "categoryName": "Watch",
-        "categoryPhotoLink": "https://i.ibb.co/cT0xtqF/watch-rem-bg.png"
-    },
-    {
-        "categoryName": "Speaker",
-        "categoryPhotoLink": "https://i.ibb.co/fCBktCy/speaker-rem-bg.png"
-    },
-    {
-        "categoryName": "Laptop",
-        "categoryPhotoLink": "https://i.ibb.co/G2Vr7sk/laptop-rem-bg.png"
-    },
-    {
-        "categoryName": "Camera",
-        "categoryPhotoLink": "https://i.ibb.co/68vpr3r/camera-rem-bg.png"
-    },
-    {
-        "categoryName": "Phone",
-        "categoryPhotoLink": "https://i.ibb.co/rbYxPY0/phone-rem-bg.png"
-    }
-    
+  {
+    "categoryName": "Monitor",
+    "categoryPhotoLink": "https://i.ibb.co/YX3MjbF/monitor-rem-bg.png"
+  },
+  {
+    "categoryName": "Watch",
+    "categoryPhotoLink": "https://i.ibb.co/cT0xtqF/watch-rem-bg.png"
+  },
+  {
+    "categoryName": "Speaker",
+    "categoryPhotoLink": "https://i.ibb.co/fCBktCy/speaker-rem-bg.png"
+  },
+  {
+    "categoryName": "Laptop",
+    "categoryPhotoLink": "https://i.ibb.co/G2Vr7sk/laptop-rem-bg.png"
+  },
+  {
+    "categoryName": "Camera",
+    "categoryPhotoLink": "https://i.ibb.co/68vpr3r/camera-rem-bg.png"
+  },
+  {
+    "categoryName": "Phone",
+    "categoryPhotoLink": "https://i.ibb.co/rbYxPY0/phone-rem-bg.png"
+  }
 ]

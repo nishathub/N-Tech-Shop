@@ -1,26 +1,26 @@
 [
-    {
-        "name": "Apple",
-        "brand_photo_link": "https://i.ibb.co/fv1tF2X/Apple-Logo.png"
-    },
-    {
-        "name": "Samsung",
-        "brand_photo_link": "https://i.ibb.co/YNdRw8Q/Samsung-Logo.png"
-    },
-    {
-        "name": "Sony",
-        "brand_photo_link": "https://i.ibb.co/cxL5FST/Sony-logo.png"
-    },
-    {
-        "name": "Google",
-        "brand_photo_link": "https://i.ibb.co/ssjcJC4/Google-logo.png"
-    },
-    {
-        "name": "Intel",
-        "brand_photo_link": "https://i.ibb.co/bLN3tdy/Intel-logo.png"
-    },
-    {
-        "name": "Xiaomi",
-        "brand_photo_link": "https://i.ibb.co/qNGrRsx/Xiaomi-logo.png"
-    }
+  {
+    "name": "Apple",
+    "brand_photo_link": "https://i.ibb.co/fv1tF2X/Apple-Logo.png"
+  },
+  {
+    "name": "Samsung",
+    "brand_photo_link": "https://i.ibb.co/YNdRw8Q/Samsung-Logo.png"
+  },
+  {
+    "name": "Sony",
+    "brand_photo_link": "https://i.ibb.co/cxL5FST/Sony-logo.png"
+  },
+  {
+    "name": "Google",
+    "brand_photo_link": "https://i.ibb.co/ssjcJC4/Google-logo.png"
+  },
+  {
+    "name": "Intel",
+    "brand_photo_link": "https://i.ibb.co/bLN3tdy/Intel-logo.png"
+  },
+  {
+    "name": "Xiaomi",
+    "brand_photo_link": "https://i.ibb.co/qNGrRsx/Xiaomi-logo.png"
+  }
 ]
