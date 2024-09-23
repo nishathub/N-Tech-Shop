@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
-import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import "../SweetAlertStyle.css";
+import { Navigate, useLocation, } from "react-router-dom";
 
 const PrivateRoutes = ({ children }) => {
   const { loading, user, customAlert } = useContext(BrandShopContext);
@@ -12,16 +10,7 @@ const PrivateRoutes = ({ children }) => {
   if (loading) {
     return <h2>Loading</h2>;
   } else if (!user) {
-    // Swal.fire({
-    //   title: "Log In to Visit this page",
-    //   customClass: {
-    //     container: "swal-custom-container",
-    //     title: "swal-custom-title",
-    //     text: "swal-custom-text",
-    //   },
-    // });
     customAlert("Log in to visit this page");
-
     return <Navigate state={attemptURL} to={"/login"}></Navigate>;
   }
 

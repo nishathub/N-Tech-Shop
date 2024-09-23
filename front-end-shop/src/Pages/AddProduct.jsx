@@ -1,7 +1,5 @@
-import Swal from "sweetalert2";
 import { Radio } from "@material-tailwind/react";
 import { useContext, useState } from "react";
-import "../SweetAlertStyle.css";
 import "./customStyle.css";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";

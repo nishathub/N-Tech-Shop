@@ -1,10 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
-import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
-
-import "../SweetAlertStyle.css";
 import "./customStyle.css";
 import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
@@ -96,7 +93,7 @@ const Login = () => {
           </form>
           <div className="mt-4">
             <h2>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 to={"/register"}
                 className="text-black bg-gray-100 p-1 rounded-md hover:bg-white duration-300"

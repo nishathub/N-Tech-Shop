@@ -10,9 +10,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
-import "../SweetAlertStyle.css";
 
 const ProductDetails = () => {
   const [isPhysicalSpecOpen, setPhysicalSpecOpen] = useState(false);

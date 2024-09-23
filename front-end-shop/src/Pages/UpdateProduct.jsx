@@ -1,6 +1,4 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import "../SweetAlertStyle.css";
 import { Radio } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import "./customStyle.css";

@@ -4,9 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 import { MdOutlineSecurity } from "react-icons/md";
 
-import Swal from "sweetalert2";
-import "../../SweetAlertStyle.css";
-
 const Navbar2 = () => {
   const {
     loading,

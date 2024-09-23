@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
-import Swal from "sweetalert2";
-import "../SweetAlertStyle.css";
 import "./customStyle.css";
 import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 

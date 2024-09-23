@@ -1,11 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { GiMoneyStack, GiReturnArrow, GiCheckedShield } from "react-icons/gi";
 import { TbBrandAuth0 } from "react-icons/tb";
-
-import Swal from "sweetalert2";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CartItem2 from "../Components/CartItem/CartItem2";
-import "../SweetAlertStyle.css";
 import { Link } from "react-router-dom";
 import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
