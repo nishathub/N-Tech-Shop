@@ -4,18 +4,20 @@ import { useContext, useState } from "react";
 import "../SweetAlertStyle.css";
 import "./customStyle.css";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
+import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const AddProduct = () => {
   const [rating, setRating] = useState("3");
-  const {customAlert} = useContext(BrandShopContext);
+  const { customAlert } = useContext(BrandShopContext);
+  const [isAddLoading, setAddLoading] = useState(false);
 
   const handleRatingInput = (e) => {
     setRating(e.target.value);
   };
 
-  const handleAddProduct = (e) => {
+  const handleAddProduct = async (e) => {
     e.preventDefault();
-
+    setAddLoading(true);
     const form = e.target;
 
     const name = form.name.value;
@@ -43,33 +45,40 @@ const AddProduct = () => {
       box,
     };
     console.log(newProduct);
-
-    fetch(
-      "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(newProduct),
-      },
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          customAlert("Product added")
-          // form.reset();
+    try {
+      const response = await fetch(
+        "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newProduct),
         }
-      })
-      .catch((error) => {
-        console.log('error adding product : ', error); 
-        customAlert("Error")
-      })
+      );
+      const data = await response.json();
+      console.log(data);
+      if (data.insertedId) {
+        customAlert("Product added");
+        // form.reset();
+      }
+    } catch (error) {
+      console.error("error adding product : ", error);
+      customAlert("Error");
+    } finally{
+      setAddLoading(false);
+    }
   };
+
   return (
     <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
-      <div className="max-w-5xl mx-auto bg-[#D7D8D9] p-4 sm:p-12 custom-login-register">
+      <div className="max-w-5xl mx-auto bg-[#D7D8D9] p-4 sm:p-12 custom-login-register relative">
+      {isAddLoading && (
+        <div className="absolute bg-white/40 inset-0 flex items-center justify-center">
+          {" "}
+          <CustomLoading size={32}></CustomLoading>
+        </div>
+      )}
         <h2 className="text-xl md:text-3xl text-center font-bold mb-8">
           Add a New Product Here
         </h2>
