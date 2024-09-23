@@ -1,11 +1,13 @@
 import Swal from "sweetalert2";
 import { Radio } from "@material-tailwind/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "../SweetAlertStyle.css";
 import "./customStyle.css";
+import { BrandShopContext } from "../AuthProvider/AuthProvider";
 
 const AddProduct = () => {
   const [rating, setRating] = useState("3");
+  const {customAlert} = useContext(BrandShopContext);
 
   const handleRatingInput = (e) => {
     setRating(e.target.value);
@@ -56,19 +58,14 @@ const AddProduct = () => {
       .then((data) => {
         console.log(data);
         if (data.insertedId) {
-          Swal.fire({
-            title: "Your product added",
-            timer: 2000,
-            showConfirmButton: false,
-            customClass: {
-              container: "swal-custom-container",
-              title: "swal-custom-title",
-              content: "swal-custom-content",
-            },
-          });
+          customAlert("Product added")
           // form.reset();
         }
-      });
+      })
+      .catch((error) => {
+        console.log('error adding product : ', error); 
+        customAlert("Error")
+      })
   };
   return (
     <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">

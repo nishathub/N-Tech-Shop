@@ -5,21 +5,22 @@ import Swal from "sweetalert2";
 import "../SweetAlertStyle.css";
 
 const PrivateRoutes = ({ children }) => {
-  const { loading, user } = useContext(BrandShopContext);
+  const { loading, user, customAlert } = useContext(BrandShopContext);
   const location = useLocation();
   const attemptURL = location.pathname;
 
   if (loading) {
     return <h2>Loading</h2>;
   } else if (!user) {
-    Swal.fire({
-      title: "Log In to Visit this page",
-      customClass: {
-        container: "swal-custom-container",
-        title: "swal-custom-title",
-        text: "swal-custom-text",
-      },
-    });
+    // Swal.fire({
+    //   title: "Log In to Visit this page",
+    //   customClass: {
+    //     container: "swal-custom-container",
+    //     title: "swal-custom-title",
+    //     text: "swal-custom-text",
+    //   },
+    // });
+    customAlert("Log in to visit this page");
 
     return <Navigate state={attemptURL} to={"/login"}></Navigate>;
   }

@@ -32,7 +32,7 @@ const ProductDetails = () => {
     box,
     _id,
   } = oneProduct;
-  const { setAddCartClick, user, loading } = useContext(BrandShopContext);
+  const { setAddCartClick, user, loading, customAlert } = useContext(BrandShopContext);
   const discountedPrice = (price * 0.8).toFixed(2);
   const totalStars = 5;
   const location = useLocation();
@@ -52,16 +52,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     // IF USER NOT FOUND
     if (!loading && !user) {
-      Swal.fire({
-        title: "Log in to add product",
-        timer: 2000,
-        showConfirmButton: false,
-        customClass: {
-          container: "swal-custom-container",
-          title: "swal-custom-title",
-          content: "swal-custom-content",
-        },
-      });
+      customAlert("Log in to add products")
       return navigate("/login", { state: attemptURL });
     }
 
@@ -79,16 +70,7 @@ const ProductDetails = () => {
         );
 
         if (itemExists) {
-          Swal.fire({
-            title: "Item already in the cart",
-            timer: 2000,
-            showConfirmButton: false,
-            customClass: {
-              container: "swal-custom-container",
-              title: "swal-custom-title",
-              content: "swal-custom-content",
-            },
-          });
+          customAlert("Item already in the cart");
         } else {
           // Item not in the cart, proceed to add it
           fetch(
@@ -109,16 +91,7 @@ const ProductDetails = () => {
             .then((data) => {
               console.log(data);
               if (data.insertedId) {
-                Swal.fire({
-                  title: "Item Added to the Cart",
-                  timer: 2000,
-                  showConfirmButton: false,
-                  customClass: {
-                    container: "swal-custom-container",
-                    title: "swal-custom-title",
-                    content: "swal-custom-content",
-                  },
-                });
+                customAlert("Item Added to the Cart");
                 setAddCartClick(true);
               }
             })

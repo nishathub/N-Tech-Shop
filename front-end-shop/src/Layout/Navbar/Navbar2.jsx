@@ -18,6 +18,7 @@ const Navbar2 = () => {
     allProducts,
     foundProducts,
     setFoundProduct,
+    customAlert,
   } = useContext(BrandShopContext);
   const [isOpen, setIsOpen] = useState(false);
   const [showSearchItems, setShowSearchItems] = useState(false);
@@ -38,7 +39,7 @@ const Navbar2 = () => {
     const inputValue = e.target.value.toLowerCase();
     setSearchInput(inputValue);
     const foundItems = allProducts.filter((product) =>
-      product.name.toLowerCase().includes(inputValue),
+      product.name.toLowerCase().includes(inputValue)
     );
     setFoundProduct(foundItems);
   };
@@ -72,16 +73,7 @@ const Navbar2 = () => {
 
   const handleLogOut = () => {
     logOutUser().then(() => {
-      Swal.fire({
-        title: "Logged Out",
-        timer: 1000,
-        showConfirmButton: false,
-        customClass: {
-          container: "swal-custom-container",
-          title: "swal-custom-title",
-          text: "swal-custom-text",
-        },
-      });
+      customAlert("Logged out");
 
       setTimeout(() => {
         navigate("/login");
@@ -192,7 +184,9 @@ const Navbar2 = () => {
                   <div className="flex items-center gap-1">
                     <h2
                       title="Admin"
-                      className={`text-xl ${isAdmin ? "text-orange-900" : "hidden"}`}
+                      className={`text-xl ${
+                        isAdmin ? "text-orange-900" : "hidden"
+                      }`}
                     >
                       <MdOutlineSecurity />
                     </h2>
@@ -299,7 +293,9 @@ const Navbar2 = () => {
                           {user.displayName}
                         </li>
                         <li
-                          className={`${isAdmin ? "text-orange-400" : "hidden"} text-center`}
+                          className={`${
+                            isAdmin ? "text-orange-400" : "hidden"
+                          } text-center`}
                         >
                           <div className="flex items-center gap-2 mx-auto">
                             <p>
@@ -329,7 +325,9 @@ const Navbar2 = () => {
       {/* SEARCH-BOX */}
       <div
         ref={searchBoxRef}
-        className={`${!showSearchItems && "hidden"} md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 mt-16 lg:mt-0 left-1/2 -translate-x-1/2 lg:-translate-x-2/3 overflow-y-scroll`}
+        className={`${
+          !showSearchItems && "hidden"
+        } md:w-96 w-80 h-80 rounded-md bg-blue-gray-300 absolute z-20 mt-16 lg:mt-0 left-1/2 -translate-x-1/2 lg:-translate-x-2/3 overflow-y-scroll`}
       >
         {!foundProducts.length && (
           <div className="p-4">

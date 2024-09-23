@@ -27,6 +27,9 @@ const AuthProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   // Checkout page button
   const [isOrderPlaced, setOrderPlaced] = useState(false);
+  // Custom Alert
+  const [isToastActive, setToastActive] = useState(false);
+  const [toastText, setToastText] = useState("");
 
   // Cart code start here
   const [loadCart, setLoadCart] = useState(true);
@@ -140,6 +143,15 @@ const AuthProvider = ({ children }) => {
       .catch((error) => console.log(error));
   }, []);
 
+    // CUSTOM ALERT (SIMILAR TO TOAST)
+    const customAlert = (alertText) => {
+      setToastText(alertText);
+      setToastActive(true);
+      setTimeout(() => {
+        setToastActive(false);
+      }, 1500);
+    };
+
   const authData = {
     user,
     loading,
@@ -157,7 +169,12 @@ const AuthProvider = ({ children }) => {
     setCartItemQuantities,
     cartsubTotal,
     setcartSubTotal,
+    isToastActive, 
+    toastText,
+    setToastActive,
+    setToastText,
     tax,
+    customAlert,
     setTax,
     discount,
     setDiscount,

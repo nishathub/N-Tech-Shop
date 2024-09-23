@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar2 from "../Layout/Navbar/Navbar2";
 import "../../googleFontStyle.css";
+import BToast from "../Components/Shared/BToast/BToast";
 
 const Root = () => {
   function ScrollToTop() {
@@ -18,6 +19,7 @@ const Root = () => {
   }
   return (
     <div className="bg-[#BABCBF] montserrat-regular">
+      <BToast></BToast>
       <div className="">
         <ScrollToTop></ScrollToTop>
 

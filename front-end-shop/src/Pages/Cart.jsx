@@ -7,6 +7,7 @@ import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CartItem2 from "../Components/CartItem/CartItem2";
 import "../SweetAlertStyle.css";
 import { Link } from "react-router-dom";
+import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const Cart = () => {
   const {
@@ -24,80 +25,38 @@ const Cart = () => {
     cartItemsTotalPrice,
     setCartItemTotalPrice,
     isOrderPlaced,
+    customAlert,
   } = useContext(BrandShopContext);
+  const [isLoading, setLoading] = useState(false);
 
   const deliveryCharge = 70;
 
-  const handleDeleteCartItem = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-      customClass: {
-        container: "swal-custom-container",
-        title: "swal-custom-title",
-        text: "swal-custom-text",
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(
-          `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${id}`,
-          {
-            method: "DELETE",
-          },
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            if (data) {
-              console.log(data);
-              Swal.fire({
-                title: "Deleted",
-                text: "You won't be able to revert this!",
-                showConfirmButton: false,
-                timer: 2000,
-                customClass: {
-                  container: "swal-custom-container",
-                  title: "swal-custom-title",
-                  content: "swal-custom-content",
-                },
-              });
-              const updatedCartItems = showCartItems.filter(
-                (item) => item._id !== id,
-              );
-              setShowCartItems(updatedCartItems);
-            } else {
-              Swal.fire({
-                title: "Error",
-                text: "Something went wrong",
-                timer: 2000,
-                showConfirmButton: false,
-                customClass: {
-                  container: "swal-custom-container",
-                  title: "swal-custom-title",
-                  content: "swal-custom-content",
-                },
-              });
-            }
-          })
-          .catch((error) => {
-            Swal.fire({
-              title: "Error",
-              text: "Something went wrong",
-              timer: 2000,
-              showConfirmButton: false,
-              customClass: {
-                container: "swal-custom-container",
-                title: "swal-custom-title",
-                content: "swal-custom-content",
-              },
-            });
-            console.error("Error deleting cart item:", error);
-          });
+  const handleDeleteCartItem = async (id) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        customAlert(response.statusText || "Error");
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
-    });
+
+      const result = await response.json();
+      console.log("Item deleted successfully:", result);
+      customAlert("Deleted");
+      const updatedCartItems = showCartItems.filter((item) => item._id !== id);
+      setShowCartItems(updatedCartItems);
+    } catch (error) {
+      console.error("Failed to delete the item:", error);
+      customAlert("Error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const updateCartItemQuantities = (id, quantity) => {
@@ -125,30 +84,12 @@ const Cart = () => {
     const form = e.target;
     const couponCode = form.coupon.value;
     if (couponCode === "NTECH10") {
-      Swal.fire({
-        title: "10% Discounted",
-        timer: 2000,
-        showConfirmButton: false,
-        customClass: {
-          container: "swal-custom-container",
-          title: "swal-custom-title",
-          content: "swal-custom-content",
-        },
-      });
+      customAlert("10% discounted");
       return setDiscount((0.1 * cartsubTotal).toFixed(2));
     }
     // If coupon not matched
 
-    Swal.fire({
-      title: "No coupon found",
-      timer: 2000,
-      showConfirmButton: false,
-      customClass: {
-        container: "swal-custom-container",
-        title: "swal-custom-title",
-        content: "swal-custom-content",
-      },
-    });
+    customAlert("No coupon found");
     return setDiscount(0);
   };
 
@@ -178,7 +119,13 @@ const Cart = () => {
   }, [totalAmount, setCartItemTotalPrice]);
 
   return (
-    <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900">
+    <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900 relative">
+      {isLoading && (
+        <div className="absolute bg-white/40 inset-0 flex items-center justify-center">
+          {" "}
+          <CustomLoading size={32}></CustomLoading>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-1">
         {cartDisplayLoading ? (
           <h2>Loading</h2>

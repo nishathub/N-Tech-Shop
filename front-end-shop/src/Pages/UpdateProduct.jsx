@@ -2,10 +2,12 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../SweetAlertStyle.css";
 import { Radio } from "@material-tailwind/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./customStyle.css";
+import { BrandShopContext } from "../AuthProvider/AuthProvider";
 
 const UpdateProduct = () => {
+  const {customAlert} = useContext(BrandShopContext);
   const oldProduct = useLoaderData();
   const {
     name,
@@ -67,7 +69,7 @@ const UpdateProduct = () => {
           "content-type": "application/json",
         },
         body: JSON.stringify(updatedProduct),
-      },
+      }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -106,52 +108,24 @@ const UpdateProduct = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             if (data) {
               console.log(data);
-              Swal.fire({
-                title: "Deleted",
-                text: "You won't be able to revert this!",
-                timer: 2000,
-                showConfirmButton: false,
-                customClass: {
-                  container: "swal-custom-container",
-                  title: "swal-custom-title",
-                  content: "swal-custom-content",
-                },
-              });
+              customAlert("Deleted")
 
               setTimeout(() => {
                 navigate(`/products/brand/${brand}`);
               }, 2000);
             } else {
-              Swal.fire({
-                title: "Error",
-                text: "Something went wrong",
-                timer: 2000,
-                customClass: {
-                  container: "swal-custom-container",
-                  title: "swal-custom-title",
-                  content: "swal-custom-content",
-                },
-              });
+              customAlert("Something went wrong!");
             }
           })
           .catch((error) => {
-            Swal.fire({
-              title: "Error",
-              text: "Something went wrong",
-              timer: 2000,
-              customClass: {
-                container: "swal-custom-container",
-                title: "swal-custom-title",
-                content: "swal-custom-content",
-              },
-            });
+            customAlert("Something went wrong!");
             console.error("Error deleting product:", error);
           });
       }
