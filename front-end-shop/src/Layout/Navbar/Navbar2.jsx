@@ -191,14 +191,14 @@ const Navbar2 = () => {
                       <MdOutlineSecurity />
                     </h2>
                     <h2 className="md:text-lg text-gray-900 font-semibold hidden lg:block">
-                      {user.displayName}
+                      {user?.displayName ? user.displayName : ""}
                     </h2>
                     <h2
                       className={`md:text-lg text-gray-900 font-semibold lg:hidden`}
                     >
-                      {user.displayName.length < 10
+                      {user?.displayName?.length < 10
                         ? user.displayName
-                        : user.displayName.slice(0, 10) + ".."}
+                        : user.displayName?.slice(0, 10) + ".."}
                     </h2>
                   </div>
                   <div

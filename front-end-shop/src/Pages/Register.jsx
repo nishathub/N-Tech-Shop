@@ -1,17 +1,26 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import "../SweetAlertStyle.css";
 import "./customStyle.css";
+import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const Register = () => {
-  const { user, createNewUser, updateUser, errorMessage, setErrorMessage } =
-    useContext(BrandShopContext);
+  const {
+    user,
+    createNewUser,
+    updateUser,
+    errorMessage,
+    setErrorMessage,
+    customAlert,
+  } = useContext(BrandShopContext);
+  const [isCreateAccountLoading, setCreateAccountLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-
+    setErrorMessage("");
     const form = e.target;
 
     const photo = form.photo.value;
@@ -27,43 +36,36 @@ const Register = () => {
       setErrorMessage("Password should have at least one capital letter");
     } else if (!hasSpecial.test(password)) {
       setErrorMessage(
-        "Password should have at least one special (@#$...) Character",
+        "Password should have at least one special (@#$...) Character"
       );
     } else {
-      createNewUser(email, password)
-        .then((result) => {
-          console.log(result.user);
-          Swal.fire({
-            title: "Account Created",
-            timer: 1000,
-            showConfirmButton: false,
-            customClass: {
-              container: "swal-custom-container",
-              title: "swal-custom-title",
-              text: "swal-custom-text",
-            },
-          });
-          updateUser(name, photo)
-            .then(() => {
-              Swal.fire({
-                text: "Info Updated",
-                timer: 1000,
-                showConfirmButton: false,
-                customClass: {
-                  container: "swal-custom-container",
-                  title: "swal-custom-title",
-                  text: "swal-custom-text",
-                },
-              });
-              form.reset();
-            })
-            .catch((error) => {
-              setErrorMessage(error);
-            });
-        })
-        .catch((error) => {
-          setErrorMessage(error);
-        });
+      setCreateAccountLoading(true);
+      try {
+        const result = await createNewUser(email, password);
+        console.log(result.user);
+        customAlert("Account Created");
+        // Redirect to Home Page
+        setTimeout(() => {
+          navigate("/");
+          customAlert("Redirected to Homepage");
+        }, 4000);
+        //Update user info
+        setTimeout(async () => {
+          await updateUser(name, photo);
+          customAlert("Info Updated");
+        }, 2000);
+        // form.reset();
+      } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          setErrorMessage("This email is already associated with an account.");
+          customAlert("Email already in use");
+        } else {
+          setErrorMessage(error.message);
+          customAlert("Error occurred");
+        }
+      } finally {
+        setCreateAccountLoading(false);
+      }
     }
 
     // form.reset(); // clear the form
@@ -72,7 +74,13 @@ const Register = () => {
   return (
     <div className="bg-[#BABCBF]">
       <div className="max-w-5xl mx-auto md:py-20 p-4 md:p-0 text-gray-900">
-        <div className="bg-[#D9D9D9] p-4 sm:p-12 max-w-2xl mx-auto rounded-sm custom-login-register">
+        <div className="bg-[#D9D9D9] p-4 sm:p-12 max-w-2xl mx-auto rounded-sm custom-login-register relative">
+          {isCreateAccountLoading && (
+            <div className="absolute bg-white/40 inset-0 flex items-center justify-center ">
+              {" "}
+              <CustomLoading size={24}></CustomLoading>
+            </div>
+          )}
           <h2 className="text-xl md:text-3xl text-center font-semibold mb-4">
             Register Here
           </h2>
