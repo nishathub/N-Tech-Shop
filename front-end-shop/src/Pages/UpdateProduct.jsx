@@ -5,9 +5,11 @@ import { Radio } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import "./customStyle.css";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
+import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const UpdateProduct = () => {
-  const {customAlert} = useContext(BrandShopContext);
+  const { customAlert } = useContext(BrandShopContext);
+  const [isUpdateLoading, setUpdateLoading] = useState(false);
   const oldProduct = useLoaderData();
   const {
     name,
@@ -31,8 +33,9 @@ const UpdateProduct = () => {
   };
 
   // Update function
-  const handleUpdateProduct = (e) => {
+  const handleUpdateProduct = async (e) => {
     e.preventDefault();
+    setUpdateLoading(true);
 
     const form = e.target;
 
@@ -61,83 +64,73 @@ const UpdateProduct = () => {
       box,
     };
     console.log(updatedProduct);
-    fetch(
-      `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedProduct),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          Swal.fire({
-            title: "Your product updated",
-            timer: 2000,
-            showConfirmButton: false,
-            customClass: {
-              container: "swal-custom-container",
-              title: "swal-custom-title",
-              content: "swal-custom-content",
-            },
-          });
-          setTimeout(() => {
-            navigate(`/products/brand/${brand}`);
-          }, 2000);
+
+    try {
+      const response = await fetch(
+        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${_id}`,
+        {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedProduct),
         }
-      })
-      .catch((error) => console.error(error));
+      );
+      const data = await response.json();
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        customAlert("Product Updated");
+        setTimeout(() => {
+          navigate(`/products/brand/${brand}`);
+        }, 2000);
+      }
+    } catch (error) {
+      console.error(error);
+      customAlert("Error");
+    } finally {
+      setUpdateLoading(false);
+    }
   };
   // Delete Function
-  const handleDeleteProduct = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-      customClass: {
-        container: "swal-custom-container",
-        title: "swal-custom-title",
-        text: "swal-custom-text",
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${id}`, {
+  const handleDeleteProduct = async (id) => {
+    setUpdateLoading(true);
+    try {
+      const response = await fetch(
+        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${id}`,
+        {
           method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data) {
-              console.log(data);
-              customAlert("Deleted")
-
-              setTimeout(() => {
-                navigate(`/products/brand/${brand}`);
-              }, 2000);
-            } else {
-              customAlert("Something went wrong!");
-            }
-          })
-          .catch((error) => {
-            customAlert("Something went wrong!");
-            console.error("Error deleting product:", error);
-          });
+        }
+      );
+      if (!response.ok) {
+        customAlert("Error");
+        throw new Error(`${response.status} : ${response.statusText}`);
       }
-    });
+      const result = await response.json();
+      console.log(result);
+      customAlert("Deleted");
+      setTimeout(() => {
+        navigate(`/products/brand/${brand}`);
+      }, 2000);
+    } catch (error) {
+      console.error("error delete product ", error);
+      customAlert("Error");
+    } finally {
+      setUpdateLoading(false);
+    }
   };
 
   return (
     <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
-      <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register">
+      <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register relative">
         <h2 className="text-xl md:text-3xl text-center font-semibold mb-4">
           Update Your Product Here
         </h2>
+        {isUpdateLoading && (
+          <div className="absolute bg-white/40 inset-0 flex items-center justify-center">
+            {" "}
+            <CustomLoading size={32}></CustomLoading>
+          </div>
+        )}
         <form onSubmit={handleUpdateProduct} className="space-y-2">
           <div className="md:flex gap-4">
             <input
