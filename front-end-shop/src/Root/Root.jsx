@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Navbar2 from "../Layout/Navbar/Navbar2";
 import "../../googleFontStyle.css";
 import BToast from "../Components/Shared/BToast/BToast";
+import CustomNavbar from "../Layout/Navbar/CustomNavbar";
 
 const Root = () => {
   function ScrollToTop() {
@@ -19,11 +20,10 @@ const Root = () => {
   return (
     <div className="bg-[#BABCBF] montserrat-regular">
       <BToast></BToast>
-      <div className="">
+      <div className="flex flex-col min-h-screen">
         <ScrollToTop></ScrollToTop>
-
-        <Navbar2></Navbar2>
-        <div className="pt-20">
+        <CustomNavbar></CustomNavbar>
+        <div className="pt-20 flex-grow">
           <Outlet></Outlet>
         </div>
         <Footer></Footer>

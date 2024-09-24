@@ -17,7 +17,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-
   // All Products
   const [allProducts, setAllProducts] = useState([]);
   // Searched Products
@@ -31,7 +30,7 @@ const AuthProvider = ({ children }) => {
   const [isToastActive, setToastActive] = useState(false);
   const [toastText, setToastText] = useState("");
 
-  // Cart code start here
+  // CART CODE START HERE
   const [loadCart, setLoadCart] = useState(true);
   const [cartItems, setCartItems] = useState([]);
   const [showCartItems, setShowCartItems] = useState([]);
@@ -94,7 +93,11 @@ const AuthProvider = ({ children }) => {
     }
   }, [showCartItems]);
 
-  // Cart code ends here
+  // CART CODE ENDS HERE
+
+  // NAVBAR CODE STARTS HERE
+  
+  // NAVBAR CODE ENDS HERE
 
   const createNewUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);

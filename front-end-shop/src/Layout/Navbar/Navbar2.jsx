@@ -78,7 +78,7 @@ const Navbar2 = () => {
     });
   };
 
-  const links = isAdmin ? (
+  const navLinks = isAdmin ? (
     <>
       <label className="input flex justify-between items-center md:w-96 font-semibold">
         <input
@@ -111,7 +111,7 @@ const Navbar2 = () => {
 
   return (
     <div
-      className={`bg-[rgba(224,224,224,0.95)] md:py-2 fixed w-full z-10 custom-login-register`}
+      className={`bg-[rgba(224,224,224,0.95)] fixed w-full top-32 z-10 custom-login-register`}
     >
       <div className="navbar max-w-7xl mx-auto md:px-4 px-1">
         <div className="navbar-start">
@@ -140,9 +140,9 @@ const Navbar2 = () => {
             {isOpen && (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content font-semibold mt-3 z-[1] p-2 rounded-sm w-52 space-y-2"
+                className="menu menu-sm dropdown-content font-semibold mt-3 z-[1] p-2 rounded-sm w-72  bg-black space-y-2"
               >
-                {links}
+                {navLinks}
               </ul>
             )}
           </div>
@@ -162,7 +162,7 @@ const Navbar2 = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal font-bold space-x-2">{links}</ul>
+          <ul className="menu menu-horizontal font-bold space-x-2">{navLinks}</ul>
         </div>
         {/* CART AND AVATAR  */}
         <div className="navbar-end">
@@ -319,7 +319,7 @@ const Navbar2 = () => {
           )}
         </div>
       </div>
-      {/* SEARCH-BOX */}
+      {/* ABSOLUTE SEARCH-BOX */}
       <div
         ref={searchBoxRef}
         className={`${
