@@ -40,6 +40,7 @@ const BrandProducts = () => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [brandName]);
 
   // To set available categories of a specific brand
@@ -102,7 +103,7 @@ const BrandProducts = () => {
   }
 
   return (
-    <div className="md:pb-12 p-4 md:p-0 bg-[#BABCBF]">
+    <div className="md:pb-12 px-4 md:p-0 bg-[#BABCBF]">
       <div className="max-w-7xl mx-auto">
         <div className="mt-4">
           <div className="w-full mx-auto group">
