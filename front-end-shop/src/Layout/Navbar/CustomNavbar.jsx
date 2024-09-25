@@ -10,6 +10,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 import { MdOutlineSecurity } from "react-icons/md";
+import CustomLoading from "../../Components/Shared/CustomLoading/CustomLoading";
 
 const CustomNavbar = () => {
   const {
@@ -494,7 +495,7 @@ const CustomNavbar = () => {
         {/* RIGHT  */}
         <div className="">
           {loading ? (
-            <h2>loading</h2>
+            <CustomLoading></CustomLoading>
           ) : (
             <div>
               {!user ? (
@@ -529,7 +530,11 @@ const CustomNavbar = () => {
                   <div ref={cartBoxRef} className="relative">
                     {/* ABSOLUTE BADGE */}
                     <p className="absolute -top-2 -right-2 bg-black text-sm text-[#43d6ff] px-2 rounded-full">
-                      {cartDisplayLoading ? "loading" : showCartItems.length}
+                      {cartDisplayLoading ? (
+                        <CustomLoading size={12}></CustomLoading>
+                      ) : (
+                        showCartItems.length
+                      )}
                     </p>
                     {/* ABSOLUTE CART-BOX */}
                     <div className=" absolute top-16 right-0 w-52 md:w-80 rounded-md bg-base-100">
@@ -564,24 +569,25 @@ const CustomNavbar = () => {
                     {/* ABSOLUTE PROFILE CARD  */}
                     <div className="absolute top-16 right-0">
                       {isProfileActive && (
-                        <ul className="menu mt-3 p-4 bg-base-100 rounded-sm w-52 md:w-80 space-y-3">
+                        <ul className="mt-1 p-4 bg-base-100 rounded-sm w-52 md:w-80 space-y-3 ">
                           <li>
-                            <div className="w-20 rounded-full mx-auto">
+                            <div className="w-20 rounded-full mx-auto p-2">
                               <img
-                                className=""
+                                className="rounded-full"
                                 alt="User-Photo"
-                                src={
-                                  user?.photoURL ? user.photoURL : altUserPhoto
-                                }
+                                src={user?.photoURL || altUserPhoto}
+                                onError={(e) => {
+                                  e.target.src = altUserPhoto;
+                                }}
                               />
                             </div>
                           </li>
-                          <li className="md:text-lg text-gray-200 text-center">
+                          <li className="md:text-lg text-gray-200 ">
                             {user.displayName}
                           </li>
                           <li
                             className={`${
-                              isAdmin ? "text-orange-400" : "hidden"
+                              isAdmin ? "text-orange-400 text-sm" : "hidden"
                             } text-center`}
                           >
                             <div className="flex items-center gap-2 mx-auto">
@@ -591,14 +597,22 @@ const CustomNavbar = () => {
                               <p>Admin</p>
                             </div>
                           </li>
-                          <li className="md:text-lg text-center text-[#3BBFE3]">
+                          <li className="md:text-lg text-[#3BBFE3]">
                             {user.email}
                           </li>
-                          <li
-                            className="md:text-lg text-error"
-                            onClick={handleLogOut}
-                          >
-                            <a className="btn btn-sm btn-error">Logout</a>
+
+                          <li className={`${isAdmin ? "" : "hidden"}`}>
+                            <Link
+                              to={"/admin-dashboard"}
+                              className="btn btn-sm btn-accent w-full"
+                            >
+                              Admin Dashboard
+                            </Link>
+                          </li>
+                          <li className="" onClick={handleLogOut}>
+                            <a className="btn btn-sm btn-error w-full">
+                              Logout
+                            </a>
                           </li>
                         </ul>
                       )}
@@ -608,8 +622,12 @@ const CustomNavbar = () => {
                       className="w-10  rounded-full"
                     >
                       <img
+                        className="rounded-full"
                         alt="User-Photo"
-                        src={user?.photoURL ? user.photoURL : altUserPhoto}
+                        src={user?.photoURL || altUserPhoto}
+                        onError={(e) => {
+                          e.target.src = altUserPhoto;
+                        }}
                       />
                     </button>
                   </div>

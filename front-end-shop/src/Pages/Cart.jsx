@@ -100,6 +100,7 @@ const Cart = () => {
       const formattedTax = tax.toFixed(2);
       setTax(formattedTax);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     cartItemQuantities,
     showCartItems,
@@ -125,7 +126,10 @@ const Cart = () => {
       )}
       <div className="max-w-7xl mx-auto px-1">
         {cartDisplayLoading ? (
-          <h2>Loading</h2>
+          <div className="absolute inset-0 flex items-center justify-center">
+            {" "}
+            <CustomLoading size={32}></CustomLoading>
+          </div>
         ) : (
           <div>
             {showCartItems.length < 1 ? (

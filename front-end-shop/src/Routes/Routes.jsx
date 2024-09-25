@@ -15,6 +15,7 @@ import CategoryProducts from "../Pages/CategoryProducts";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import SearchedProducts from "../Pages/SearchedProducts";
 import Checkout from "../Pages/Checkout";
+import AdminDashboard from "../Pages/AdminDashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -47,6 +48,14 @@ const Routes = createBrowserRouter([
         element: (
           <AdminRoutes>
             <AddProduct></AddProduct>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "/admin-dashboard",
+        element: (
+          <AdminRoutes>
+            <AdminDashboard></AdminDashboard>
           </AdminRoutes>
         ),
       },
