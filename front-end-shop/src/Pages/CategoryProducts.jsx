@@ -25,7 +25,7 @@ const CategoryProducts = () => {
     (category) => category.categoryName === categoryName
   );
   const categoryBgStyle = {
-    backgroundImage: `url(${selectedCategory.categoryPhotoLink})`,
+    backgroundImage: `url(${selectedCategory?.categoryPhotoLink})`,
   };
 
   // Load Category Products

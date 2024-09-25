@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import Footer from "../Layout/Footer/Footer";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Navbar2 from "../Layout/Navbar/Navbar2";
 import "../../googleFontStyle.css";
 import BToast from "../Components/Shared/BToast/BToast";
 import CustomNavbar from "../Layout/Navbar/CustomNavbar";

@@ -27,7 +27,7 @@ const Routes = createBrowserRouter([
         element: <Home></Home>,
         loader: () =>
           fetch(
-            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products`,
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products`
           ),
       },
       {
@@ -59,31 +59,23 @@ const Routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.id}`,
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.id}`
           ),
       },
       {
         path: "/products/brand/:brandName",
         element: <BrandProducts></BrandProducts>,
-        loader: ({ params }) =>
-          fetch(
-            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/brand/${params.brandName}`,
-          ),
       },
       {
         path: "/products/category/:categoryName",
         element: <CategoryProducts></CategoryProducts>,
-        loader: ({ params }) =>
-          fetch(
-            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/category/${params.categoryName}`,
-          ),
       },
       {
         path: "/products/brand/:brandName/:productId",
         element: <ProductDetails></ProductDetails>,
         loader: ({ params }) =>
           fetch(
-            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.productId}`,
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${params.productId}`
           ),
       },
       {
