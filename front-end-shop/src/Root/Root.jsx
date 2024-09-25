@@ -23,7 +23,7 @@ const Root = () => {
       <div className="flex flex-col min-h-screen">
         <ScrollToTop></ScrollToTop>
         <CustomNavbar></CustomNavbar>
-        <div className="pt-20 flex-grow">
+        <div className="pt-20 flex-grow min-h-96">
           <Outlet></Outlet>
         </div>
         <Footer></Footer>

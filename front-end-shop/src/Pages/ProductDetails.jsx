@@ -4,12 +4,7 @@ import {
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
 
-import {
-  Navigate,
-  useLoaderData,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
 
 const ProductDetails = () => {
@@ -18,19 +13,16 @@ const ProductDetails = () => {
   const oneProduct = useLoaderData();
   const {
     name,
-    brand,
     color,
     price,
     image,
     rating,
-    type,
     country,
     year,
-    warranty,
-    box,
     _id,
   } = oneProduct;
-  const { setAddCartClick, user, loading, customAlert } = useContext(BrandShopContext);
+  const { setAddCartClick, user, loading, customAlert } =
+    useContext(BrandShopContext);
   const discountedPrice = (price * 0.8).toFixed(2);
   const totalStars = 5;
   const location = useLocation();
@@ -50,7 +42,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     // IF USER NOT FOUND
     if (!loading && !user) {
-      customAlert("Log in to add products")
+      customAlert("Log in to add products");
       return navigate("/login", { state: attemptURL });
     }
 
@@ -59,12 +51,12 @@ const ProductDetails = () => {
     // TO RESTRICT ADDING SAME PRODUCT
 
     fetch(
-      `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`,
+      `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
     )
       .then((res) => res.json())
       .then((cartItems) => {
         const itemExists = cartItems.some(
-          (item) => item.productId === _id && item.email === userMail,
+          (item) => item.productId === _id && item.email === userMail
         );
 
         if (itemExists) {
@@ -83,7 +75,7 @@ const ProductDetails = () => {
                 name: name,
                 email: userMail,
               }),
-            },
+            }
           )
             .then((res) => res.json())
             .then((data) => {
