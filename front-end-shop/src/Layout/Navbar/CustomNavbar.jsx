@@ -35,6 +35,8 @@ const CustomNavbar = () => {
   const cartBoxRef = useRef();
   const navMenuRef = useRef();
   const profileBoxRef = useRef();
+  const categoryNavRef = useRef();
+  const brandNavRef = useRef();
   const altUserPhoto =
     "https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg";
 
@@ -74,6 +76,17 @@ const CustomNavbar = () => {
       }
       if (navMenuRef.current && !navMenuRef.current.contains(e.target)) {
         setMenuActive(false);
+      }
+      if (window.innerWidth >= 960) {
+        if (
+          categoryNavRef.current &&
+          !categoryNavRef.current.contains(e.target)
+        ) {
+          setCategoryOpen(false);
+        }
+        if (brandNavRef.current && !brandNavRef.current.contains(e.target)) {
+          setBrandsOpen(false);
+        }
       }
     };
 
@@ -123,7 +136,7 @@ const CustomNavbar = () => {
           </h2>
         </Link>
       </div>
-      <div className="w-40 lg:w-28">
+      <div ref={categoryNavRef} className="w-40 lg:w-28 rounded-md relative">
         <div
           onClick={() => setCategoryOpen(!isCategoryOpen)}
           className="flex justify-between items-center bg-gray-200 p-2 rounded-md hover:cursor-pointer"
@@ -139,7 +152,11 @@ const CustomNavbar = () => {
           </span>
         </div>
         <div style={specificationStyle}>
-          <div className="p-4 flex flex-col gap-2">
+          <div
+            className={`flex flex-col gap-2 lg:bg-base-100 rounded-md lg:w-28 lg:absolute ${
+              isCategoryOpen ? "h-fit p-4 " : "h-0 p-0 overflow-hidden"
+            } duration-300`}
+          >
             <NavLink
               className={"hover:text-white duration-300"}
               to={"/products/category/Laptop"}
@@ -179,7 +196,7 @@ const CustomNavbar = () => {
           </div>
         </div>
       </div>
-      <div className="w-40 lg:w-28">
+      <div ref={brandNavRef} className="w-40 lg:w-28 rounded-md relative">
         <div
           onClick={() => setBrandsOpen(!isBrandsOpen)}
           className="flex justify-between bg-gray-200 p-2 rounded-md hover:cursor-pointer"
@@ -195,7 +212,11 @@ const CustomNavbar = () => {
           </span>
         </div>
         <div style={displayStyle}>
-          <div className="p-4 flex flex-col gap-2">
+          <div
+            className={`flex flex-col gap-2 lg:bg-base-100 rounded-md lg:w-28 lg:absolute ${
+              isBrandsOpen ? "h-fit p-4 " : "h-0 p-0 overflow-hidden"
+            } duration-300`}
+          >
             <NavLink
               className={"hover:text-white duration-300"}
               to={"/products/brand/Google"}
@@ -253,7 +274,7 @@ const CustomNavbar = () => {
           </h2>
         </Link>
       </div>
-      <div className="w-40 lg:w-28">
+      <div ref={categoryNavRef} className="w-40 lg:w-28 rounded-md relative">
         <div
           onClick={() => setCategoryOpen(!isCategoryOpen)}
           className="flex justify-between items-center bg-gray-200 p-2 rounded-md hover:cursor-pointer"
@@ -269,7 +290,11 @@ const CustomNavbar = () => {
           </span>
         </div>
         <div style={specificationStyle}>
-          <div className="p-4 flex flex-col gap-2">
+          <div
+            className={`flex flex-col gap-2 lg:bg-base-100 rounded-md lg:w-28 lg:absolute ${
+              isCategoryOpen ? "h-fit p-4 " : "h-0 p-0 overflow-hidden"
+            } duration-300`}
+          >
             <NavLink
               className={"hover:text-white duration-300"}
               to={"/products/category/Laptop"}
@@ -309,7 +334,7 @@ const CustomNavbar = () => {
           </div>
         </div>
       </div>
-      <div className="w-40 lg:w-28">
+      <div ref={brandNavRef} className="w-40 lg:w-28 rounded-md relative">
         <div
           onClick={() => setBrandsOpen(!isBrandsOpen)}
           className="flex justify-between bg-gray-200 p-2 rounded-md hover:cursor-pointer"
@@ -325,7 +350,11 @@ const CustomNavbar = () => {
           </span>
         </div>
         <div style={displayStyle}>
-          <div className="p-4 flex flex-col gap-2">
+          <div
+            className={`flex flex-col gap-2 lg:bg-base-100 rounded-md lg:w-28 lg:absolute ${
+              isBrandsOpen ? "h-fit p-4 " : "h-0 p-0 overflow-hidden"
+            } duration-300`}
+          >
             <NavLink
               className={"hover:text-white duration-300"}
               to={"/products/brand/Google"}
@@ -411,12 +440,23 @@ const CustomNavbar = () => {
         {/* MIDDLE  */}
         <div className="flex gap-2 items-center">
           <div className="relative">
+            <label className="flex input justify-between items-center w-40 md:w-72">
+              <input
+                className="w-24 md:w-auto"
+                onKeyUp={handleSearchInput}
+                placeholder="search"
+                type="text"
+              />{" "}
+              <Link className="text-2xl" to={"/searchedProducts"}>
+                <CiSearch />
+              </Link>{" "}
+            </label>
             {/* ABSOLUTE SEARCH-BOX */}
             <div
               ref={searchBoxRef}
               className={`${
                 !showSearchItems && "hidden"
-              } w-72 lg:w-80 h-60 lg:h-80 rounded-md bg-base-100 absolute top-[56px] lg:top-[60px] right-1/2 translate-x-1/2 z-20 overflow-y-auto product-search-box`}
+              } w-72 lg:w-80 h-60 lg:h-80 rounded-md bg-base-100 absolute right-1/2 translate-x-1/2 z-20 overflow-y-auto product-search-box`}
             >
               {!foundProducts.length && (
                 <div className="p-4">
@@ -436,7 +476,9 @@ const CustomNavbar = () => {
                         alt="product-image"
                       />
                       <div className="text-right">
-                        <h2 className="font-semibold text-gray-100">{product.name}</h2>
+                        <h2 className="font-semibold text-gray-100">
+                          {product.name}
+                        </h2>
                         <p className="bg-blue-gray-100 w-fit ml-auto px-1 rounded-md">
                           $ {product.price}
                         </p>
@@ -446,17 +488,6 @@ const CustomNavbar = () => {
                 ))}
               </div>
             </div>
-            <label className="flex input justify-between items-center w-40 md:w-72">
-              <input
-                className="w-24 md:w-auto"
-                onKeyUp={handleSearchInput}
-                placeholder="search"
-                type="text"
-              />{" "}
-              <Link className="text-2xl" to={"/searchedProducts"}>
-                <CiSearch />
-              </Link>{" "}
-            </label>
           </div>
           <div className="font-bold hidden lg:flex gap-2">{navLinks}</div>
         </div>
