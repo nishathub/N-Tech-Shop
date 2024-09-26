@@ -6,7 +6,7 @@ import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const AddProduct = () => {
   const [rating, setRating] = useState("3");
-  const { customAlert } = useContext(BrandShopContext);
+  const { customAlert, setAllProductsRefetch } = useContext(BrandShopContext);
   const [isAddLoading, setAddLoading] = useState(false);
 
   const handleRatingInput = (e) => {
@@ -58,6 +58,7 @@ const AddProduct = () => {
       console.log(data);
       if (data.insertedId) {
         customAlert("Product added");
+        setAllProductsRefetch(true);
         // form.reset();
       }
     } catch (error) {

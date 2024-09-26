@@ -29,9 +29,13 @@ const AuthProvider = ({ children }) => {
   // Custom Alert
   const [isToastActive, setToastActive] = useState(false);
   const [toastText, setToastText] = useState("");
+  //Delete Product
+  const [isDeleteLoading, setDeleteLoading] = useState(false);
+  const [isAllProductsRefetch, setAllProductsRefetch] = useState(false);
 
   // CART CODE START HERE
   const [loadCart, setLoadCart] = useState(true);
+  const [isLoadingAllProducts, setLoadingAllProducts] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [showCartItems, setShowCartItems] = useState([]);
   const [cartDisplayLoading, setCartDisplayLoading] = useState(true);
@@ -47,7 +51,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (!loading) {
       fetch(
-        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`,
+        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -60,25 +64,30 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (!loadCart) {
+      setLoadingAllProducts(true);
       fetch(
-        "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products",
+        "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products"
       )
         .then((res) => res.json())
         .then((data) => {
           setAllProducts(data);
           const cartItemsIds = cartItems.map((item) => item.productId); // collection of cart item ids
           const displayItems = data.filter((product) =>
-            cartItemsIds.includes(product._id),
+            cartItemsIds.includes(product._id)
           ); // match id and get items
           setShowCartItems(displayItems);
           setCartDisplayLoading(false);
+          setLoadingAllProducts(false);
+          setAllProductsRefetch(false);
         })
         .catch((error) => {
           console.error("Error fetching products:", error);
           setCartDisplayLoading(false);
+          setLoadingAllProducts(false);
+          setAllProductsRefetch(false);
         });
     }
-  }, [cartItems, loadCart]);
+  }, [cartItems, loadCart, isAllProductsRefetch]);
 
   // Calculate Total price
   useEffect(() => {
@@ -94,10 +103,6 @@ const AuthProvider = ({ children }) => {
   }, [showCartItems]);
 
   // CART CODE ENDS HERE
-
-  // NAVBAR CODE STARTS HERE
-  
-  // NAVBAR CODE ENDS HERE
 
   const createNewUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -119,6 +124,7 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // Setting Observer for user
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -146,19 +152,47 @@ const AuthProvider = ({ children }) => {
       .catch((error) => console.log(error));
   }, []);
 
-    // CUSTOM ALERT (SIMILAR TO TOAST)
-    const customAlert = (alertText) => {
-      setToastText(alertText);
-      setToastActive(true);
-      setTimeout(() => {
-        setToastActive(false);
-      }, 1500);
-    };
+  // CUSTOM ALERT (SIMILAR TO TOAST)
+  const customAlert = (alertText) => {
+    setToastText(alertText);
+    setToastActive(true);
+    setTimeout(() => {
+      setToastActive(false);
+    }, 1500);
+  };
+
+  // Delete Function
+  const handleDeleteProduct = async (id) => {
+    setDeleteLoading(true);
+    try {
+      const response = await fetch(
+        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        customAlert("Error");
+        throw new Error(`${response.status} : ${response.statusText}`);
+      }
+      const result = await response.json();
+      console.log(result);
+      customAlert("Deleted");
+      setAllProductsRefetch(true);
+
+    } catch (error) {
+      console.error("error delete product ", error);
+      customAlert("Error");
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
 
   const authData = {
     user,
     loading,
     loadCart,
+    isLoadingAllProducts,
     showCartItems,
     cartItemsTotalPrice,
     setCartItemTotalPrice,
@@ -172,7 +206,7 @@ const AuthProvider = ({ children }) => {
     setCartItemQuantities,
     cartsubTotal,
     setcartSubTotal,
-    isToastActive, 
+    isToastActive,
     toastText,
     setToastActive,
     setToastText,
@@ -195,6 +229,9 @@ const AuthProvider = ({ children }) => {
     allProducts,
     foundProducts,
     setFoundProduct,
+    isDeleteLoading,
+    setAllProductsRefetch,
+    handleDeleteProduct
   };
   console.log(isOrderPlaced);
   return (

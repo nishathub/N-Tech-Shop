@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./GalleryProductCardStyle.css";
 import { useContext, useState } from "react";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
-const GalleryProductCard = ({ product }) => {
-  const { isAdmin } = useContext(BrandShopContext);
+const GalleryProductCard = ({
+  product,
+  maxWidth = 384,
+  minWidth = 384,
+  imageHeight = 320,
+}) => {
+  const { isAdmin, handleDeleteProduct } = useContext(BrandShopContext);
   const totalStars = 5;
   const saleStyle = {
     textDecoration: product.rating < 4 ? "line-through" : "none",
@@ -14,7 +19,10 @@ const GalleryProductCard = ({ product }) => {
   const discountedPrice = (product.price * 0.8).toFixed(2);
 
   return (
-    <div className="p-2 rounded-sm bg-[#D7D8D9] hover:bg-gray-100 duration-300 gallery-product-card max-w-96 xl:min-w-96">
+    <div
+      className="p-2 rounded-sm bg-[#D7D8D9] hover:bg-gray-100 duration-300 gallery-product-card max-w-96 xl:min-w-96"
+      style={{ maxWidth: `${maxWidth}px`, minWidth: `${minWidth}px` }}
+    >
       {/* DYNAMIC BADGE ACCORDING TO RATING  */}
       <div className="product-image">
         {product.rating == 5 && (
@@ -30,7 +38,8 @@ const GalleryProductCard = ({ product }) => {
           </div>
         )}
         <img
-          className="h-80 w-full max-w-full object-cover object-center"
+          className={`w-full max-w-full object-cover object-center`}
+          style={{ height: `${imageHeight}px` }}
           src={product.image}
           alt="product-photo"
         />
@@ -79,15 +88,23 @@ const GalleryProductCard = ({ product }) => {
           {isAdmin ? (
             <div className=" ">
               <Link to={`/products/brand/${product.brand}/${product._id}`}>
-                <button className="w-1/2 bg-gray-700 p-2 hover:bg-gray-200 text-gray-200 hover:text-gray-800 duration-300">
+                <button className="w-1/3 bg-gray-900 p-2 hover:bg-gray-800 text-gray-200 duration-300">
                   Details
                 </button>
               </Link>
               <Link
                 to={`/products/brand/${product.brand}/update/${product._id}`}
               >
-                <button className="w-1/2 bg-gray-800 p-2 hover:bg-gray-200 text-gray-200 hover:text-gray-800 duration-300">
+                <button className="w-1/3 bg-blue-900 p-2 hover:bg-blue-800 text-gray-200 duration-300">
                   Update
+                </button>
+              </Link>
+              <Link>
+                <button
+                  onClick={()=>handleDeleteProduct(product._id)}
+                  className="w-1/3 bg-red-900 p-2 hover:bg-red-700 text-gray-200 duration-300"
+                >
+                  Delete
                 </button>
               </Link>
             </div>

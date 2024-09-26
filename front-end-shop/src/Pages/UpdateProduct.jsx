@@ -89,34 +89,7 @@ const UpdateProduct = () => {
       setUpdateLoading(false);
     }
   };
-  // Delete Function
-  const handleDeleteProduct = async (id) => {
-    setUpdateLoading(true);
-    try {
-      const response = await fetch(
-        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (!response.ok) {
-        customAlert("Error");
-        throw new Error(`${response.status} : ${response.statusText}`);
-      }
-      const result = await response.json();
-      console.log(result);
-      customAlert("Deleted");
-      setTimeout(() => {
-        navigate(`/products/brand/${brand}`);
-      }, 2000);
-    } catch (error) {
-      console.error("error delete product ", error);
-      customAlert("Error");
-    } finally {
-      setUpdateLoading(false);
-    }
-  };
-
+  
   return (
     <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
       <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register relative">
@@ -269,12 +242,7 @@ const UpdateProduct = () => {
             />
           </div>
         </form>
-        <button
-          onClick={() => handleDeleteProduct(_id)}
-          className="w-full mt-2 rounded-md p-2 bg-red-900 text-white hover:bg-red-500 duration-300"
-        >
-          Delete
-        </button>
+       
       </div>
     </div>
   );

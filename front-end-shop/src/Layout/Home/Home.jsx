@@ -11,8 +11,6 @@ import CustomLoading from "../../Components/Shared/CustomLoading/CustomLoading";
 const Home = () => {
   const allProducts = useLoaderData();
   const navigation = useNavigation();
-  console.log(navigation.state);
-  
   const oddIndexProducts = allProducts.filter(
     (element, index) => index % 2 === 1
   );
