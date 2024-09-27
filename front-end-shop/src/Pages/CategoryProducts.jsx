@@ -167,11 +167,14 @@ const CategoryProducts = () => {
               Checkout Later
             </h2>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center items-center">
               {displayProducts.map((product) => (
                 <GalleryProductCard
                   key={product._id}
                   product={product}
+                  maxWidth={340}
+                  minWidth={340}
+                  imageHeight={220}
                 ></GalleryProductCard>
               ))}
             </div>

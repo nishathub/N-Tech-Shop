@@ -233,7 +233,6 @@ const AuthProvider = ({ children }) => {
     setAllProductsRefetch,
     handleDeleteProduct
   };
-  console.log(isOrderPlaced);
   return (
     <BrandShopContext.Provider value={authData}>
       {children}

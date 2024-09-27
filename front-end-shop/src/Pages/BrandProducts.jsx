@@ -132,11 +132,14 @@ const BrandProducts = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+        <div className="flex flex-wrap gap-4 justify-center items-center">
           {displayProducts.map((product) => (
             <GalleryProductCard
               key={product._id}
               product={product}
+              maxWidth={340}
+              minWidth={340}
+              imageHeight={220}
             ></GalleryProductCard>
           ))}
         </div>

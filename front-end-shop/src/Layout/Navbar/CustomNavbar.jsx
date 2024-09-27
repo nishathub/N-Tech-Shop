@@ -529,7 +529,7 @@ const CustomNavbar = () => {
                   {/* CART  */}
                   <div ref={cartBoxRef} className="relative">
                     {/* ABSOLUTE BADGE */}
-                    <p className="absolute -top-2 -right-2 bg-black text-sm text-[#43d6ff] px-2 rounded-full">
+                    <p className="absolute -top-2 -right-2 bg-black text-sm text-white px-2 rounded-full">
                       {cartDisplayLoading ? (
                         <CustomLoading size={12}></CustomLoading>
                       ) : (
