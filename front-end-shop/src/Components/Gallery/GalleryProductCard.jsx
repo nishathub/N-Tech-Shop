@@ -86,27 +86,31 @@ const GalleryProductCard = ({
       ) : (
         <div>
           {isAdmin ? (
-            <div className=" ">
-              <Link to={`/products/brand/${product.brand}/${product._id}`}>
-                <button className="w-1/3 bg-gray-900 p-2 hover:bg-gray-800 text-gray-200 duration-300">
-                  Details
-                </button>
-              </Link>
+            <div className="flex">
               <Link
-                to={`/products/brand/${product.brand}/update/${product._id}`}
+                to={`/products/brand/${product.brand}/${product._id}`}
+                className="flex-grow bg-gray-900 p-2 hover:bg-gray-800 text-gray-200 duration-300 text-center"
               >
-                <button className="w-1/3 bg-blue-900 p-2 hover:bg-blue-800 text-gray-200 duration-300">
-                  Update
-                </button>
+                <button className="">Details</button>
               </Link>
-              <Link>
-                <button
-                  onClick={()=>handleDeleteProduct(product._id)}
-                  className="w-1/3 bg-red-900 p-2 hover:bg-red-700 text-gray-200 duration-300"
+              {location.pathname === "/admin-dashboard" && (
+                <Link
+                  to={`/products/brand/${product.brand}/update/${product._id}`}
+                  className="flex-grow bg-blue-900 p-2 hover:bg-blue-800 text-gray-200 duration-300 text-center"
                 >
-                  Delete
-                </button>
-              </Link>
+                  <button className=" ">Update</button>
+                </Link>
+              )}
+              {location.pathname === "/admin-dashboard" && (
+                <Link className="flex-grow bg-red-900 p-2 hover:bg-red-700 text-gray-200 duration-300 text-center">
+                  <button
+                    onClick={() => handleDeleteProduct(product._id)}
+                    className=""
+                  >
+                    Delete
+                  </button>
+                </Link>
+              )}
             </div>
           ) : (
             <div className=" ">
