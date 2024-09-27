@@ -6,7 +6,7 @@ const WebsiteFeatures = () => {
   return (
     <div className="relative max-w-7xl px-4 xl:px-0 mx-auto">
       <div className="flex justify-between items-center mb-8 group">
-        <h2 className="text-2xl md:text-3xl py-2 text-gray-900 font-bold ml-4">
+        <h2 className="text-xl md:text-2xl lg:text-3xl py-2 text-gray-900 font-bold ml-4">
           Why Choose Us
         </h2>
         <div className="border border-black hidden md:block md:w-1/3 lg:w-1/2 xl:w-2/3"></div>
@@ -19,7 +19,7 @@ const WebsiteFeatures = () => {
             </p>
           </div>
           <div className="bg-[#F2F2F2] bg-center rounded-md">
-            <p className="p-2 font-bold">24/7 Support</p>
+            <p className="p-2 text-sm md:text-base md:text-md font-bold">24/7 Support</p>
           </div>
         </div>
         <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300 ">
@@ -29,7 +29,7 @@ const WebsiteFeatures = () => {
             </p>
           </div>
           <div className="bg-[#F2F2F2] bg-center rounded-md">
-            <p className="p-2 font-bold">Fast Delivery</p>
+            <p className="p-2 text-sm md:text-base md:text-md font-bold">Fast Delivery</p>
           </div>
         </div>
         <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300 ">
@@ -39,7 +39,7 @@ const WebsiteFeatures = () => {
             </p>
           </div>
           <div className="bg-[#F2F2F2] bg-center rounded-md">
-            <p className="p-2 font-bold">Secure Payment</p>
+            <p className="p-2 text-sm md:text-base md:text-md font-bold">Secure Payment</p>
           </div>
         </div>
         <div className=" flex flex-col gap-4 items-center justify-center p-4 rounded-sm w-52 text-gray-900 hover:scale-95 duration-300 ">
@@ -49,7 +49,7 @@ const WebsiteFeatures = () => {
             </p>
           </div>
           <div className="bg-[#F2F2F2] bg-center rounded-md">
-            <p className="p-2 font-bold">Authentic Product</p>
+            <p className="p-2 text-sm md:text-base font-bold">Authentic Product</p>
           </div>
         </div>
       </div>

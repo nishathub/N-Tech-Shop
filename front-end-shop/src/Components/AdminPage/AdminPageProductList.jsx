@@ -9,7 +9,7 @@ const AdminPageProductList = ({ allProducts }) => {
   return (
     <div>
       <div className="relative">
-        <h2 className=" text-xl text-right font-semibold pb-4">
+        <h2 className=" text-lg sm:text-xl sm:text-right font-semibold pb-4">
           Total Products : {allProducts.length}
         </h2>
         {isDeleteLoading && (

@@ -23,11 +23,12 @@ const Home = () => {
   // THIS FUNCTION WILL WORK GLOBALLY, THROUGHOUT THE PROJECT
   if (navigation.state === "loading") {
     return (
-      <div className="fixed inset-0 flex justify-center items-center bg-black">
+      <div className="fixed inset-0 flex justify-center items-center bg-white/50">
         <CustomLoading size={32}></CustomLoading>
       </div>
     );
   }
+
   return (
     <div className="py-12">
       <div className="">

@@ -179,7 +179,6 @@ const AuthProvider = ({ children }) => {
       console.log(result);
       customAlert("Deleted");
       setAllProductsRefetch(true);
-
     } catch (error) {
       console.error("error delete product ", error);
       customAlert("Error");
@@ -231,7 +230,7 @@ const AuthProvider = ({ children }) => {
     setFoundProduct,
     isDeleteLoading,
     setAllProductsRefetch,
-    handleDeleteProduct
+    handleDeleteProduct,
   };
   return (
     <BrandShopContext.Provider value={authData}>

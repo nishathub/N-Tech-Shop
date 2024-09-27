@@ -1,12 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./GalleryProductCardStyle.css";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
 const GalleryProductCard = ({
   product,
   maxWidth = 384,
-  minWidth = 384,
+  minWidth = 300,
   imageHeight = 320,
 }) => {
   const { isAdmin, handleDeleteProduct } = useContext(BrandShopContext);
@@ -47,18 +47,18 @@ const GalleryProductCard = ({
       <div className="flex justify-between py-4 items-center bg-[url('https://i.ibb.co/0BRVqyP/5650320.jpg')] px-2">
         <div className="space-y-1">
           <h2 className="text-sm text-gray-900 ">{product.brand}</h2>
-          <h2 className="text-lg text-gray-900 font-bold">{product.name}</h2>
+          <h2 className="md:text-lg text-gray-900 font-bold">{product.name}</h2>
           <div className="flex gap-4">
-            <h4 style={saleStyle} className="text-lg text-gray-700 font-bold">
+            <h4 style={saleStyle} className="text-sm md:text-lg text-gray-700 font-bold">
               $ {product.price}
             </h4>
-            <h4 style={priceStyle} className="text-lg text-gray-700 font-bold">
+            <h4 style={priceStyle} className="text-sm md:text-lg text-gray-700 font-bold">
               $ {discountedPrice}
             </h4>
           </div>
         </div>
         <div className="space-y-2 flex flex-col">
-          <p className="text-gray-700 font-bold">{product.type}</p>
+          <p className="text-gray-700 font-bold text-sm md:text-md">{product.type}</p>
           {/* RATING  */}
           <div className="rating rating-xs">
             {[...Array(totalStars)].map((_, index) => {
@@ -86,23 +86,23 @@ const GalleryProductCard = ({
       ) : (
         <div>
           {isAdmin ? (
-            <div className="flex">
+            <div className="flex rounded-sm">
               <Link
                 to={`/products/brand/${product.brand}/${product._id}`}
-                className="flex-grow bg-gray-900 p-2 hover:bg-gray-800 text-gray-200 duration-300 text-center"
+                className="flex-grow bg-gray-900 p-1 sm:p-2 hover:bg-gray-800 text-gray-200 duration-300 text-center"
               >
                 <button className="">Details</button>
               </Link>
               {location.pathname === "/admin-dashboard" && (
                 <Link
                   to={`/products/brand/${product.brand}/update/${product._id}`}
-                  className="flex-grow bg-blue-900 p-2 hover:bg-blue-800 text-gray-200 duration-300 text-center"
+                  className="flex-grow bg-blue-900 p-1 sm:p-2 hover:bg-blue-800 text-gray-200 duration-300 text-center"
                 >
                   <button className=" ">Update</button>
                 </Link>
               )}
               {location.pathname === "/admin-dashboard" && (
-                <Link className="flex-grow bg-red-900 p-2 hover:bg-red-700 text-gray-200 duration-300 text-center">
+                <Link className="flex-grow bg-red-900 p-1 sm:p-2 hover:bg-red-700 text-gray-200 duration-300 text-center">
                   <button
                     onClick={() => handleDeleteProduct(product._id)}
                     className=""

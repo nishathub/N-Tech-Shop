@@ -11,7 +11,7 @@ const NewsLetter = () => {
           </p>
         </div>
         <div>
-          <p className="text-2xl mb-2 font-bold capitalize text-gray-900">
+          <p className="text-xl md:text-2xl mb-2 font-bold capitalize text-gray-900">
             sign up for newsletters
           </p>
           <p className="text text-gray-800">

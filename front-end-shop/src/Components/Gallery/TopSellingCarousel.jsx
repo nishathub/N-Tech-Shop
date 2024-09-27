@@ -34,7 +34,7 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
         },
       },
       {
-        breakpoint: 520,
+        breakpoint: 650,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -48,7 +48,7 @@ const TopSellingCarousel = ({ evenIndexProducts }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 xl:px-0 ">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl md:text-3xl py-2 text-gray-900 font-bold ml-4">
+        <h2 className="text-xl md:text-2xl lg:text-3xl py-2 text-gray-900 font-bold ml-4">
           Top Selling Products
         </h2>
         <div className="border border-black hidden md:block md:w-1/3 lg:w-1/2 xl:w-2/3"></div>

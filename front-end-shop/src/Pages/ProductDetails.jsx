@@ -113,7 +113,7 @@ const ProductDetails = () => {
           <div className="rounded-md text-gray-800 p-4 bg-[#D7D8D9] space-y-4">
             <div className=" flex flex-col-reverse md:flex-row justify-between md:items-center">
               <div>
-                <h2 className="text-2xl md:text-4xl font-bold mb-2">{name}</h2>
+                <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-2">{name}</h2>
                 <h4>
                   {country} | {color} | {year}
                 </h4>
@@ -137,8 +137,8 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="flex flex-row md:flex-col items-center md:items-end gap-2 md:gap-0 mb-4 md:mb-0">
-                <p> {rating < 4 && "Discount Price:"}</p>
-                <p className="text-2xl md:text-3xl">
+                <p className="text-base md:text-xl"> {rating < 4 && "Discount Price:"}</p>
+                <p className="text-xl md:text-2xl lg:text-3xl">
                   ${rating < 4 ? discountedPrice : price}
                 </p>
                 <p className="line-through text-red-500">
@@ -176,7 +176,7 @@ const ProductDetails = () => {
             </button>
           </div>
           <div className="mt-6 rounded-md text-gray-800 p-4 bg-[#D7D8D9] space-y-4">
-            <h2 className="text-2xl md:text-3xl mb-2">Specification</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl mb-2">Specification</h2>
             <div>
               <div
                 onClick={() => setPhysicalSpecOpen(!isPhysicalSpecOpen)}

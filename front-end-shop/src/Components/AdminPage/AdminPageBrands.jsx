@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 const AdminPageBrands = ({productBrands}) => {
   return (
     <div>
-      <h2 className=" text-xl text-right font-semibold pb-4">
-        Total productBrands : {productBrands.length}
+      <h2 className="text-lg sm:text-xl sm:text-right font-semibold pb-4">
+        Total Brands : {productBrands.length}
       </h2>
-      <div className="flex flex-wrap gap-4 items-center justify-center">
+      <div className="flex flex-wrap gap-4 items-center sm:justify-center">
         {productBrands.map((brand, index) => (
           <Link
             to={`/products/brand/${brand.name}`}
