@@ -36,9 +36,10 @@ const AuthProvider = ({ children }) => {
   // CART CODE START HERE
   const [loadCart, setLoadCart] = useState(true);
   const [isLoadingAllProducts, setLoadingAllProducts] = useState(false);
+  const [isCartItemsRefetch, setCartItemsRefetch] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [showCartItems, setShowCartItems] = useState([]);
-  const [cartDisplayLoading, setCartDisplayLoading] = useState(true);
+  const [cartDisplayLoading, setCartDisplayLoading] = useState(false);
   const [cartItemsTotalPrice, setCartItemTotalPrice] = useState(0);
   const [cartItemQuantities, setCartItemQuantities] = useState({});
   const [cartsubTotal, setcartSubTotal] = useState(0);
@@ -49,18 +50,32 @@ const AuthProvider = ({ children }) => {
   // we could easily use these code on cart page, but we want to use these info on other components, so, we put them here to utilize context data.
 
   useEffect(() => {
-    if (!loading) {
-      fetch(
-        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
+    const fetchCartItems = async () => {
+      if (!loading) {
+        setCartDisplayLoading(true);
+        try {
+          const response = await fetch(
+            `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch cart items");
+          }
+          const data = await response.json();
           setCartItems(data);
           setLoadCart(false);
-          setAddCartClick(false); // here is the dependency hero
-        });
-    }
-  }, [addCartClick, loading, user]);
+          setAddCartClick(false); // dependency hero
+        } catch (error) {
+          console.error("Error fetching cart items:", error);
+          customAlert(`Error: ${error.message}`);
+        } finally {
+          setCartDisplayLoading(false); // Ensure loading state is stopped on error
+          setCartItemsRefetch(false);
+        }
+      }
+    };
+
+    fetchCartItems();
+  }, [addCartClick, loading, user, isCartItemsRefetch]);
 
   useEffect(() => {
     if (!loadCart) {
@@ -76,13 +91,13 @@ const AuthProvider = ({ children }) => {
             cartItemsIds.includes(product._id)
           ); // match id and get items
           setShowCartItems(displayItems);
-          setCartDisplayLoading(false);
+         
           setLoadingAllProducts(false);
           setAllProductsRefetch(false);
         })
         .catch((error) => {
           console.error("Error fetching products:", error);
-          setCartDisplayLoading(false);
+          
           setLoadingAllProducts(false);
           setAllProductsRefetch(false);
         });
@@ -192,11 +207,14 @@ const AuthProvider = ({ children }) => {
     loading,
     loadCart,
     isLoadingAllProducts,
+    cartItems,
     showCartItems,
     cartItemsTotalPrice,
     setCartItemTotalPrice,
     cartDisplayLoading,
     setCartDisplayLoading,
+    setCartItems,
+    setCartItemsRefetch,
     setShowCartItems,
     setAddCartClick,
     cartItemQuantities,

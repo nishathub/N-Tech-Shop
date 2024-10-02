@@ -18,7 +18,7 @@ const CustomNavbar = () => {
     user,
     isAdmin,
     logOutUser,
-    showCartItems,
+    cartItems,
     cartDisplayLoading,
     allProducts,
     foundProducts,
@@ -533,7 +533,7 @@ const CustomNavbar = () => {
                       {cartDisplayLoading ? (
                         <CustomLoading size={12}></CustomLoading>
                       ) : (
-                        showCartItems.length
+                        cartItems.length
                       )}
                     </p>
                     {/* ABSOLUTE CART-BOX */}
@@ -541,10 +541,10 @@ const CustomNavbar = () => {
                       {isCartOpen && (
                         <div className="p-4 space-y-3">
                           <span className="font-bold text-gray-200 md:text-lg">
-                            {showCartItems.length} Items
+                            {cartItems.length} Items
                           </span>
                           <div>
-                            {showCartItems.map((item) => (
+                            {cartItems.map((item) => (
                               <h4 key={item._id}>{item.name}</h4>
                             ))}
                           </div>

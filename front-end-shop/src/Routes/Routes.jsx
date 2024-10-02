@@ -16,6 +16,8 @@ import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import SearchedProducts from "../Pages/SearchedProducts";
 import Checkout from "../Pages/Checkout";
 import AdminDashboard from "../Pages/AdminDashboard";
+import HomeLazy from "../Layout/Home/HomeLazy";
+import NewCartPage from "../Pages/NewCartPage";
 
 const Routes = createBrowserRouter([
   {
@@ -26,6 +28,7 @@ const Routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        // element: <HomeLazy></HomeLazy>,
         loader: () =>
           fetch(
             `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products`
@@ -91,7 +94,7 @@ const Routes = createBrowserRouter([
         path: "/cart",
         element: (
           <PrivateRoutes>
-            <Cart></Cart>
+            <NewCartPage></NewCartPage>
           </PrivateRoutes>
         ),
       },

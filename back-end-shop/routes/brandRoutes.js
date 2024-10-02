@@ -10,6 +10,7 @@ const {
   getOneCartItem,
   updateProduct,
   removeProduct,
+  updateOneCartItem,
 } = require("../controllers/brandControllers");
 
 const express = require("express");
@@ -26,6 +27,7 @@ router.delete("/products/:productId", removeProduct);
 router.post("/cartItems", createCartItem);
 router.get("/cartItems/:userEmail", getCartItems);
 router.get("/cartItems/:productId", getOneCartItem);
+router.patch("/cartItems/:productId", updateOneCartItem);
 router.delete("/cartItems/:productId", removeCartItem);
 
 module.exports = router;

@@ -140,11 +140,29 @@ const getOneCartItem = async (req, res) => {
     console.error(error);
   }
 };
+const updateOneCartItem = async (req, res) => {
+  const itemId = req.params.productId;
+  const query = { _id: new ObjectId(itemId) };
+  const options = { upsert: true };
+  const modifiedCartItem = req.body;
+  const { quantity } = modifiedCartItem;
+  const updatedProduct = {
+    $set: {
+      quantity: quantity,
+    },
+  };
+  const result = await cartCollection().updateOne(
+    query,
+    updatedProduct,
+    options
+  );
+  res.send(result);
+};
 
 const removeCartItem = async (req, res) => {
   try {
     const itemId = req.params.productId;
-    const query = { productId: itemId };
+    const query = {  _id: new ObjectId(itemId) };
     const result = cartCollection().deleteOne(query);
     res.send(result);
   } catch (error) {
@@ -161,6 +179,7 @@ module.exports = {
   createCartItem,
   getCartItems,
   getOneCartItem,
+  updateOneCartItem,
   removeCartItem,
   updateProduct,
   removeProduct,

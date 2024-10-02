@@ -6,21 +6,14 @@ import {
 
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
+import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const ProductDetails = () => {
   const [isPhysicalSpecOpen, setPhysicalSpecOpen] = useState(false);
+  const [isAddCartLoading, setAddCartLoading] = useState(false);
   const [isDisplayOpen, setDisplayOpen] = useState(false);
   const oneProduct = useLoaderData();
-  const {
-    name,
-    color,
-    price,
-    image,
-    rating,
-    country,
-    year,
-    _id,
-  } = oneProduct;
+  const { name, color, price, image, rating, country, year, _id } = oneProduct;
   const { setAddCartClick, user, loading, customAlert } =
     useContext(BrandShopContext);
   const discountedPrice = (price * 0.8).toFixed(2);
@@ -39,7 +32,7 @@ const ProductDetails = () => {
     transition: "max-height 0.7s ease-in-out",
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     // IF USER NOT FOUND
     if (!loading && !user) {
       customAlert("Log in to add products");
@@ -48,55 +41,70 @@ const ProductDetails = () => {
 
     const userMail = user.email;
 
-    // TO RESTRICT ADDING SAME PRODUCT
+    setAddCartLoading(true);
+    try {
+      // Fetch cart items to check if the item already exists
+      const response = await fetch(
+        `http://localhost:5000/cartItems/${user?.email}`
+      );
 
-    fetch(
-      `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
-    )
-      .then((res) => res.json())
-      .then((cartItems) => {
-        const itemExists = cartItems.some(
-          (item) => item.productId === _id && item.email === userMail
-        );
+      if (!response.ok) {
+        throw new Error("Failed to fetch cart items");
+      }
 
-        if (itemExists) {
-          customAlert("Item already in the cart");
-        } else {
-          // Item not in the cart, proceed to add it
-          fetch(
-            "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/cartItems",
-            {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify({
-                productId: _id,
-                name: name,
-                email: userMail,
-              }),
-            }
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              if (data.insertedId) {
-                customAlert("Item Added to the Cart");
-                setAddCartClick(true);
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+      const cartItems = await response.json();
+      const itemExists = cartItems.some(
+        (item) => item.productId === _id && item.email === userMail
+      );
+
+      if (itemExists) {
+        customAlert("Item already in the cart");
+      } else {
+        // Item not in the cart, proceed to add it
+        const addResponse = await fetch("http://localhost:5000/cartItems", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productId: _id,
+            name: name,
+            color: color,
+            price: price,
+            image: image,
+            email: userMail,
+            quantity: 1,
+          }),
+        });
+
+        if (!addResponse.ok) {
+          throw new Error("Failed to add item to the cart");
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+        const data = await addResponse.json();
+        console.log(data);
+        if (data.insertedId) {
+          customAlert("Item Added to the Cart");
+          setAddCartClick(true);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      customAlert(`Error: ${error.message}`);
+    } finally {
+      setAddCartLoading(false);
+    }
   };
 
   return (
     <div className="py-12 bg-[#BABCBF]">
+      <div>
+        {isAddCartLoading && (
+          <div className="fixed flex inset-0 justify-center items-center bg-white/40">
+            <CustomLoading size={32}></CustomLoading>
+          </div>
+        )}
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start max-w-7xl mx-auto px-4">
         {/* IMAGE  */}
         <div className="rounded-sm flex justify-center">
@@ -113,7 +121,9 @@ const ProductDetails = () => {
           <div className="rounded-md text-gray-800 p-4 bg-[#D7D8D9] space-y-4">
             <div className=" flex flex-col-reverse md:flex-row justify-between md:items-center">
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-2">{name}</h2>
+                <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-2">
+                  {name}
+                </h2>
                 <h4>
                   {country} | {color} | {year}
                 </h4>
@@ -137,7 +147,10 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="flex flex-row md:flex-col items-center md:items-end gap-2 md:gap-0 mb-4 md:mb-0">
-                <p className="text-base md:text-xl"> {rating < 4 && "Discount Price:"}</p>
+                <p className="text-base md:text-xl">
+                  {" "}
+                  {rating < 4 && "Discount Price:"}
+                </p>
                 <p className="text-xl md:text-2xl lg:text-3xl">
                   ${rating < 4 ? discountedPrice : price}
                 </p>
@@ -176,7 +189,9 @@ const ProductDetails = () => {
             </button>
           </div>
           <div className="mt-6 rounded-md text-gray-800 p-4 bg-[#D7D8D9] space-y-4">
-            <h2 className="text-xl md:text-2xl lg:text-3xl mb-2">Specification</h2>
+            <h2 className="text-xl md:text-2xl lg:text-3xl mb-2">
+              Specification
+            </h2>
             <div>
               <div
                 onClick={() => setPhysicalSpecOpen(!isPhysicalSpecOpen)}
