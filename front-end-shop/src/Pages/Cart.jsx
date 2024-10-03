@@ -32,7 +32,7 @@ const Cart = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${id}`,
+        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${id}`,
         {
           method: "DELETE",
         }

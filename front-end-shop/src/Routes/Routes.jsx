@@ -31,7 +31,7 @@ const Routes = createBrowserRouter([
         // element: <HomeLazy></HomeLazy>,
         loader: () =>
           fetch(
-            `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products`
+            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products`
           ),
       },
       {
@@ -71,7 +71,7 @@ const Routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products/${params.id}`
+            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${params.id}`
           ),
       },
       {
@@ -87,7 +87,7 @@ const Routes = createBrowserRouter([
         element: <ProductDetails></ProductDetails>,
         loader: ({ params }) =>
           fetch(
-            `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products/${params.productId}`
+            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${params.productId}`
           ),
       },
       {

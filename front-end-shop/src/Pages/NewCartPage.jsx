@@ -33,7 +33,7 @@ const NewCartPage = () => {
     setDeleteItemLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/cart/${id}`,
+        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cart/${id}`,
         {
           method: "DELETE",
         }

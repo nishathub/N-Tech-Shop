@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
         setCartDisplayLoading(true);
         try {
           const response = await fetch(
-            `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
+            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch cart items");
@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
 
       try {
         const response = await fetch(
-          "https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products"
+          "https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -162,7 +162,7 @@ const AuthProvider = ({ children }) => {
     setDeleteLoading(true);
     try {
       const response = await fetch(
-        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products/${id}`,
+        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${id}`,
         {
           method: "DELETE",
         }

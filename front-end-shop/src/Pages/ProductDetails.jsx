@@ -45,7 +45,7 @@ const ProductDetails = () => {
     try {
       // Fetch cart items to check if the item already exists
       const response = await fetch(
-        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
+        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
       );
 
       if (!response.ok) {
@@ -62,7 +62,7 @@ const ProductDetails = () => {
       } else {
         // Item not in the cart, proceed to add it
         const addResponse = await fetch(
-          "https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems",
+          "https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems",
           {
             method: "POST",
             headers: {

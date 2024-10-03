@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import GalleryProductCard from "../Components/Gallery/GalleryProductCard";
 import { useContext, useEffect, useState } from "react";
 import { BrandShopContext } from "../AuthProvider/AuthProvider";
@@ -34,7 +34,7 @@ const CategoryProducts = () => {
       try {
         setCategoryProductsLoading(true);
         const response = await fetch(
-          `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products/category/${categoryName}`
+          `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/category/${categoryName}`
         );
         if (!response.ok) {
           console.error("Response Error");

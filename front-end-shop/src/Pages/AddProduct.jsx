@@ -45,7 +45,7 @@ const AddProduct = () => {
     console.log(newProduct);
     try {
       const response = await fetch(
-        "https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products",
+        "https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products",
         {
           method: "POST",
           headers: {

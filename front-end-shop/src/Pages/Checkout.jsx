@@ -21,7 +21,7 @@ const CheckoutPage = () => {
   const handleDeleteAllCartItems = async () => {
     try {
       const response = await fetch(
-        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${user.email}`,
+        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${user.email}`,
         {
           method: "DELETE",
         }
