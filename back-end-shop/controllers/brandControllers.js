@@ -162,8 +162,18 @@ const updateOneCartItem = async (req, res) => {
 const removeCartItem = async (req, res) => {
   try {
     const itemId = req.params.productId;
-    const query = {  _id: new ObjectId(itemId) };
-    const result = cartCollection().deleteOne(query);
+    const query = { _id: new ObjectId(itemId) };
+    const result = await cartCollection().deleteOne(query);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
+};
+const removeAllCartItems = async (req, res) => {
+  try {
+    const userEmail = req.params.userEmail;
+    const query = { email: userEmail };
+    const result = await cartCollection().deleteMany(query);
     res.send(result);
   } catch (error) {
     console.error(error);
@@ -181,6 +191,7 @@ module.exports = {
   getOneCartItem,
   updateOneCartItem,
   removeCartItem,
+  removeAllCartItems,
   updateProduct,
   removeProduct,
 };

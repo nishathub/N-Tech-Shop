@@ -16,7 +16,6 @@ const AdminDashboard = () => {
   const [isAdminHomeActive, setAdminHomeActive] = useState(true);
   const {
     allProducts,
-    loadCart,
     isLoadingAllProducts,
     productBrands,
     categories,
@@ -69,7 +68,7 @@ const AdminDashboard = () => {
             {displayHeadingText}
           </h4>
           <div>
-            {loadCart ? (
+            {isLoadingAllProducts ? (
               <div className="fixed bg-white/50 z-50 inset-0 flex items-center justify-center">
                 {" "}
                 <CustomLoading size={32}></CustomLoading>

@@ -11,10 +11,8 @@ const NewCartPage = () => {
   const {
     cartItems,
     cartDisplayLoading,
-    cartItemQuantities,
-    setCartItemQuantities,
-    cartsubTotal,
-    setcartSubTotal,
+    cartSubTotal,
+    setCartSubTotal,
     tax,
     setTax,
     discount,
@@ -26,7 +24,6 @@ const NewCartPage = () => {
     setCartItemsRefetch,
   } = useContext(BrandShopContext);
   const [isDeleteItemLoading, setDeleteItemLoading] = useState(false);
-
   const deliveryCharge = 70;
 
   const handleDeleteCartItem = async (id) => {
@@ -54,24 +51,18 @@ const NewCartPage = () => {
     }
   };
 
-  const updateCartItemQuantities = (id, quantity) => {
-    setCartItemQuantities((previousQuantities) => {
-      const newQuantities = { ...previousQuantities }; // create new by copying old state
-      newQuantities[id] = quantity; // update new quantity to the targeted id
-      return newQuantities; // this function return an object {id: quantity}
-    });
-  };
-
   const calculatecartSubTotal = () => {
-    let cartsubTotal = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      const item = cartItems[i]; // get the current product
-      const quantity = cartItemQuantities[item._id] || 1; // get quantity by searching by id
-      const price = item.price;
-      const amount = quantity * price;
-      cartsubTotal += amount;
+    let cartSubTotal = 0;
+    if (cartItems.length) {
+      for (let i = 0; i < cartItems.length; i++) {
+        const item = cartItems[i];
+        const quantity = item.quantity; 
+        const price = item.price;
+        const amount = quantity * price;
+        cartSubTotal += amount;
+      }
     }
-    return cartsubTotal;
+    return cartSubTotal;
   };
   const calculateDiscount = (e) => {
     e.preventDefault();
@@ -80,7 +71,7 @@ const NewCartPage = () => {
     const couponCode = form.coupon.value;
     if (couponCode === "NTECH10") {
       customAlert("10% discounted");
-      return setDiscount((0.1 * cartsubTotal).toFixed(2));
+      return setDiscount((0.1 * cartSubTotal).toFixed(2));
     }
     // If coupon not matched
 
@@ -89,24 +80,21 @@ const NewCartPage = () => {
   };
 
   useEffect(() => {
-    const cartsubTotal = calculatecartSubTotal();
-    setcartSubTotal(cartsubTotal);
-    if (cartsubTotal < 5000) {
+    const cartSubTotal = calculatecartSubTotal();
+    setCartSubTotal(cartSubTotal);
+    if (cartSubTotal < 5000) {
       setTax(0);
     } else {
-      const tax = cartsubTotal * 0.05;
+      const tax = cartSubTotal * 0.05;
       const formattedTax = tax.toFixed(2);
       setTax(formattedTax);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartItemQuantities, cartItems, setTax, setcartSubTotal, isOrderPlaced]); // whenever these changes, update the cartsubtotal
+  }, [cartItems, setTax, setCartSubTotal, isOrderPlaced]); // whenever these changes, update the cartSubtotal
 
   const totalAmount =
-    cartsubTotal + parseFloat(tax) + deliveryCharge - discount;
-
-  useEffect(() => {
+    cartSubTotal + parseFloat(tax) + deliveryCharge - discount;
     setCartItemTotalPrice(totalAmount.toFixed(2));
-  }, [totalAmount, setCartItemTotalPrice]);
 
   return (
     <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900 relative">
@@ -142,7 +130,6 @@ const NewCartPage = () => {
                         key={item._id}
                         item={item}
                         handleDeleteCartItem={handleDeleteCartItem}
-                        updateCartItemQuantities={updateCartItemQuantities}
                       />
                     ))}
                   </div>
@@ -170,7 +157,7 @@ const NewCartPage = () => {
                     <div className="w md:text-lg bg-[#BABCBF] p-4">
                       <div className="flex justify-between">
                         <p>cartSubtotal</p>
-                        <p>$ {cartsubTotal}</p>
+                        <p>$ {cartSubTotal}</p>
                       </div>
                       <div className="flex justify-between">
                         <p>Tax (5% above $5000)</p>

@@ -34,19 +34,16 @@ const AuthProvider = ({ children }) => {
   const [isAllProductsRefetch, setAllProductsRefetch] = useState(false);
 
   // CART CODE START HERE
-  const [loadCart, setLoadCart] = useState(true);
   const [isLoadingAllProducts, setLoadingAllProducts] = useState(false);
   const [isCartItemsRefetch, setCartItemsRefetch] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [showCartItems, setShowCartItems] = useState([]);
   const [cartDisplayLoading, setCartDisplayLoading] = useState(false);
   const [cartItemsTotalPrice, setCartItemTotalPrice] = useState(0);
-  const [cartItemQuantities, setCartItemQuantities] = useState({});
-  const [cartsubTotal, setcartSubTotal] = useState(0);
+  const [cartSubTotal, setCartSubTotal] = useState(0);
   const [tax, setTax] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [addCartClick, setAddCartClick] = useState(false); // as the whole code is transferred here from cart page, after adding cart items, the cart page is updated only after refreshing the page. So, I am using a state that, it will become true as soon as we click on add cart button. That state is a dependency to fetch data from cart database each time on useEffect below. this way, the code is working!
-
   // we could easily use these code on cart page, but we want to use these info on other components, so, we put them here to utilize context data.
 
   useEffect(() => {
@@ -62,12 +59,12 @@ const AuthProvider = ({ children }) => {
           }
           const data = await response.json();
           setCartItems(data);
-          setLoadCart(false);
           setAddCartClick(false); // dependency hero
         } catch (error) {
           console.error("Error fetching cart items:", error);
           customAlert(`Error: ${error.message}`);
         } finally {
+          
           setCartDisplayLoading(false); // Ensure loading state is stopped on error
           setCartItemsRefetch(false);
         }
@@ -76,48 +73,34 @@ const AuthProvider = ({ children }) => {
 
     fetchCartItems();
   }, [addCartClick, loading, user, isCartItemsRefetch]);
-
-  useEffect(() => {
-    if (!loadCart) {
-      setLoadingAllProducts(true);
-      fetch(
-        "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products"
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setAllProducts(data);
-          const cartItemsIds = cartItems.map((item) => item.productId); // collection of cart item ids
-          const displayItems = data.filter((product) =>
-            cartItemsIds.includes(product._id)
-          ); // match id and get items
-          setShowCartItems(displayItems);
-         
-          setLoadingAllProducts(false);
-          setAllProductsRefetch(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching products:", error);
-          
-          setLoadingAllProducts(false);
-          setAllProductsRefetch(false);
-        });
-    }
-  }, [cartItems, loadCart, isAllProductsRefetch]);
-
-  // Calculate Total price
-  useEffect(() => {
-    if (!cartDisplayLoading) {
-      const cartPriceList = showCartItems.map((item) => item.price);
-      let totalCartAmount = 0;
-      cartPriceList.forEach((element) => {
-        const total = parseInt(element);
-        totalCartAmount += total;
-      });
-      setCartItemTotalPrice(totalCartAmount);
-    }
-  }, [showCartItems]);
-
   // CART CODE ENDS HERE
+
+  // FETCH ALL PRODUCTS FOR ADMIN
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      setLoadingAllProducts(true);
+
+      try {
+        const response = await fetch(
+          "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+        setAllProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        customAlert("Error fetching products: " + error.message); // Use custom alert for user feedback
+      } finally {
+        setLoadingAllProducts(false); // Ensure loading state is stopped in both success and error cases
+        setAllProductsRefetch(false);
+      }
+    };
+
+    fetchAllProducts(); // Execute the async function
+  }, [isAllProductsRefetch]);
 
   const createNewUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -205,7 +188,6 @@ const AuthProvider = ({ children }) => {
   const authData = {
     user,
     loading,
-    loadCart,
     isLoadingAllProducts,
     cartItems,
     showCartItems,
@@ -217,12 +199,10 @@ const AuthProvider = ({ children }) => {
     setCartItemsRefetch,
     setShowCartItems,
     setAddCartClick,
-    cartItemQuantities,
     isOrderPlaced,
     setOrderPlaced,
-    setCartItemQuantities,
-    cartsubTotal,
-    setcartSubTotal,
+    cartSubTotal,
+    setCartSubTotal,
     isToastActive,
     toastText,
     setToastActive,

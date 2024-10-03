@@ -7,7 +7,8 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { FaShoppingBag } from "react-icons/fa";
 
 const CheckoutPage = () => {
-  const { setOrderPlaced } = useContext(BrandShopContext);
+  const { setOrderPlaced, customAlert, setCartItemsRefetch, user } =
+    useContext(BrandShopContext);
 
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
   const [selectedPaymentSubOption, setSelectedPaymentSubOption] =
@@ -16,7 +17,30 @@ const CheckoutPage = () => {
   const [selectedDeliverySubOption, setSelectedDeliverySubOption] =
     useState(null);
   const [billDetails, setBillDetails] = useState(null); // State to store bill details
-
+  // REMOVE ALL ITEMS FROM CART
+  const handleDeleteAllCartItems = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/cartItems/${user.email}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+      const result = await response.json();
+      console.log("Cart deleted successfully:", result);
+    } catch (error) {
+      console.error("Failed to delete Cart:", error);
+    } finally {
+      setCartItemsRefetch(true);
+    }
+  };
+  const handleConfirmOrder = () => {
+    handleDeleteAllCartItems();
+    setOrderPlaced(true);
+  };
   const handlePaymentSelect = (option) => {
     setSelectedPaymentOption(option);
     setSelectedPaymentSubOption(null); // Reset payment sub-option when a new payment option is selected
@@ -87,11 +111,11 @@ const CheckoutPage = () => {
 
     const paymentText = getPaymentText(
       selectedPaymentOption,
-      selectedPaymentSubOption,
+      selectedPaymentSubOption
     );
     const deliveryText = getDeliveryText(
       selectedDeliveryOption,
-      selectedDeliverySubOption,
+      selectedDeliverySubOption
     );
 
     const billDetails = {
@@ -196,7 +220,7 @@ const CheckoutPage = () => {
                   <div
                     className={getBoxClasses(
                       "A",
-                      selectedPaymentSubOption === "A",
+                      selectedPaymentSubOption === "A"
                     )}
                     onClick={() => handlePaymentSubSelect("A")}
                   >
@@ -205,7 +229,7 @@ const CheckoutPage = () => {
                   <div
                     className={getBoxClasses(
                       "B",
-                      selectedPaymentSubOption === "B",
+                      selectedPaymentSubOption === "B"
                     )}
                     onClick={() => handlePaymentSubSelect("B")}
                   >
@@ -214,7 +238,7 @@ const CheckoutPage = () => {
                   <div
                     className={getBoxClasses(
                       "C",
-                      selectedPaymentSubOption === "C",
+                      selectedPaymentSubOption === "C"
                     )}
                     onClick={() => handlePaymentSubSelect("C")}
                   >
@@ -264,7 +288,7 @@ const CheckoutPage = () => {
                   <div
                     className={getBoxClasses(
                       "D",
-                      selectedDeliverySubOption === "D",
+                      selectedDeliverySubOption === "D"
                     )}
                     onClick={() => handleDeliverySubSelect("D")}
                   >
@@ -273,7 +297,7 @@ const CheckoutPage = () => {
                   <div
                     className={getBoxClasses(
                       "E",
-                      selectedDeliverySubOption === "E",
+                      selectedDeliverySubOption === "E"
                     )}
                     onClick={() => handleDeliverySubSelect("E")}
                   >
@@ -282,7 +306,7 @@ const CheckoutPage = () => {
                   <div
                     className={getBoxClasses(
                       "F",
-                      selectedDeliverySubOption === "F",
+                      selectedDeliverySubOption === "F"
                     )}
                     onClick={() => handleDeliverySubSelect("F")}
                   >
@@ -295,7 +319,7 @@ const CheckoutPage = () => {
         </div>
         <div className="mt-4 w-80 md:w-96 lg:w-full mx-auto">
           <button
-            onClick={() => setOrderPlaced(true)}
+            onClick={handleConfirmOrder}
             type="submit"
             className="w-full p-4 rounded-md font-semibold bg-gray-900 text-gray-200 hover:text-gray-900 hover:bg-gray-200 duration-300 "
           >

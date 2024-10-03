@@ -3,13 +3,14 @@ import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
 const CashReceiptModal = ({ billDetails, setBillDetails }) => {
   const {
-    showCartItems,
-    cartItemQuantities,
-    cartsubTotal,
+    cartItems,
+    cartSubTotal,
     tax,
     discount,
     cartItemsTotalPrice,
   } = useContext(BrandShopContext);
+  console.log('from modal',cartSubTotal, tax, discount, cartItemsTotalPrice);
+  
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-800 z-50">
@@ -52,8 +53,8 @@ const CashReceiptModal = ({ billDetails, setBillDetails }) => {
               Order Details
             </h3>
             <div className="border-t border-black pt-2 md:pt-4">
-              {showCartItems.map((item, index) => {
-                const quantity = cartItemQuantities[item._id] || 1; // Default to 1 if quantity is undefined
+              {cartItems.map((item, index) => {
+                const quantity = item.quantity;
                 return (
                   <div
                     key={index}
@@ -71,7 +72,7 @@ const CashReceiptModal = ({ billDetails, setBillDetails }) => {
             <div className="border-t border-black mt-2 md:mt-4 pt-2 md:pt-4">
               <div className="flex justify-between mb-1 md:mb-2">
                 <strong>Subtotal:</strong>
-                <span>${cartsubTotal}</span>
+                <span>${cartSubTotal}</span>
               </div>
               <div className="flex justify-between mb-1 md:mb-2">
                 <strong>Discount:</strong>

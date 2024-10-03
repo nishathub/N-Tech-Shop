@@ -1,45 +1,37 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 import CustomLoading from "../Shared/CustomLoading/CustomLoading";
 
-const SingleCartItem = ({
-  item,
-  handleDeleteCartItem,
-  updateCartItemQuantities,
-}) => {
+const SingleCartItem = ({ item, handleDeleteCartItem }) => {
   const [isCartQuantityUpdateLoading, setCartQuantityUpdateLoading] =
     useState(false);
-  const { customAlert, setCartItemsRefetch } = useContext(BrandShopContext);
+  const { customAlert, setCartItemsRefetch } =
+    useContext(BrandShopContext);
   const { name, color, price, image, _id, quantity } = item;
-
-  const [itemQuantity, setItemQuantity] = useState(1);
-  const oneProductAmount = itemQuantity * price;
+  const oneProductAmount = quantity * price;
 
   // Quantity Decrease function
   const handleDecreaseCartItemQuantity = async (e) => {
     e.preventDefault();
     if (quantity == 1) {
-        customAlert("Min Quantity 1");
-        return;
+      customAlert("Min Quantity 1");
+      return;
     }
     const newQuantity = quantity - 1;
     const updatedCartItem = {
-        quantity: newQuantity,
+      quantity: newQuantity,
     };
-    
+
     setCartQuantityUpdateLoading(true);
     try {
-      const response = await fetch(
-        `http://localhost:5000/cartItems/${_id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedCartItem),
-        }
-      );
+      const response = await fetch(`http://localhost:5000/cartItems/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCartItem),
+      });
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {
@@ -57,26 +49,23 @@ const SingleCartItem = ({
   const handleIncreaseCartItemQuantity = async (e) => {
     e.preventDefault();
     if (quantity == 5) {
-        customAlert("Maximum Quantity 5");
-        return;
+      customAlert("Maximum Quantity 5");
+      return;
     }
     const newQuantity = quantity + 1;
     const updatedCartItem = {
-        quantity: newQuantity,
+      quantity: newQuantity,
     };
-    
+
     setCartQuantityUpdateLoading(true);
     try {
-      const response = await fetch(
-        `http://localhost:5000/cartItems/${_id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedCartItem),
-        }
-      );
+      const response = await fetch(`http://localhost:5000/cartItems/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCartItem),
+      });
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {
@@ -90,11 +79,16 @@ const SingleCartItem = ({
       setCartItemsRefetch(true);
     }
   };
+
   return (
     <div className="text-gray-900">
-        <div>
-            {isCartQuantityUpdateLoading && <div className="fixed inset-0 flex justify-center items-center"><CustomLoading size={32}></CustomLoading></div>}
-        </div>
+      <div>
+        {isCartQuantityUpdateLoading && (
+          <div className="fixed inset-0 flex justify-center items-center">
+            <CustomLoading size={32}></CustomLoading>
+          </div>
+        )}
+      </div>
       <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 px-2 ">
         <div className="flex items-center">
           <button
