@@ -21,7 +21,7 @@ const CheckoutPage = () => {
   const handleDeleteAllCartItems = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/cartItems/${user.email}`,
+        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${user.email}`,
         {
           method: "DELETE",
         }
@@ -38,7 +38,6 @@ const CheckoutPage = () => {
     }
   };
   const handleConfirmOrder = () => {
-    handleDeleteAllCartItems();
     setOrderPlaced(true);
   };
   const handlePaymentSelect = (option) => {
@@ -333,6 +332,7 @@ const CheckoutPage = () => {
         <CashReceiptModal
           billDetails={billDetails}
           setBillDetails={setBillDetails}
+          handleDeleteAllCartItems={handleDeleteAllCartItems}
         ></CashReceiptModal>
       )}
     </div>

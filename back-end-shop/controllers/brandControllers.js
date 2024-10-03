@@ -133,7 +133,7 @@ const getCartItems = async (req, res) => {
 const getOneCartItem = async (req, res) => {
   try {
     const itemId = req.params.productId;
-    const query = { productId: itemId };
+    const query = { _id: new ObjectId(itemId) };
     const result = await cartCollection().findOne(query);
     res.send(result);
   } catch (error) {
@@ -169,6 +169,17 @@ const removeCartItem = async (req, res) => {
     console.error(error);
   }
 };
+const deleteOneCartItem = async (req, res) => {
+  try {
+    const itemId = req.params.productId;
+    console.log("from delete one cart item", itemId);
+    const query = { _id: new ObjectId(itemId) };
+    const result = await cartCollection().deleteOne(query);
+    res.send(result);
+  } catch (error) {
+    console.error(error);
+  }
+};
 const removeAllCartItems = async (req, res) => {
   try {
     const userEmail = req.params.userEmail;
@@ -191,6 +202,7 @@ module.exports = {
   getOneCartItem,
   updateOneCartItem,
   removeCartItem,
+  deleteOneCartItem,
   removeAllCartItems,
   updateProduct,
   removeProduct,

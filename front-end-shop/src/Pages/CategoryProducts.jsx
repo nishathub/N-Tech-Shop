@@ -34,7 +34,7 @@ const CategoryProducts = () => {
       try {
         setCategoryProductsLoading(true);
         const response = await fetch(
-          `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/category/${categoryName}`
+          `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products/category/${categoryName}`
         );
         if (!response.ok) {
           console.error("Response Error");

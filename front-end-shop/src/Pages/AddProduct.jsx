@@ -45,7 +45,7 @@ const AddProduct = () => {
     console.log(newProduct);
     try {
       const response = await fetch(
-        "https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products",
+        "https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products",
         {
           method: "POST",
           headers: {
@@ -64,7 +64,7 @@ const AddProduct = () => {
     } catch (error) {
       console.error("error adding product : ", error);
       customAlert("Error");
-    } finally{
+    } finally {
       setAddLoading(false);
     }
   };
@@ -72,12 +72,12 @@ const AddProduct = () => {
   return (
     <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
       <div className="max-w-5xl mx-auto bg-[#D7D8D9] p-4 sm:p-12 custom-login-register relative">
-      {isAddLoading && (
-        <div className="absolute bg-white/40 inset-0 flex items-center justify-center">
-          {" "}
-          <CustomLoading size={32}></CustomLoading>
-        </div>
-      )}
+        {isAddLoading && (
+          <div className="absolute bg-white/40 inset-0 flex items-center justify-center">
+            {" "}
+            <CustomLoading size={32}></CustomLoading>
+          </div>
+        )}
         <h2 className="text-xl md:text-3xl text-center font-bold mb-8">
           Add a New Product Here
         </h2>

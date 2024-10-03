@@ -12,6 +12,7 @@ const {
   removeProduct,
   updateOneCartItem,
   removeAllCartItems,
+  deleteOneCartItem,
 } = require("../controllers/brandControllers");
 
 const express = require("express");
@@ -30,6 +31,6 @@ router.get("/cartItems/:userEmail", getCartItems);
 router.delete("/cartItems/:userEmail", removeAllCartItems);
 router.get("/cartItems/:productId", getOneCartItem);
 router.patch("/cartItems/:productId", updateOneCartItem);
-router.delete("/cartItems/:productId", removeCartItem);
+router.delete("/cart/:productId", deleteOneCartItem);
 
 module.exports = router;

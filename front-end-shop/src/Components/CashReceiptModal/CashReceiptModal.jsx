@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import { BrandShopContext } from "../../AuthProvider/AuthProvider";
 
-const CashReceiptModal = ({ billDetails, setBillDetails }) => {
-  const {
-    cartItems,
-    cartSubTotal,
-    tax,
-    discount,
-    cartItemsTotalPrice,
-  } = useContext(BrandShopContext);
-  console.log('from modal',cartSubTotal, tax, discount, cartItemsTotalPrice);
-  
+const CashReceiptModal = ({
+  billDetails,
+  setBillDetails,
+  handleDeleteAllCartItems,
+}) => {
+  const { cartItems, cartSubTotal, tax, discount, cartItemsTotalPrice } =
+    useContext(BrandShopContext);
+  const handleCloseClick = () => {
+    setBillDetails(null);
+    handleDeleteAllCartItems();
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-800 z-50">
@@ -96,7 +97,7 @@ const CashReceiptModal = ({ billDetails, setBillDetails }) => {
           {/* Close Button */}
           <div className="col-span-1 md:col-span-2 text-center">
             <button
-              onClick={() => setBillDetails(null)}
+              onClick={handleCloseClick}
               className="p-4 rounded-md font-semibold bg-gray-900 text-gray-200 hover:text-gray-900 hover:bg-gray-200 duration-300"
             >
               Close

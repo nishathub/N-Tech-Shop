@@ -6,8 +6,7 @@ import CustomLoading from "../Shared/CustomLoading/CustomLoading";
 const SingleCartItem = ({ item, handleDeleteCartItem }) => {
   const [isCartQuantityUpdateLoading, setCartQuantityUpdateLoading] =
     useState(false);
-  const { customAlert, setCartItemsRefetch } =
-    useContext(BrandShopContext);
+  const { customAlert, setCartItemsRefetch } = useContext(BrandShopContext);
   const { name, color, price, image, _id, quantity } = item;
   const oneProductAmount = quantity * price;
 
@@ -25,13 +24,16 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
 
     setCartQuantityUpdateLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/cartItems/${_id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedCartItem),
-      });
+      const response = await fetch(
+        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedCartItem),
+        }
+      );
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {
@@ -59,13 +61,16 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
 
     setCartQuantityUpdateLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/cartItems/${_id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedCartItem),
-      });
+      const response = await fetch(
+        `http://localhost:5000/cartItems/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(updatedCartItem),
+        }
+      );
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {

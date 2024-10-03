@@ -25,24 +25,32 @@ const NewCartPage = () => {
   } = useContext(BrandShopContext);
   const [isDeleteItemLoading, setDeleteItemLoading] = useState(false);
   const deliveryCharge = 70;
+  console.log(cartDisplayLoading);
 
   const handleDeleteCartItem = async (id) => {
+    console.log(id);
+
     setDeleteItemLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/cartItems/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:5000/cart/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         customAlert(response.statusText || "Error");
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
       const result = await response.json();
-      console.log("Item deleted successfully:", result);
-      customAlert("Deleted");
-      setTimeout(() => {
-        setCartItemsRefetch(true);
-      }, 1000);
+      console.log("from cart delete function:", result);
+      if (result.deletedCount > 0) {
+        customAlert("Deleted");
+        setTimeout(() => {
+          setCartItemsRefetch(true);
+        }, 1000);
+      }
     } catch (error) {
       console.error("Failed to delete the item:", error);
       customAlert("Error");
@@ -56,7 +64,7 @@ const NewCartPage = () => {
     if (cartItems.length) {
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        const quantity = item.quantity; 
+        const quantity = item.quantity;
         const price = item.price;
         const amount = quantity * price;
         cartSubTotal += amount;
@@ -69,7 +77,8 @@ const NewCartPage = () => {
 
     const form = e.target;
     const couponCode = form.coupon.value;
-    if (couponCode === "NTECH10") {
+
+    if (couponCode === import.meta.env.VITE_COUPON_CODE) {
       customAlert("10% discounted");
       return setDiscount((0.1 * cartSubTotal).toFixed(2));
     }
@@ -94,7 +103,7 @@ const NewCartPage = () => {
 
   const totalAmount =
     cartSubTotal + parseFloat(tax) + deliveryCharge - discount;
-    setCartItemTotalPrice(totalAmount.toFixed(2));
+  setCartItemTotalPrice(totalAmount.toFixed(2));
 
   return (
     <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900 relative">

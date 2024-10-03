@@ -45,7 +45,7 @@ const ProductDetails = () => {
     try {
       // Fetch cart items to check if the item already exists
       const response = await fetch(
-        `http://localhost:5000/cartItems/${user?.email}`
+        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
       );
 
       if (!response.ok) {
@@ -61,21 +61,24 @@ const ProductDetails = () => {
         customAlert("Item already in the cart");
       } else {
         // Item not in the cart, proceed to add it
-        const addResponse = await fetch("http://localhost:5000/cartItems", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            productId: _id,
-            name: name,
-            color: color,
-            price: price,
-            image: image,
-            email: userMail,
-            quantity: 1,
-          }),
-        });
+        const addResponse = await fetch(
+          "https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/cartItems",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              productId: _id,
+              name: name,
+              color: color,
+              price: price,
+              image: image,
+              email: userMail,
+              quantity: 1,
+            }),
+          }
+        );
 
         if (!addResponse.ok) {
           throw new Error("Failed to add item to the cart");

@@ -65,7 +65,7 @@ const UpdateProduct = () => {
 
     try {
       const response = await fetch(
-        `https://back-end-shop-i79v47290-nishats-projects-890e0902.vercel.app/products/${_id}`,
+        `https://back-end-shop-e3hg60p1p-nishats-projects-890e0902.vercel.app/products/${_id}`,
         {
           method: "PUT",
           headers: {
@@ -89,7 +89,7 @@ const UpdateProduct = () => {
       setUpdateLoading(false);
     }
   };
-  
+
   return (
     <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
       <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register relative">
@@ -242,7 +242,6 @@ const UpdateProduct = () => {
             />
           </div>
         </form>
-       
       </div>
     </div>
   );
