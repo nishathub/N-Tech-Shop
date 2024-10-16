@@ -1,11 +1,11 @@
-.gallery-product-card:hover {
-  scale: 1.01;
-  transition-duration: 0.3s;
-}
 
 .product-image {
   position: relative;
   overflow: hidden;
+  transition: transform 0.7s ease-in-out;
+}
+.product-image:hover {
+  transform: scale(1.05);
 }
 
 .product-badge {

@@ -13,6 +13,7 @@ import auth from "../Firebase/FirebaseSDK";
 export const BrandShopContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const brandShopAPI = import.meta.env.VITE_NTECH_BACKEND;
   const [isAdmin, setIsAdmin] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,7 +53,7 @@ const AuthProvider = ({ children }) => {
         setCartDisplayLoading(true);
         try {
           const response = await fetch(
-            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
+            `${brandShopAPI}/cartItems/${user?.email}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch cart items");
@@ -79,9 +80,7 @@ const AuthProvider = ({ children }) => {
       setLoadingAllProducts(true);
 
       try {
-        const response = await fetch(
-          "https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products"
-        );
+        const response = await fetch(`${brandShopAPI}/products`);
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -161,12 +160,9 @@ const AuthProvider = ({ children }) => {
   const handleDeleteProduct = async (id) => {
     setDeleteLoading(true);
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/products/${id}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         customAlert("Error");
         throw new Error(`${response.status} : ${response.statusText}`);
@@ -184,6 +180,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const authData = {
+    brandShopAPI,
     user,
     loading,
     isLoadingAllProducts,

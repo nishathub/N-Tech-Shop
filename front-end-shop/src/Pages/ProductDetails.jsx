@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const [isDisplayOpen, setDisplayOpen] = useState(false);
   const oneProduct = useLoaderData();
   const { name, color, price, image, rating, country, year, _id } = oneProduct;
-  const { setAddCartClick, user, loading, customAlert } =
+  const { setAddCartClick, user, loading, customAlert, brandShopAPI } =
     useContext(BrandShopContext);
   const discountedPrice = (price * 0.8).toFixed(2);
   const totalStars = 5;
@@ -44,9 +44,7 @@ const ProductDetails = () => {
     setAddCartLoading(true);
     try {
       // Fetch cart items to check if the item already exists
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${user?.email}`
-      );
+      const response = await fetch(`${brandShopAPI}/cartItems/${user?.email}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch cart items");
@@ -61,24 +59,21 @@ const ProductDetails = () => {
         customAlert("Item already in the cart");
       } else {
         // Item not in the cart, proceed to add it
-        const addResponse = await fetch(
-          "https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              productId: _id,
-              name: name,
-              color: color,
-              price: price,
-              image: image,
-              email: userMail,
-              quantity: 1,
-            }),
-          }
-        );
+        const addResponse = await fetch(`${brandShopAPI}/cartItems`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productId: _id,
+            name: name,
+            color: color,
+            price: price,
+            image: image,
+            email: userMail,
+            quantity: 1,
+          }),
+        });
 
         if (!addResponse.ok) {
           throw new Error("Failed to add item to the cart");
@@ -100,7 +95,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="py-12 bg-[#BABCBF]">
+    <div className="py-12 bg-[#EBEFF2]">
       <div>
         {isAddCartLoading && (
           <div className="fixed flex inset-0 justify-center items-center bg-white/40">

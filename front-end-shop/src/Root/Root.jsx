@@ -17,7 +17,7 @@ const Root = () => {
     return null;
   }
   return (
-    <div className="bg-[#BABCBF] montserrat-regular">
+    <div className="bg-[#EBEFF2] montserrat-regular">
       <BToast></BToast>
       <div className="flex flex-col min-h-screen">
         <ScrollToTop></ScrollToTop>

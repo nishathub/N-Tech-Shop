@@ -18,7 +18,7 @@ import Checkout from "../Pages/Checkout";
 import AdminDashboard from "../Pages/AdminDashboard";
 import HomeLazy from "../Layout/Home/HomeLazy";
 import NewCartPage from "../Pages/NewCartPage";
-
+const nTechBackEnd = import.meta.env.VITE_NTECH_BACKEND;
 const Routes = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +31,7 @@ const Routes = createBrowserRouter([
         // element: <HomeLazy></HomeLazy>,
         loader: () =>
           fetch(
-            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products`
+            `${nTechBackEnd}/products`
           ),
       },
       {
@@ -71,7 +71,7 @@ const Routes = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${params.id}`
+            `${nTechBackEnd}/products/${params.id}`
           ),
       },
       {
@@ -87,7 +87,7 @@ const Routes = createBrowserRouter([
         element: <ProductDetails></ProductDetails>,
         loader: ({ params }) =>
           fetch(
-            `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${params.productId}`
+            `${nTechBackEnd}/products/${params.productId}`
           ),
       },
       {

@@ -36,21 +36,21 @@ const Home = () => {
           oddIndexProducts={oddFiveProducts}
         ></CarouselCustomNavigation>
       </div>
-      <div className="bg-[#BABCBF] pt-12 md:pt-24 md:pb-12">
+      <div className="bg-[#EBEFF2] pt-12 md:pt-24 md:pb-12">
         <CategoryContainer></CategoryContainer>
       </div>
-      <div className="bg-[#BABCBF] py-12">
+      <div className="bg-[#EBEFF2] py-12">
         <TopSellingCarousel
           evenIndexProducts={evenNineProducts}
         ></TopSellingCarousel>
       </div>
-      <div className="bg-[#BABCBF] md:py-12">
+      <div className="bg-[#EBEFF2] md:py-12">
         <FlagshipCard></FlagshipCard>
       </div>
-      <div className="bg-[#BABCBF] py-12 ">
+      <div className="bg-[#EBEFF2] py-12 ">
         <BrandCarousel></BrandCarousel>
       </div>
-      <div className="bg-[#BABCBF] md:py-12 pb-12 lg:pb-0 ">
+      <div className="bg-[#EBEFF2] md:py-12 pb-12 lg:pb-0 ">
         <WebsiteFeatures></WebsiteFeatures>
       </div>
       <div className="relative lg:py-12 ">

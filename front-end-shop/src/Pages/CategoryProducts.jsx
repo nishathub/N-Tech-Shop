@@ -20,7 +20,8 @@ const CategoryProducts = () => {
   const [displayProducts, setDisplayProducts] = useState(categoryProducts);
   const [brandName, setBrandName] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
-  const { categories, customAlert } = useContext(BrandShopContext);
+  const { categories, customAlert, brandShopAPI } =
+    useContext(BrandShopContext);
   const selectedCategory = categories.find(
     (category) => category.categoryName === categoryName
   );
@@ -34,7 +35,7 @@ const CategoryProducts = () => {
       try {
         setCategoryProductsLoading(true);
         const response = await fetch(
-          `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/category/${categoryName}`
+          `${brandShopAPI}/products/category/${categoryName}`
         );
         if (!response.ok) {
           console.error("Response Error");
@@ -130,7 +131,7 @@ const CategoryProducts = () => {
   }
 
   return (
-    <div className="pb-12 pt-4 bg-[#BABCBF] px-4 xl:px-0">
+    <div className="pb-12 pt-4 bg-[#EBEFF2] px-4 xl:px-0">
       <div className="max-w-7xl mx-auto px-1">
         <div className="flex justify-center">
           <div className="relative group">

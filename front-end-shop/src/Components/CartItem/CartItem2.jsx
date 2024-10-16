@@ -38,7 +38,7 @@ const CartItem2 = ({
   };
   return (
     <div className="text-gray-900">
-      <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 px-2 ">
+      <div className="flex md:gap-4 items-center bg-[#EBEFF2] max-h-56 px-2 ">
         <div className="flex items-center">
           <button
             onClick={() => handleDeleteCartItem(_id)}

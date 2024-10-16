@@ -7,7 +7,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { FaShoppingBag } from "react-icons/fa";
 
 const CheckoutPage = () => {
-  const { setOrderPlaced, customAlert, setCartItemsRefetch, user } =
+  const { setOrderPlaced, customAlert, setCartItemsRefetch, user, brandShopAPI } =
     useContext(BrandShopContext);
 
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
@@ -20,12 +20,9 @@ const CheckoutPage = () => {
   // REMOVE ALL ITEMS FROM CART
   const handleDeleteAllCartItems = async () => {
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${user.email}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/cartItems/${user.email}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }

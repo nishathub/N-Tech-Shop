@@ -9,7 +9,8 @@ const BrandProducts = () => {
   const [brandErrorText, setBrandErrorText] = useState("");
   const [brandProducts, setBrandProducts] = useState([]);
   const [displayProducts, setDisplayProducts] = useState([]);
-  const { productBrands, customAlert } = useContext(BrandShopContext);
+  const { productBrands, customAlert, brandShopAPI } =
+    useContext(BrandShopContext);
   const selectedBrand = productBrands.find((brand) => brand.name === brandName);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -20,7 +21,7 @@ const BrandProducts = () => {
       try {
         setBrandProductsLoading(true);
         const response = await fetch(
-          `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/brand/${brandName}`
+          `${brandShopAPI}/products/brand/${brandName}`
         );
         if (!response.ok) {
           console.error("Response Error");
@@ -103,7 +104,7 @@ const BrandProducts = () => {
   }
 
   return (
-    <div className="md:pb-12 px-4 md:p-0 bg-[#BABCBF]">
+    <div className="md:pb-12 px-4 md:p-0 bg-[#EBEFF2]">
       <div className="max-w-7xl mx-auto">
         <div className="mt-4">
           <div className="w-full mx-auto group">

@@ -20,7 +20,7 @@ const BrandCarousel = lazy(() =>
 const HomeLazy = () => {
   const allProducts = useLoaderData();
   const navigation = useNavigation();
-  
+
   // Ensure that allProducts is defined
   if (!allProducts) {
     return <CustomLoading size={32} />;
@@ -50,23 +50,23 @@ const HomeLazy = () => {
           <CarouselCustomNavigation oddIndexProducts={oddFiveProducts} />
         </Suspense>
       </div>
-      <div className="bg-[#BABCBF] pt-12 md:pt-24 md:pb-12">
+      <div className="bg-[#EBEFF2] pt-12 md:pt-24 md:pb-12">
         <CategoryContainer></CategoryContainer>
       </div>
-      <div className="bg-[#BABCBF] py-12">
+      <div className="bg-[#EBEFF2] py-12">
         <Suspense fallback={<CustomLoading size={32} />}>
           <TopSellingCarousel evenIndexProducts={evenNineProducts} />
         </Suspense>
       </div>
-      <div className="bg-[#BABCBF] md:py-12">
+      <div className="bg-[#EBEFF2] md:py-12">
         <FlagshipCard></FlagshipCard>
       </div>
-      <div className="bg-[#BABCBF] py-12 ">
+      <div className="bg-[#EBEFF2] py-12 ">
         <Suspense fallback={<CustomLoading size={32} />}>
           <BrandCarousel />
         </Suspense>
       </div>
-      <div className="bg-[#BABCBF] md:py-12 pb-12 lg:pb-0 ">
+      <div className="bg-[#EBEFF2] md:py-12 pb-12 lg:pb-0 ">
         <WebsiteFeatures></WebsiteFeatures>
       </div>
       <div className="relative lg:py-12 ">

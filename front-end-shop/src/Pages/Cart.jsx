@@ -8,6 +8,7 @@ import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const Cart = () => {
   const {
+    brandShopAPI,
     showCartItems,
     setShowCartItems,
     cartDisplayLoading,
@@ -31,12 +32,9 @@ const Cart = () => {
   const handleDeleteCartItem = async (id) => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/cartItems/${id}`, {
+        method: "DELETE",
+      });
 
       if (!response.ok) {
         customAlert(response.statusText || "Error");
@@ -175,7 +173,7 @@ const Cart = () => {
                 </div>
                 <div className="col-span-1">
                   <div className="">
-                    <div className="w md:text-lg bg-[#BABCBF] p-4">
+                    <div className="w md:text-lg bg-[#EBEFF2] p-4">
                       <div className="flex justify-between">
                         <p>cartSubtotal</p>
                         <p>$ {cartsubTotal}</p>
@@ -199,7 +197,7 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 p-4 bg-[#BABCBF]">
+                  <div className="mt-4 p-4 bg-[#EBEFF2]">
                     <div className="">
                       <ul className="space-y-3">
                         <li className="flex items-center gap-2">

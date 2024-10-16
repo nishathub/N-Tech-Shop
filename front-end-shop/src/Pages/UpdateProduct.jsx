@@ -6,7 +6,7 @@ import { BrandShopContext } from "../AuthProvider/AuthProvider";
 import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const UpdateProduct = () => {
-  const { customAlert } = useContext(BrandShopContext);
+  const { customAlert, brandShopAPI } = useContext(BrandShopContext);
   const [isUpdateLoading, setUpdateLoading] = useState(false);
   const oldProduct = useLoaderData();
   const {
@@ -64,16 +64,13 @@ const UpdateProduct = () => {
     console.log(updatedProduct);
 
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products/${_id}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedProduct),
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/products/${_id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      });
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {
@@ -91,7 +88,7 @@ const UpdateProduct = () => {
   };
 
   return (
-    <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
+    <div className="bg-[#EBEFF2] md:py-12 p-4 md:p-0 text-gray-900">
       <div className="max-w-5xl mx-auto bg-[#D9D9D9] p-4 sm:p-12 custom-login-register relative">
         <h2 className="text-xl md:text-3xl text-center font-semibold mb-4">
           Update Your Product Here

@@ -70,7 +70,7 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-[#BABCBF]">
+    <div className="bg-[#EBEFF2]">
       <div className="max-w-5xl mx-auto md:py-20 p-4 md:p-0 text-gray-900">
         <div className="bg-[#D9D9D9] p-4 sm:p-12 max-w-2xl mx-auto rounded-sm custom-login-register relative">
           {isCreateAccountLoading && (

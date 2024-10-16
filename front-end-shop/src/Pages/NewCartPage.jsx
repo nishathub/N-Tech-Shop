@@ -9,6 +9,7 @@ import SingleCartItem from "../Components/CartItem/SingleCartItem";
 
 const NewCartPage = () => {
   const {
+    brandShopAPI,
     cartItems,
     cartDisplayLoading,
     cartSubTotal,
@@ -32,12 +33,9 @@ const NewCartPage = () => {
 
     setDeleteItemLoading(true);
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cart/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/cart/${id}`, {
+        method: "DELETE",
+      });
 
       if (!response.ok) {
         customAlert(response.statusText || "Error");
@@ -106,7 +104,7 @@ const NewCartPage = () => {
   setCartItemTotalPrice(totalAmount.toFixed(2));
 
   return (
-    <div className="bg-[#D7D8D9] md:py-20 p-4 text-gray-900 relative">
+    <div className="bg-[#EBEFF2] md:py-20 p-4 text-gray-900 relative">
       {isDeleteItemLoading && (
         <div className="absolute bg-white/40 inset-0 flex items-center justify-center">
           {" "}
@@ -163,7 +161,7 @@ const NewCartPage = () => {
                 </div>
                 <div className="col-span-1">
                   <div className="">
-                    <div className="w md:text-lg bg-[#BABCBF] p-4">
+                    <div className="w md:text-lg bg-[#D7D8D9] p-4 rounded-md">
                       <div className="flex justify-between">
                         <p>cartSubtotal</p>
                         <p>$ {cartSubTotal}</p>
@@ -187,7 +185,7 @@ const NewCartPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 p-4 bg-[#BABCBF]">
+                  <div className="mt-4 p-4 bg-[#D7D8D9] rounded-md">
                     <div className="">
                       <ul className="space-y-3">
                         <li className="flex items-center gap-2">

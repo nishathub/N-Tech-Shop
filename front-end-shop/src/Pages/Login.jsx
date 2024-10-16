@@ -20,7 +20,7 @@ const Login = () => {
   const attemptURL = location.state;
 
   const handleGoogleLogIn = () => {
-    setErrorMessage("")
+    setErrorMessage("");
     googleSignIn()
       .then((result) => {
         console.log(result.user);
@@ -58,15 +58,15 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[#BABCBF]">
+    <div className="bg-[#EBEFF2]">
       <div className="max-w-5xl mx-auto md:py-20 p-4 md:p-0 text-gray-900">
         <div className="bg-[#D9D9D9] p-4 sm:p-12 max-w-2xl mx-auto rounded-sm custom-login-register relative">
-            {isLoginLoading && (
-              <div className="absolute bg-white/40 inset-0 flex items-center justify-center ">
-                {" "}
-                <CustomLoading size={24}></CustomLoading>
-              </div>
-            )}
+          {isLoginLoading && (
+            <div className="absolute bg-white/40 inset-0 flex items-center justify-center ">
+              {" "}
+              <CustomLoading size={24}></CustomLoading>
+            </div>
+          )}
           <h2 className="text-xl md:text-3xl text-center font-semibold mb-4">
             Login Here
           </h2>

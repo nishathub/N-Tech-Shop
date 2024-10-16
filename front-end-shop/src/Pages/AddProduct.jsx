@@ -6,7 +6,8 @@ import CustomLoading from "../Components/Shared/CustomLoading/CustomLoading";
 
 const AddProduct = () => {
   const [rating, setRating] = useState("3");
-  const { customAlert, setAllProductsRefetch } = useContext(BrandShopContext);
+  const { customAlert, setAllProductsRefetch, brandShopAPI } =
+    useContext(BrandShopContext);
   const [isAddLoading, setAddLoading] = useState(false);
 
   const handleRatingInput = (e) => {
@@ -44,16 +45,13 @@ const AddProduct = () => {
     };
     console.log(newProduct);
     try {
-      const response = await fetch(
-        "https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/products",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(newProduct),
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/products`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
       const data = await response.json();
       console.log(data);
       if (data.insertedId) {
@@ -70,7 +68,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-[#BABCBF] md:py-12 p-4 md:p-0 text-gray-900">
+    <div className="bg-[#EBEFF2] md:py-12 p-4 md:p-0 text-gray-900">
       <div className="max-w-5xl mx-auto bg-[#D7D8D9] p-4 sm:p-12 custom-login-register relative">
         {isAddLoading && (
           <div className="absolute bg-white/40 inset-0 flex items-center justify-center">

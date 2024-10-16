@@ -6,7 +6,8 @@ import CustomLoading from "../Shared/CustomLoading/CustomLoading";
 const SingleCartItem = ({ item, handleDeleteCartItem }) => {
   const [isCartQuantityUpdateLoading, setCartQuantityUpdateLoading] =
     useState(false);
-  const { customAlert, setCartItemsRefetch } = useContext(BrandShopContext);
+  const { customAlert, setCartItemsRefetch, brandShopAPI } =
+    useContext(BrandShopContext);
   const { name, color, price, image, _id, quantity } = item;
   const oneProductAmount = quantity * price;
 
@@ -24,16 +25,13 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
 
     setCartQuantityUpdateLoading(true);
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${_id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedCartItem),
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/cartItems/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCartItem),
+      });
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {
@@ -61,16 +59,13 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
 
     setCartQuantityUpdateLoading(true);
     try {
-      const response = await fetch(
-        `https://back-end-shop-1fmy48h1a-nishats-projects-890e0902.vercel.app/cartItems/${_id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedCartItem),
-        }
-      );
+      const response = await fetch(`${brandShopAPI}/cartItems/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCartItem),
+      });
       const data = await response.json();
       console.log(data);
       if (data.modifiedCount > 0) {
@@ -94,7 +89,7 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
           </div>
         )}
       </div>
-      <div className="flex md:gap-4 items-center bg-[#BABCBF] max-h-56 px-2 ">
+      <div className="flex md:gap-4 items-center bg-[#D7D8D9] max-h-56 px-2 rounded-md">
         <div className="flex items-center">
           <button
             onClick={() => handleDeleteCartItem(_id)}
