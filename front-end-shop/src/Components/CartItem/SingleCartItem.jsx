@@ -121,12 +121,12 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
             <div className="flex gap-2 md:gap-0">
               <button
                 onClick={handleDecreaseCartItemQuantity}
-                className="rounded-sm text-white bg-red-900 hover:bg-red-500 w-6 md:w-12 md:text-2xl"
+                className="rounded-sm text-white bg-gray-900 hover:bg-gray-500 w-6 md:w-12 md:text-2xl"
               >
                 -
               </button>
               <input
-                className="md:w-16 w-6 text-center"
+                className="md:w-16 w-6 text-center font-semibold bg-[#EBEFF2]"
                 type="text"
                 disabled
                 name="quantity"
@@ -135,12 +135,12 @@ const SingleCartItem = ({ item, handleDeleteCartItem }) => {
               />
               <button
                 onClick={handleIncreaseCartItemQuantity}
-                className="rounded-sm bg-green-900 hover:bg-green-600 text-white  w-6 md:w-12 md:text-2xl"
+                className="rounded-sm bg-gray-900 hover:bg-gray-600 text-white  w-6 md:w-12 md:text-2xl"
               >
                 +
               </button>
             </div>
-            <div className="bg-[#e0e0e0] p-1 rounded-md w-24 text-center">
+            <div className="bg-[#EBEFF2] p-1 rounded-md w-24 text-center">
               <p className="md:text-xl">
                 $ <span>{oneProductAmount}</span>
               </p>
