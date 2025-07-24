@@ -123,9 +123,9 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if (currentUser?.email === "nishat@mail.com") {
+      if (currentUser?.email === "nishat.mohammad19@gmail.com") {
         setIsAdmin(true);
-      } else if (currentUser?.email !== "nishat@mail.com") {
+      } else {
         setIsAdmin(false);
       }
       setLoading(false);
