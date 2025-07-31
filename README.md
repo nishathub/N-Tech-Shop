@@ -10,7 +10,7 @@
 
 ## Live Preview
 
- [Live Site URL](#) &nbsp; _(https://brandshopntech.web.app)_
+ - [N-Tech](https://brandshopntech.web.app)
 
 ---
 
