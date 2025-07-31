@@ -1,34 +1,34 @@
-# 🛒 N-Tech-Shop
+# N-Tech-Shop
 
 - Full-Stack MERN E-commerce App
 
 **N-Tech-Shop** is a modern, fully-responsive full-stack **MERN** (MongoDB, Express.js, React.js, Node.js) e-commerce project. It is designed to showcase a smooth and elegant UI/UX experience with category-based device listings, dynamic cart handling, and admin functionalities.
 
-> ⚠️ Note: This project currently focuses on **front-end design and user flow simulation**. Backend operations are implemented with minimal security, mainly to support CRUD functionality and database integration.
+>  Note: This project currently focuses on **front-end design and user flow simulation**. Backend operations are implemented with minimal security, mainly to support CRUD functionality and database integration.
 
 ---
 
-## 🚀 Live Preview
+## Live Preview
 
-🌐 [Live Site URL](#) &nbsp; _(https://brandshopntech.web.app)_
+ [Live Site URL](#) &nbsp; _(https://brandshopntech.web.app)_
 
 ---
 
-## ✨ Features
+## Features
 
-### 👥 Authentication
+### Authentication
 
 - Firebase-based login system
 - Users can log in to add items to their cart and place orders
 
-### 🛍️ Shop Features
+### Shop Features
 
 - Products displayed in device-specific **categories**
 - Each product has a dedicated **details page**
 - Users can **add to cart** and view their cart with quantity and price details
 - **Order confirmation modal** with order summary on placement
 
-### 🛠️ Admin Panel (Design Purpose)
+### Admin Panel (Design Purpose)
 
 - Accessible only via **front-end protected routes**
 - Admin can:
@@ -36,15 +36,15 @@
   - Edit existing products
   - Delete products
 
-### 🎨 UI & UX
+### UI & UX
 
 - Focused on **responsive**, **clean**, and **modern** design
 - Smooth navigation and page transitions
-- Custom loading spinner, alert, modals and interactive components
+- Custom loading spinner, alert, modals, and interactive components
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Frontend | Backend | Database | Auth     | Hosting          |
 | -------- | ------- | -------- | -------- | ---------------- |
@@ -52,32 +52,32 @@
 
 ---
 
-## 🔧 Future Improvement Plan
+## Future Improvement Plan
 
-### 🔐 Security
+### Security
 
 - Integrate **JWT authentication** for protected routes
 - Implement **role-based access control** for admin actions
 - Add **backend verification** for admin routes
 
-### 👥 User Features
+### User Features
 
 - Implement **user profile management**
 - View past orders, manage shipping info, etc.
 
-### 🛠 Admin Enhancements
+### Admin Enhancements
 
 - Add **user management** system
 - Dashboard with **order analytics**, stock updates, etc.
 
-### 💾 Database Improvements
+### Database Improvements
 
 - Use **mongoose schema validation**
 - Add timestamps, order history, etc.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Ashraf Ali**  
 MERN Stack Developer
